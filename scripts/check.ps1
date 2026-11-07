@@ -449,6 +449,27 @@ Write-Host "fix_medallion_abort: Bombos empieza $($med0.Start) vez; sin la opci�
 $som0 = (Play "som0").wram; $som1 = (Play "som1").wram
 $somOk = ($som0[0x3A] -eq 0x40) -and ($som1[0x3A] -eq 0) -and ($som0[0x350] -eq 0) -and ($som1[0x350] -eq 0)
 Write-Host "fix_somaria_nomagic: con el bastón sin magia el bit 6 de `$3A queda en $($som0[0x3A]) sin la opción y en $($som1[0x3A]) con ella -> $somOk"
+# fix_magic_refund: la devolución de magia (07:B0E9) con la función de quality.c sola (scripts\test_refund.c, tabla de costes de la ROM): sin la
+# opción la magia pasa de 128 y con ella se queda en 128; por debajo del tope las dos dan lo mismo
+$refundBody = "$out\refund_body.c"
+$inFn = $false
+$(foreach ($l in Get-Content "games\alttp_usa\quality.c") {
+    if ($l -match '^void alttp_magic_refund') { $inFn = $true }
+    if ($inFn) { $l }
+    if ($inFn -and $l -match '^}') { $inFn = $false }
+}) | Set-Content -Encoding ascii $refundBody
+$bodyArg = ($refundBody -replace '\\', '/')
+$bat2 = Join-Path $out "build_refund.bat"
+@"
+call "$Vcvars" >nul 2>&1
+cl /nologo /TC /std:c11 /DBODY=\"$bodyArg\" scripts\test_refund.c /Fe:"$out\test_refund.exe" /Fo:"$out\\" >"$out\build_refund.log" 2>&1
+"@ | Set-Content -Encoding ascii $bat2
+cmd /c $bat2
+if ($LASTEXITCODE -ne 0) { Get-Content "$out\build_refund.log" -Tail 30; throw "no compila scripts\test_refund.c" }
+$refund = & "$out\test_refund.exe" (Resolve-Path $Rom).Path 2>&1
+$refundOk = ($LASTEXITCODE -eq 0)
+$refund | ForEach-Object { Write-Host "    $_" }
+Write-Host "fix_magic_refund: la función sola limita la magia a 128 con la opción y no cambia nada por debajo del tope -> $refundOk"
 function Rupees($name) { $w = (Play $name).wram; return @(($w[0xF360] + 256 * $w[0xF361]), ($w[0xF362] + 256 * $w[0xF363])) }
 $rfu0 = Rupees "rfu0"; $rfu1 = Rupees "rfu1"; $rfd0 = Rupees "rfd0"; $rfd1 = Rupees "rfd1"
 $fastOk = ($rfu0[0] -eq 500) -and ($rfu0[1] -eq 150) -and ($rfu1[0] -eq 500) -and ($rfu1[1] -eq 500) -and ($rfd0[0] -eq 0) -and ($rfd0[1] -eq 350) -and ($rfd1[0] -eq 0) -and ($rfd1[1] -eq 0)
@@ -485,6 +506,7 @@ if (-not $portalOk) { Write-Error "con fix_portal_chime=1 la roca del portal (`$
 if (-not $deathOk) { Write-Error "con fix_death_count=1 continuar sin guardar no debe contar la muerte (y sin la opción sí); guardar y continuar la cuenta siempre" -ErrorAction Continue; $ok = $false }
 if (-not $medOk) { Write-Error "con fix_medallion_abort=1 Bombos no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $somOk) { Write-Error "con fix_somaria_nomagic=1 el bastón de Somaria sin magia no debe dejar el bit 6 de `$3A puesto (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
+if (-not $refundOk) { Write-Error "fix_magic_refund: la función sola debe limitar la magia a 128 con la opción (y sin ella pasar de 128)" -ErrorAction Continue; $ok = $false }
 if (-not $fastOk) { Write-Error "con rupee_fast=1 el marcador debe alcanzar la cartera mucho antes (subiendo y bajando) sin cambiarla, y sin la opción seguir de una en una" -ErrorAction Continue; $ok = $false }
 if (-not $bombOk) { Write-Error "con more_bombs=1 deben poder estar cuatro bombas a la vez, cada una gastando una (y sin la opción dos)" -ErrorAction Continue; $ok = $false }
 if (-not $ok) { exit 1 }
