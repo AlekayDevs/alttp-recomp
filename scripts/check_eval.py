@@ -192,6 +192,17 @@ def cmd_quality(out):
            f"fix_medallion_abort: Bombos empieza en {m0[0]}; sin la opción el giro lo aborta en {m0[1]} ($5D = {m0[2]} al final); con ella sigue ($5D = {m1[2]})",
            "con fix_medallion_abort=1 Bombos no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)")
 
+    # fix_medallion_abort con Ether ($5D = 8) y Quake ($5D = $0A): con la opción el medallón sigue al abrir el giro; sin ella se aborta ($5D = 3) en su fotograma
+    for mname, mstate in (("ether", "08"), ("quake", "0a")):
+        def mstarts(n, new_state=mstate):
+            r = R(n)
+            return ([w[0] for w in r.at(0x5D) if w[2] == "00" and w[3].lower() == new_state],
+                    [w[0] for w in r.at(0x5D) if w[2].lower() == new_state and w[3] == "03"])
+        e0, e1 = mstarts(f"med_{mname}0"), mstarts(f"med_{mname}1")
+        report(len(e0[0]) == 1 and e0[1] == e0[0] and len(e1[0]) == 1 and not e1[1],
+               f"fix_medallion_abort ({mname}): empieza en {e0[0]}; sin la opción se aborta en {e0[1]}; con ella no se aborta ({e1[1]})",
+               f"con fix_medallion_abort=1 {mname} no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)")
+
     # fix_somaria_nomagic
     so0, so1 = R("som0"), R("som1")
     report(so0.wram[0x3A] == 0x40 and so1.wram[0x3A] == 0 and so0.wram[0x350] == 0 and so1.wram[0x350] == 0,
