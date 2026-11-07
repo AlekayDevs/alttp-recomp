@@ -329,11 +329,13 @@ foreach ($bit in "00", "02") {
 # fix_death_count: con la historia avanzada ($F3C5 = 3) y Link con 4 de vida ($F36D) un daño de $10 ($0373) lo mata en el fotograma 5300 y sale la
 # pantalla de fin de partida (módulo $12). Con A en el 5800 se confirma la opción de $B0: 0 guardar y continuar, 2 (dos veces abajo) continuar sin
 # guardar. El contador de muertes ($F403) pasa a 1 en el 5801; con la opción y $B0 = 2 vuelve a 0, y con $B0 = 0 se queda en 1 con las dos.
-foreach ($choice in 0, 2) {
-    $downs = @()
+# Con 1 (guardar y salir, una vez abajo) el juego se reinicia en el 5806 y vacía la WRAM, así que esa partida se para en el 5803: la cuenta es 1 con las dos.
+foreach ($choice in 0, 1, 2) {
+    $downs = @(); $dframes = 5900
+    if ($choice -eq 1) { $downs = @("--press", "DOWN@5700-5702"); $dframes = 5803 }
     if ($choice -eq 2) { $downs = @("--press", "DOWN@5700-5702", "--press", "DOWN@5730-5732") }
     foreach ($opt in 0, 1) {
-        Launch "death$choice$opt" 5900 (@("--poke", "0F3C5=03@5250", "--poke", "0F36D=04@5300", "--poke", "00373=10@5300") + $downs +
+        Launch "death$choice$opt" $dframes (@("--poke", "0F3C5=03@5250", "--poke", "0F36D=04@5300", "--poke", "00373=10@5300") + $downs +
             @("--press", "A@5800-5803", "--game-opt", "fix_death_count=$opt"))
     }
 }
@@ -435,9 +437,9 @@ foreach ($n in "portal000", "portal001", "portal020", "portal021") { $pc[$n] = C
 $portalOk = ($pc["portal000"] -eq 1) -and ($pc["portal001"] -eq 1) -and ($pc["portal020"] -eq 0) -and ($pc["portal021"] -eq 1)
 Write-Host "fix_portal_chime: sonidos al levantar la roca sin el bit 2: $($pc['portal000']) y $($pc['portal001']); con él: $($pc['portal020']) sin la opción y $($pc['portal021']) con ella -> $portalOk"
 $dc = @{}
-foreach ($n in "death00", "death01", "death20", "death21") { $w = (Play $n).wram; $dc[$n] = $w[0xF403] + 256 * $w[0xF404] }
-$deathOk = ($dc["death00"] -eq 1) -and ($dc["death01"] -eq 1) -and ($dc["death20"] -eq 1) -and ($dc["death21"] -eq 0)
-Write-Host "fix_death_count: muertes con guardar y continuar $($dc['death00']) sin la opción y $($dc['death01']) con ella; con continuar sin guardar $($dc['death20']) y $($dc['death21']) -> $deathOk"
+foreach ($n in "death00", "death01", "death10", "death11", "death20", "death21") { $w = (Play $n).wram; $dc[$n] = $w[0xF403] + 256 * $w[0xF404] }
+$deathOk = ($dc["death00"] -eq 1) -and ($dc["death01"] -eq 1) -and ($dc["death10"] -eq 1) -and ($dc["death11"] -eq 1) -and ($dc["death20"] -eq 1) -and ($dc["death21"] -eq 0)
+Write-Host "fix_death_count: muertes con guardar y continuar $($dc['death00']) sin la opción y $($dc['death01']) con ella; con guardar y salir $($dc['death10']) y $($dc['death11']); con continuar sin guardar $($dc['death20']) y $($dc['death21']) -> $deathOk"
 function Medallion($name) {
     $r = Play $name
     $w = @(Writes $r.log | Where-Object { $_.Addr -eq 0x5D })
@@ -503,7 +505,7 @@ if (-not $rupOk) { Write-Error "con rupees_9999=1 el tope debe ser 9999 con cuat
 if (-not $pickOk) { Write-Error "con sword_pickup=1 el espadazo debe recoger un objeto fuera del alcance del cuerpo (sin la opción no) y tocarlo debe seguir recogiéndolo" -ErrorAction Continue; $ok = $false }
 if (-not $potOk) { Write-Error "con sword_pots=1 un espadazo en mazmorra debe romper la vasija que alcanza (y sin la opción no)" -ErrorAction Continue; $ok = $false }
 if (-not $portalOk) { Write-Error "con fix_portal_chime=1 la roca del portal (`$82) debe sonar aunque la pantalla ya esté vista (y sin la opción no); sin el bit debe sonar igual con las dos" -ErrorAction Continue; $ok = $false }
-if (-not $deathOk) { Write-Error "con fix_death_count=1 continuar sin guardar no debe contar la muerte (y sin la opción sí); guardar y continuar la cuenta siempre" -ErrorAction Continue; $ok = $false }
+if (-not $deathOk) { Write-Error "con fix_death_count=1 continuar sin guardar no debe contar la muerte (y sin la opción sí); guardar y continuar o salir la cuenta siempre" -ErrorAction Continue; $ok = $false }
 if (-not $medOk) { Write-Error "con fix_medallion_abort=1 Bombos no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $somOk) { Write-Error "con fix_somaria_nomagic=1 el bastón de Somaria sin magia no debe dejar el bit 6 de `$3A puesto (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $refundOk) { Write-Error "fix_magic_refund: la función sola debe limitar la magia a 128 con la opción (y sin ella pasar de 128)" -ErrorAction Continue; $ok = $false }
