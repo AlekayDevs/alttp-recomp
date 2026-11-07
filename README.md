@@ -34,7 +34,7 @@ Download the package for your system from the [latest release](https://github.co
   <img src="docs/img/launcher-pick.png" alt="Choosing the ROM" width="31%">
   <img src="docs/img/launcher-update.png" alt="New version notice" width="31%">
 </p>
-<p align="center"><sub>The Windows and Linux launcher: pick your ROM once, then just press <b>Play</b>. On the right, the optional new-version notice. (The launcher is currently shown in Spanish in these screenshots.)</sub></p>
+<p align="center"><sub>The Windows and Linux launcher: pick your ROM once, then just press <b>Play</b>. On the right, the optional new-version notice. The globe at the top right switches the language (on Linux; on Windows it follows the system language).</sub></p>
 
 The ROM stays where it is: only its path is remembered, and on Android it is copied to the app's private folder. The first time, the game is prepared on your machine (a few seconds on Linux and Android); if something fails, the window tells you.
 
