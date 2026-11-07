@@ -177,10 +177,10 @@ def cmd_quality(out):
            "con fix_portal_chime=1 la roca del portal ($82) debe sonar aunque la pantalla ya esté vista (y sin la opción no); sin el bit debe sonar igual con las dos")
 
     # fix_death_count
-    dc = {n: R(n).wram[0xF403] | R(n).wram[0xF404] << 8 for n in ("death00", "death01", "death20", "death21")}
-    report(dc == {"death00": 1, "death01": 1, "death20": 1, "death21": 0},
-           f"fix_death_count: muertes con guardar y continuar {dc['death00']} sin la opción y {dc['death01']} con ella; con continuar sin guardar {dc['death20']} y {dc['death21']}",
-           "con fix_death_count=1 continuar sin guardar no debe contar la muerte (y sin la opción sí); guardar y continuar la cuenta siempre")
+    dc = {n: R(n).wram[0xF403] | R(n).wram[0xF404] << 8 for n in ("death00", "death01", "death10", "death11", "death20", "death21")}
+    report(dc == {"death00": 1, "death01": 1, "death10": 1, "death11": 1, "death20": 1, "death21": 0},
+           f"fix_death_count: muertes con guardar y continuar {dc['death00']} sin la opción y {dc['death01']} con ella; con guardar y salir {dc['death10']} y {dc['death11']}; con continuar sin guardar {dc['death20']} y {dc['death21']}",
+           "con fix_death_count=1 continuar sin guardar no debe contar la muerte (y sin la opción sí); guardar y continuar o salir la cuenta siempre")
 
     # fix_medallion_abort
     def medallion(n):

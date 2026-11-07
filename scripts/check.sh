@@ -273,11 +273,13 @@ done
 # fix_death_count: con la historia avanzada ($F3C5 = 3) y Link con 4 de vida ($F36D) un daño de $10 ($0373) lo mata en el fotograma 5300 y sale la
 # pantalla de fin de partida (módulo $12). Con A en el 5800 se confirma la opción de $B0: 0 guardar y continuar, 2 (dos veces abajo) continuar sin
 # guardar. El contador de muertes ($F403) pasa a 1 en el 5801; con la opción y $B0 = 2 vuelve a 0, y con $B0 = 0 se queda en 1 con las dos.
-for choice in 0 2; do
-    downs=()
+# Con 1 (guardar y salir, una vez abajo) el juego se reinicia en el 5806 y vacía la WRAM, así que esa partida se para en el 5803: la cuenta es 1 con las dos.
+for choice in 0 1 2; do
+    downs=(); dframes=5900
+    [ "$choice" = 1 ] && { downs=(--press DOWN@5700-5702); dframes=5803; }
     [ "$choice" = 2 ] && downs=(--press DOWN@5700-5702 --press DOWN@5730-5732)
     for opt in 0 1; do
-        launch "death$choice$opt" 5900 --poke 0F3C5=03@5250 --poke 0F36D=04@5300 --poke 00373=10@5300 "${downs[@]}" \
+        launch "death$choice$opt" $dframes --poke 0F3C5=03@5250 --poke 0F36D=04@5300 --poke 00373=10@5300 "${downs[@]}" \
             --press A@5800-5803 --game-opt "fix_death_count=$opt"
     done
 done
