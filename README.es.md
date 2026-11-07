@@ -30,11 +30,11 @@ Descarga el paquete de tu sistema de la [última release](https://github.com/Ale
 | **Requisitos** | Windows 10 o 11 | x86_64, glibc 2.38+ (Ubuntu 24.04, Debian 13…) | Android 10+ (arm64) |
 
 <p align="center">
-  <img src="docs/img/launcher.png" alt="El lanzador" width="31%">
-  <img src="docs/img/launcher-pick.png" alt="Elegir la ROM" width="31%">
-  <img src="docs/img/launcher-update.png" alt="Aviso de versión nueva" width="31%">
+  <img src="docs/img/launcher-es.png" alt="El lanzador" width="31%">
+  <img src="docs/img/launcher-pick-es.png" alt="Elegir la ROM" width="31%">
+  <img src="docs/img/launcher-update-es.png" alt="Aviso de versión nueva" width="31%">
 </p>
-<p align="center"><sub>El lanzador de Windows y Linux: elige tu ROM una vez y después solo pulsas <b>Jugar</b>. A la derecha, el aviso opcional de versión nueva.</sub></p>
+<p align="center"><sub>El lanzador de Windows y Linux: elige tu ROM una vez y después solo pulsas <b>Jugar</b>. A la derecha, el aviso opcional de versión nueva. El globo de arriba a la derecha cambia el idioma (en Linux; en Windows sigue el del sistema).</sub></p>
 
 La ROM se queda donde está: solo se recuerda su ruta, y en Android se copia a la carpeta privada de la app. La primera vez el juego se prepara en tu equipo (en Linux y Android, unos segundos); si algo falla, la ventana lo cuenta.
 
