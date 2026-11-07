@@ -3,6 +3,7 @@
 *.smc
 *.srm
 *.sst
+*.thumb
 *.fig
 *.swc
 /roms/
