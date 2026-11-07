@@ -2,146 +2,150 @@
   <img src="docs/img/banner.png" alt="ALttP Recomp" width="760">
 </p>
 
-<h3 align="center">The Legend of Zelda: A Link to the Past, recompilado a código nativo</h3>
+<h3 align="center">The Legend of Zelda: A Link to the Past, recompiled to native code</h3>
+
+<p align="center"><b>English</b> · <a href="README.es.md">Español</a></p>
 
 <p align="center">
-  <a href="https://github.com/AlexPerez7/alttp-recomp/releases/latest"><img alt="Descargar" src="https://img.shields.io/github/v/release/AlexPerez7/alttp-recomp?label=descargar&color=2c5c3a&labelColor=1c3a2a"></a>
-  <img alt="Plataformas" src="https://img.shields.io/badge/plataformas-Windows%20%C2%B7%20Linux%20%C2%B7%20Android-c08820?labelColor=1c3a2a">
-  <a href="LICENSE"><img alt="Licencia MIT" src="https://img.shields.io/badge/c%C3%B3digo-MIT-f8d860?labelColor=1c3a2a"></a>
-  <img alt="Sin ROM incluida" src="https://img.shields.io/badge/ROM-la%20pones%20t%C3%BA-c02828?labelColor=1c3a2a">
+  <a href="https://github.com/AlexPerez7/alttp-recomp/releases/latest"><img alt="Download" src="https://img.shields.io/github/v/release/AlexPerez7/alttp-recomp?label=download&color=2c5c3a&labelColor=1c3a2a"></a>
+  <img alt="Platforms" src="https://img.shields.io/badge/platforms-Windows%20%C2%B7%20Linux%20%C2%B7%20Android-c08820?labelColor=1c3a2a">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/code-MIT-f8d860?labelColor=1c3a2a"></a>
+  <img alt="No ROM included" src="https://img.shields.io/badge/ROM-bring%20your%20own-c02828?labelColor=1c3a2a">
 </p>
 
-No es un emulador: el programa de la cartucho se **traduce a código nativo** (con el motor [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp)) y se compila en tu equipo a partir de **tu** copia del juego. El resultado arranca al instante, mantiene los 60 fotogramas por segundo incluso en un móvil de gama alta y permite mejoras que un emulador no da: pantalla ancha, español, estados guardados y rebobinado, y un puñado de ajustes de calidad de vida.
+This is not an emulator: the cartridge's program is **translated to native code** (with the [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp) engine) and compiled on your machine from **your** copy of the game. The result starts instantly, holds 60 frames per second even on a high-end phone, and allows improvements an emulator can't give: widescreen, Spanish, save states and rewind, and a handful of quality-of-life options.
 
-> **Aviso legal.** Este repositorio no contiene la ROM ni ningún recurso del juego (gráficos, sonido, texto, mapas), y no lo tendrá. Cada persona debe aportar su propia copia obtenida legalmente (USA, CRC32 `777AAC2F`). Nada derivado de ella se distribuye ni sale de tu equipo. Proyecto independiente y sin relación con Nintendo.
+> **Legal notice.** This repository contains neither the ROM nor any asset of the game (graphics, sound, text, maps), and never will. Everyone must supply their own legally obtained copy (USA, CRC32 `777AAC2F`). Nothing derived from it is distributed or leaves your machine. Independent project, not affiliated with Nintendo.
 
-## Descargar y jugar
+## Download and play
 
-Descarga el paquete de tu sistema de la [última release](https://github.com/AlexPerez7/alttp-recomp/releases/latest). **No hay que instalar nada ni usar la terminal.**
+Download the package for your system from the [latest release](https://github.com/AlexPerez7/alttp-recomp/releases/latest). **Nothing to install, no terminal needed.**
 
 | | Windows | Linux | Android |
 |---|---|---|---|
-| **Fichero** | `alttp-recomp-…-win64.zip` | `alttp-recomp-…-linux-x86_64.tar.gz` | `ALttP-Recomp-….apk` |
-| **1.** | Descomprime | Extrae | Descarga e instala (permite la fuente) |
-| **2.** | Abre `snes-port.exe` | Abre `alttp-recomp` | Abre la app |
-| **3.** | **Elegir ROM** y **Jugar** | **Elegir ROM** y **Jugar** | Elige tu ROM y juega |
-| **Requisitos** | Windows 10 o 11 | x86_64, glibc 2.38+ (Ubuntu 24.04, Debian 13…) | Android 10+ (arm64) |
+| **File** | `alttp-recomp-…-win64.zip` | `alttp-recomp-…-linux-x86_64.tar.gz` | `ALttP-Recomp-….apk` |
+| **1.** | Unzip | Extract | Download and install (allow the source) |
+| **2.** | Open `snes-port.exe` | Open `alttp-recomp` | Open the app |
+| **3.** | **Choose ROM** and **Play** | **Choose ROM** and **Play** | Pick your ROM and play |
+| **Requirements** | Windows 10 or 11 | x86_64, glibc 2.38+ (Ubuntu 24.04, Debian 13…) | Android 10+ (arm64) |
 
 <p align="center">
-  <img src="docs/img/launcher.png" alt="El lanzador" width="31%">
-  <img src="docs/img/launcher-pick.png" alt="Elegir la ROM" width="31%">
-  <img src="docs/img/launcher-update.png" alt="Aviso de versión nueva" width="31%">
+  <img src="docs/img/launcher.png" alt="The launcher" width="31%">
+  <img src="docs/img/launcher-pick.png" alt="Choosing the ROM" width="31%">
+  <img src="docs/img/launcher-update.png" alt="New version notice" width="31%">
 </p>
-<p align="center"><sub>El lanzador de Windows y Linux: elige tu ROM una vez y después solo pulsas <b>Jugar</b>. A la derecha, el aviso opcional de versión nueva.</sub></p>
+<p align="center"><sub>The Windows and Linux launcher: pick your ROM once, then just press <b>Play</b>. On the right, the optional new-version notice. (The launcher is currently shown in Spanish in these screenshots.)</sub></p>
 
-La ROM se queda donde está: solo se recuerda su ruta, y en Android se copia a la carpeta privada de la app. La primera vez el juego se prepara en tu equipo (en Linux y Android, unos segundos); si algo falla, la ventana lo cuenta.
+The ROM stays where it is: only its path is remembered, and on Android it is copied to the app's private folder. The first time, the game is prepared on your machine (a few seconds on Linux and Android); if something fails, the window tells you.
 
-> Es normal que algún antivirus desconfíe de un programa sin firmar que compila código al arrancar. Todo ocurre en tu máquina.
+> It is normal for some antivirus to distrust an unsigned program that compiles code at startup. Everything happens on your machine.
 
-## Características
+## Features
 
-- **Recompilación, no emulación.** Las 4 178 funciones de la ROM se traducen a C y se compilan; sin capa de emulación.
-- **Pantalla ancha** sin basura: con `wide` el borde del mapa y el interior de salas y cuevas se tapan en negro en vez de repetir el otro lado del mapa.
-- **Español completo.** Mensajes, selección de partida, registro de nombre y acciones del menú de pausa, con acentos, `ñ`, `¿` y `¡` dibujados al vuelo con la propia fuente del juego. [Cómo funciona →](docs/TRADUCCION.md)
-- **Estados guardados y rebobinado.** **F5** guarda, **F7** carga, **F3**/**F4** cambian de ranura (hasta 9), **F6** abre un selector con las nueve ranuras (miniatura y fecha de cada una) y mantener **Retroceso** rebobina unos 10 segundos.
-- **Mensajes más rápidos.** Mantén **R** (o `W` en el teclado) y el texto sale un carácter por fotograma.
-- **Mejoras de calidad de vida opcionales** (saltar la intro con una tecla, cambio de objeto con L/R, espada que recoge objetos y rompe vasijas, hasta 9999 rupias…): [lista completa](#mejoras-de-calidad-de-vida).
-- **Android de verdad.** Controles táctiles con el arte del juego (cruceta con Trifuerza, botones A/B/X/Y de gema), disposición para vertical y horizontal, y placas para los estados guardados: **SAVE**, **LOAD**, **SLOT** (el selector de ranuras) y **REWIND**.
-- **Actualizaciones en un clic** (Windows y Linux), **apagadas por defecto**: si las activas, el lanzador avisa de una versión nueva y la instala comprobando su SHA-256. [Detalles →](#actualizaciones)
-- **Privacidad.** Sin telemetría. La única conexión posible es la comprobación de versión, que tú activas.
+- **Recompilation, not emulation.** All 4,178 functions of the ROM are translated to C and compiled; no emulation layer.
+- **Clean widescreen.** With `wide`, the map edge and the inside of rooms and caves are covered in black instead of repeating the other side of the map.
+- **Full Spanish translation.** Messages, file select, name entry and the pause-menu actions, with accents, `ñ`, `¿` and `¡` drawn on the fly with the game's own font. [How it works →](docs/TRADUCCION.md) (in Spanish)
+- **Save states and rewind.** **F5** saves, **F7** loads, **F3**/**F4** change slot (up to 9), **F6** opens a picker with all nine slots (thumbnail and date for each) and holding **Backspace** rewinds about 10 seconds.
+- **Faster messages.** Hold **R** (or `W` on the keyboard) and text prints one character per frame.
+- **Optional quality-of-life improvements** (skip the intro with a key, item switching with L/R, a sword that picks up items and breaks pots, up to 9999 rupees…): [full list](#quality-of-life-improvements).
+- **Real Android support.** Touch controls with the game's own art (a D-pad with the Triforce, gem-style A/B/X/Y buttons), portrait and landscape layouts, and plates for save states: **SAVE**, **LOAD**, **SLOT** (the slot picker) and **REWIND**.
+- **One-click updates** (Windows and Linux), **off by default**: if you turn them on, the launcher notices a new version and installs it after checking its SHA-256. [Details →](#updates)
+- **Privacy.** No telemetry. The only possible connection is the version check, which you turn on yourself.
 
 <p align="center">
-  <img src="docs/img/android-controls.png" alt="Controles táctiles de la versión Android" width="55%">
+  <img src="docs/img/android-controls.png" alt="Touch controls of the Android version" width="55%">
 </p>
-<p align="center"><sub>Controles táctiles de la versión Android (arte propio).</sub></p>
+<p align="center"><sub>Touch controls of the Android version (original art).</sub></p>
 
-## ¿Por qué no usar un emulador?
+## Why not just use an emulator?
 
-Un emulador es la mejor opción para jugar *cualquier* juego de SNES con la máxima fidelidad. Este proyecto hace otra cosa: convierte **este** juego en un programa nativo, y eso permite lo que un emulador no puede dar con la ROM original.
+An emulator is the best choice for playing *any* SNES game with maximum fidelity. This project does something else: it turns **this** game into a native program, and that allows what an emulator can't give with the original ROM.
 
-| | Emulador | ALttP Recomp |
+| | Emulator | ALttP Recomp |
 |---|---|---|
-| **Mejoras de jugabilidad** (cambio de objeto con L/R, espada que recoge objetos y rompe vasijas, más bombas, 9999 rupias…) | Exigen un hack de la ROM o un parche IPS | Se activan desde el menú sobre tu ROM sin tocar, y cada una tiene prueba automática |
-| **Español** | Parche aplicado a la ROM | Se sustituye en tiempo real, con acentos y `ñ` dibujados con la propia fuente del juego; el fichero se relee mientras juegas |
-| **Pantalla ancha** | Casi siempre no, o con trucos por juego | Columnas extra reales, tapadas en negro donde no hay mapa |
-| **Android** | Instalar un emulador y configurarlo | Un APK con controles táctiles hechos para el juego |
-| **Extensible** | Hay que hacer ingeniería inversa y parchear | Se añade una mejora escribiendo C sobre el código ya traducido |
-| **Fidelidad al hardware** | Muy alta (bsnes, por ejemplo) | Menor: la PPU no emula el entrelazado, lo que depende de ciclos exactos no se reproduce y el DSP no usa la tabla exacta |
-| **Juegos** | Todos los de SNES | Solo este (USA, CRC32 `777AAC2F`) |
+| **Gameplay improvements** (item switching with L/R, a sword that picks up items and breaks pots, more bombs, 9999 rupees…) | Need a ROM hack or an IPS patch | Turned on from the menu over your untouched ROM, each with an automatic test |
+| **Spanish** | A patch applied to the ROM | Substituted in real time, with accents and `ñ` drawn with the game's own font; the file is re-read while you play |
+| **Widescreen** | Usually not, or with per-game tricks | Real extra columns, covered in black where there is no map |
+| **Android** | Install an emulator and configure it | An APK with touch controls made for the game |
+| **Extensible** | Reverse engineering and patching | An improvement is added by writing C over the already-translated code |
+| **Hardware fidelity** | Very high (bsnes, for example) | Lower: the PPU doesn't emulate interlacing, cycle-exact behavior isn't reproduced and the DSP doesn't use the exact table |
+| **Games** | All SNES games | Only this one (USA, CRC32 `777AAC2F`) |
 
-Lo que sí tiene este proyecto y también tienen los emuladores: estados guardados y rebobinado, filtros y scanlines, y reasignación de teclas y mandos desde el menú **F1**.
+What this project does share with emulators: save states and rewind, filters and scanlines, and key and controller remapping from the **F1** menu.
 
-## Hoja de ruta
+## Roadmap
 
-Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni tienen fecha: son la dirección.
+Things emulators offer and this project doesn't yet. They are not promised and have no date: they are the direction.
 
-- **Shader de CRT** (máscara de fósforo, haz de scanline, curvatura y resplandor): en curso en el motor.
-- **Más ajustes de imagen y mando**, con la comodidad de un emulador maduro.
-- **Logros** (RetroAchievements) para el juego.
-- **Juego en red** (netplay) o partida compartida.
-- **Arreglos de bugs del juego original**, como opciones que se activan una a una (cada dirección se comprueba contra la ROM) y más mejoras de calidad de vida en C, a medida que se prueben.
-- **Pruebas en Windows** de la actualización automática y de la reconstrucción del `.exe` del motor.
+- **CRT shader** (phosphor mask, scanline beam, curvature and glow): in progress in the engine.
+- **More image and controller settings**, with the comfort of a mature emulator.
+- **Achievements** (RetroAchievements) for the game.
+- **Online play** (netplay) or shared sessions.
+- **Fixes for bugs of the original game**, as options you turn on one by one (every address is checked against the ROM) and more quality-of-life improvements in C, as they get tested.
+- **Windows testing** of the automatic update and of rebuilding the engine's `.exe`.
 
-## Mejoras de calidad de vida
+## Quality-of-life improvements
 
-Son opciones del juego: se activan en la pestaña **Game** del menú **F1** o con `--game-opt nombre=valor`. Las marcadas con ✔ están activas por defecto; el resto, apagadas.
+These are game options: turn them on in the **Game** tab of the **F1** menu or with `--game-opt name=value`. Those marked ✔ are on by default; the rest are off.
 
-El volumen de la música y el de los efectos se ajustan por separado en la pestaña **Audio** del menú (`music_volume` y `sfx_volume`); el perfil le dice al motor qué voces del sonido son efectos.
+Music and sound-effect volume are adjusted separately in the menu's **Audio** tab (`music_volume` and `sfx_volume`); the profile tells the engine which sound voices are effects.
 
-| | Opción | Qué hace |
+| | Option | What it does |
 |---|---|---|
-| ✔ | `dialog_skip` | Mantén **R** durante un mensaje y sale un carácter por fotograma. |
-| | `language=es` | El juego en español (mensajes, selección de partida, menús). |
-| | `wide=N` | Pantalla ancha con las columnas extra tapadas en negro donde no hay mapa. |
-| | `item_switch_lr=1` | **L**/**R** (`Q`/`W`) eligen el objeto anterior o siguiente y lo ponen en Y sin abrir el menú. |
-| | `dash_turn=1` | Cambiar de dirección durante la carrera con las botas gira a Link en lugar de cortar la carrera. |
-| | `bird_cancel=1` | En el mapa del pájaro, **B** cancela el viaje y te deja donde estabas. |
-| | `sword_pickup=1` | El espadazo recoge los objetos del suelo que alcanza (rupias, corazones, magia, bombas, flechas, llaves). |
-| | `sword_pots=1` | En mazmorras, la espada rompe las vasijas como el martillo. |
-| | `more_bombs=1` | Cuatro bombas puestas a la vez en vez de dos (cada una sigue gastando una). |
-| | `rupees_9999=1` | La cartera guarda hasta 9999 rupias, con marcador de cuatro dígitos. |
-| | `rupee_fast=1` | El marcador de rupias alcanza la cartera en un par de segundos (en vez de una rupia por fotograma: 500 rupias tardan 8 s), subiendo y bajando. |
-| | `max_yellow=1` | Rupias, bombas y flechas en su tope se dibujan en amarillo. |
-| | `skip_intro=1` | **Start** o **A** durante la intro (el logo, la historia y el Triforce) saltan a la selección de partida. |
-| | `fix_portal_chime=1` | Arreglo de un bug del original: levantar la roca que tapa el portal mágico del Templo de Hielo no hacía el sonido de descubrimiento. |
-| | `fix_death_count=1` | Arreglo de un bug del original: elegir «Continuar» sin guardar en la pantalla de fin de partida contaba la muerte igualmente. |
-| | `fix_medallion_abort=1` | Arreglo de un bug del original: Bombos, Ether y Quake no se cancelan si sueltas el espadazo cargado en el mismo fotograma en que los usas. |
-| | `fix_magic_refund=1` | Arreglo de un bug del original: la devolución de magia (cuando falla un efecto) no pasa de 128. |
-| | `fix_somaria_nomagic=1` | Arreglo de un bug del original: usar el bastón de Somaria sin magia y cambiar enseguida a la seta o el polvo ya no esparce polvo sin pulsar nada. |
-| | `fix_moldorm_sound=1` | Arreglo de un bug del original: el golpe del Moldorm gigante a Link suena (el original pierde el sonido al calcular el pan). |
-| | `fix_swamola_bank=1` | Arreglo de un bug del original: los Lanmolas (Swamola) de Misery Mire leen su tabla con el banco de datos equivocado y sus segmentos salen mal. |
-| | `fix_kiki_bomb=1` | Arreglo de un bug del original: la bomba que Kiki llevaba no queda armada al empezar a seguirte. |
-| | `fix_bunny_palette=1` | Arreglo de un bug del original: morir de conejo restaura la paleta de Link durante la animación de muerte. |
-| | `fix_spell_lock=1` | Arreglo de un bug del original: tras lanzar un medallón y morir, el menú de guardar ya no se queda bloqueado. |
-| | `fix_ledge_platform=1` | Arreglo de un bug del original: salir mientras saltas una cornisa y recibir un golpe en una plataforma ya no te deja pasar bajo capas sólidas. |
-| | `fix_shield_palette=1` | Arreglo de un bug del original: el escudo que suelta un Pikit carga su paleta (Link no se queda con los colores del anterior). |
-| | `fix_door_submodule=1` | Arreglo de un bug del original: usar una poción en una puerta ya no cambia el submódulo a mitad de fotograma. |
-| | `fix_stair_tags=1` | Arreglo de un bug del original: entrar en una escalera justo cuando se activa la etiqueta de la sala ya no coloca los objetos en un sitio equivocado. |
-| | `fix_skullwoods_door=1` | Arreglo de un bug del original: el bastón de Somaria sobre un botón de puerta al salir de Skull Woods ya no pisa el submódulo. |
-| | `fix_mushroom_warp=1` | Arreglo de un bug del original: la seta no se coge a mitad del warp del espejo. |
-| | `fix_double_absorb=1` | Arreglo de un bug del original: el corazón y el hada no se absorben dos veces en el mismo fotograma. |
-| | `fix_hidden_hookshot=1` | Arreglo de un bug del original: un objeto escondido bajo una roca suelta el gancho que lo agarraba. |
-| | `fix_camera_twice=1` | Arreglo de un bug del original: el espadazo giratorio entre topes ya no coloca la cámara dos veces en un fotograma. |
-| | `fix_bunny_walk=1` | Arreglo de un bug del original: el conejo temporal usa la animación de andar del permanente. |
-| | `low_hp_beep=0` | Quita el pitido de poca vida. |
+| ✔ | `dialog_skip` | Hold **R** during a message and it prints one character per frame. |
+| | `language=es` | The game in Spanish (messages, file select, menus). |
+| | `wide=N` | Widescreen with the extra columns covered in black where there is no map. |
+| | `item_switch_lr=1` | **L**/**R** (`Q`/`W`) pick the previous or next item and put it on Y without opening the menu. |
+| | `dash_turn=1` | Changing direction while dashing with the boots turns Link instead of cutting the dash short. |
+| | `bird_cancel=1` | On the flute-bird map, **B** cancels the trip and leaves you where you were. |
+| | `sword_pickup=1` | The sword swing picks up the floor items it reaches (rupees, hearts, magic, bombs, arrows, keys). |
+| | `sword_pots=1` | In dungeons, the sword breaks pots like the hammer. |
+| | `more_bombs=1` | Four bombs placed at once instead of two (each still uses one). |
+| | `rupees_9999=1` | The wallet holds up to 9999 rupees, with a four-digit counter. |
+| | `rupee_fast=1` | The rupee counter reaches the wallet in a couple of seconds (instead of one rupee per frame: 500 rupees take 8 s), going up and down. |
+| | `max_yellow=1` | Rupees, bombs and arrows at their cap are drawn in yellow. |
+| | `skip_intro=1` | **Start** or **A** during the intro (the logo, the story and the Triforce) jump to file select. |
+| | `fix_portal_chime=1` | Fix for an original bug: lifting the rock that covers the magic portal in the Ice Palace didn't play the discovery sound. |
+| | `fix_death_count=1` | Fix for an original bug: choosing "Continue" without saving on the game-over screen counted the death anyway. |
+| | `fix_medallion_abort=1` | Fix for an original bug: Bombos, Ether and Quake are no longer cancelled if you release the charged sword swing on the same frame you use them. |
+| | `fix_magic_refund=1` | Fix for an original bug: the magic refund (when an effect fails) no longer goes past 128. |
+| | `fix_somaria_nomagic=1` | Fix for an original bug: using the Cane of Somaria without magic and quickly switching to the mushroom or powder no longer scatters powder without pressing anything. |
+| | `fix_moldorm_sound=1` | Fix for an original bug: the giant Moldorm's hit on Link makes a sound (the original loses the sound when computing the pan). |
+| | `fix_swamola_bank=1` | Fix for an original bug: the Lanmolas (Swamola) of Misery Mire read their table with the wrong data bank and their segments come out wrong. |
+| | `fix_kiki_bomb=1` | Fix for an original bug: the bomb Kiki was carrying isn't left armed when he starts following you. |
+| | `fix_bunny_palette=1` | Fix for an original bug: dying as a bunny restores Link's palette during the death animation. |
+| | `fix_spell_lock=1` | Fix for an original bug: after casting a medallion and dying, the save menu no longer gets stuck. |
+| | `fix_ledge_platform=1` | Fix for an original bug: exiting while hopping a ledge and getting hit on a platform no longer lets you pass under solid layers. |
+| | `fix_shield_palette=1` | Fix for an original bug: the shield dropped by a Pikit loads its palette (Link doesn't keep the previous one's colors). |
+| | `fix_door_submodule=1` | Fix for an original bug: using a potion at a door no longer changes the submodule mid-frame. |
+| | `fix_stair_tags=1` | Fix for an original bug: entering a staircase just as the room tag triggers no longer puts objects in the wrong place. |
+| | `fix_skullwoods_door=1` | Fix for an original bug: the Cane of Somaria on a door switch when leaving Skull Woods no longer overwrites the submodule. |
+| | `fix_mushroom_warp=1` | Fix for an original bug: the mushroom can't be picked up in the middle of the mirror warp. |
+| | `fix_double_absorb=1` | Fix for an original bug: hearts and fairies aren't absorbed twice on the same frame. |
+| | `fix_hidden_hookshot=1` | Fix for an original bug: an object hidden under a rock releases the hookshot that was grabbing it. |
+| | `fix_camera_twice=1` | Fix for an original bug: the spin attack between bumpers no longer positions the camera twice in one frame. |
+| | `fix_bunny_walk=1` | Fix for an original bug: the temporary bunny uses the permanent one's walk animation. |
+| | `low_hp_beep=0` | Removes the low-health beep. |
 
-Las mejoras que tocan el juego (`skip_intro`, `fix_portal_chime`, `fix_death_count`, `fix_medallion_abort`, `fix_magic_refund`, `fix_somaria_nomagic`, `fix_moldorm_sound`, `fix_swamola_bank`, `fix_kiki_bomb`, `fix_bunny_palette`, `fix_spell_lock`, `fix_ledge_platform`, `fix_shield_palette`, `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`, `item_switch_lr`, `dash_turn`, `bird_cancel`, `sword_pickup`, `sword_pots`, `more_bombs`, `rupees_9999`, `rupee_fast`) se prueban automáticamente con partidas jugadas por un script (`scripts/check.ps1` / `check.sh`).
+The improvements that touch the game (`skip_intro`, `fix_portal_chime`, `fix_death_count`, `fix_medallion_abort`, `fix_magic_refund`, `fix_somaria_nomagic`, `fix_moldorm_sound`, `fix_swamola_bank`, `fix_kiki_bomb`, `fix_bunny_palette`, `fix_spell_lock`, `fix_ledge_platform`, `fix_shield_palette`, `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`, `item_switch_lr`, `dash_turn`, `bird_cancel`, `sword_pickup`, `sword_pots`, `more_bombs`, `rupees_9999`, `rupee_fast`) are tested automatically with games played by a script (`scripts/check.ps1` / `check.sh`).
 
-## Estados guardados y partidas
+## Save states and saves
 
-Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (en Linux, `~/.local/share/alttp-recomp/saves`). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Cada estado lleva al lado una miniatura (`.sN.thumb`) que el selector de ranuras enseña con la fecha; los estados guardados con una versión anterior salen sin miniatura hasta que se vuelven a guardar. Ni los estados ni las miniaturas se publican nunca.
+Saves (`.srm`) and states (`.sst`) go to the `saves/` folder next to the program (on Linux, `~/.local/share/alttp-recomp/saves`). States can only be saved during gameplay, not in the intro or on the title screen. Each state has a thumbnail next to it (`.sN.thumb`) that the slot picker shows with the date; states saved with an earlier version appear without a thumbnail until they are saved again. Neither states nor thumbnails are ever published.
 
-## Actualizaciones
+## Updates
 
-En Windows y Linux el lanzador puede avisar de una versión nueva e instalarla. Está **apagado por defecto**: marca **Buscar actualizaciones (usa Internet)** y consultará a GitHub como mucho una vez al día. Si hay una versión mayor pregunta (**Actualizar**, **Ahora no**, **Omitir esta versión**); al aceptar descarga el paquete de tu sistema, comprueba su SHA-256 contra el `SHA256SUMS` de la misma release y copia los archivos sobre la instalación (las partidas y la ROM no se tocan). Solo se descarga; no se envía nada. En Android, el aviso abre la página de la release.
+On Windows and Linux the launcher can notice a new version and install it. It is **off by default**: tick **Check for updates (uses the Internet)** and it will query GitHub at most once a day. If there is a newer version it asks (**Update**, **Not now**, **Skip this version**); if you accept, it downloads the package for your system, checks its SHA-256 against the `SHA256SUMS` of the same release and copies the files over the installation (saves and the ROM are not touched). It only downloads; nothing is sent. On Android, the notice opens the release page.
 
-## Para quien quiere ir más allá
+## Going further
 
-- [**Traducción y texto**](docs/TRADUCCION.md): cómo se vuelcan y traducen los mensajes y menús sin tocar la ROM.
-- [**Desarrollo**](docs/DESARROLLO.md): compilar desde el código, estructura del repositorio, pruebas, empaquetado y limitaciones conocidas.
-- [**Motor `snes-recomp`**](https://github.com/AlexPerez7/snes-recomp): el recompilador, la PPU, el sonido y el runtime.
-- [Contribuir](CONTRIBUTING.md): nunca subas la ROM ni nada derivado de ella.
+Most of the documentation is in Spanish.
 
-## Licencia
+- [**Translation and text**](docs/TRADUCCION.md): how messages and menus are dumped and translated without touching the ROM.
+- [**Development**](docs/DESARROLLO.md): building from source, repository layout, tests, packaging and known limitations.
+- [**`snes-recomp` engine**](https://github.com/AlexPerez7/snes-recomp): the recompiler, the PPU, the sound and the runtime.
+- [Contributing](CONTRIBUTING.md): never upload the ROM or anything derived from it.
 
-[MIT](LICENSE), solo para el código de este repositorio; no da derechos sobre el juego. El motor lleva su propia licencia ([`LICENSE-engine`](LICENSE-engine)).
+## License
+
+[MIT](LICENSE), only for the code in this repository; it grants no rights over the game. The engine carries its own license ([`LICENSE-engine`](LICENSE-engine)).
