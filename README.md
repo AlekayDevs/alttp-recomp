@@ -43,10 +43,10 @@ La ROM se queda donde está: solo se recuerda su ruta, y en Android se copia a l
 - **Recompilación, no emulación.** Las 4 178 funciones de la ROM se traducen a C y se compilan; sin capa de emulación.
 - **Pantalla ancha** sin basura: con `wide` el borde del mapa y el interior de salas y cuevas se tapan en negro en vez de repetir el otro lado del mapa.
 - **Español completo.** Mensajes, selección de partida, registro de nombre y acciones del menú de pausa, con acentos, `ñ`, `¿` y `¡` dibujados al vuelo con la propia fuente del juego. [Cómo funciona →](docs/TRADUCCION.md)
-- **Estados guardados y rebobinado.** **F5** guarda, **F7** carga, **F3**/**F4** cambian de ranura (hasta 9) y mantener **Retroceso** rebobina unos 10 segundos.
+- **Estados guardados y rebobinado.** **F5** guarda, **F7** carga, **F3**/**F4** cambian de ranura (hasta 9), **F6** abre un selector con las nueve ranuras (miniatura y fecha de cada una) y mantener **Retroceso** rebobina unos 10 segundos.
 - **Mensajes más rápidos.** Mantén **R** (o `W` en el teclado) y el texto sale un carácter por fotograma.
 - **Mejoras de calidad de vida opcionales** (saltar la intro con una tecla, cambio de objeto con L/R, espada que recoge objetos y rompe vasijas, hasta 9999 rupias…): [lista completa](#mejoras-de-calidad-de-vida).
-- **Android de verdad.** Controles táctiles con el arte del juego (cruceta con Trifuerza, botones A/B/X/Y de gema), disposición para vertical y horizontal.
+- **Android de verdad.** Controles táctiles con el arte del juego (cruceta con Trifuerza, botones A/B/X/Y de gema), disposición para vertical y horizontal, y placas para los estados guardados: **SAVE**, **LOAD**, **SLOT** (el selector de ranuras) y **REWIND**.
 - **Actualizaciones en un clic** (Windows y Linux), **apagadas por defecto**: si las activas, el lanzador avisa de una versión nueva y la instala comprobando su SHA-256. [Detalles →](#actualizaciones)
 - **Privacidad.** Sin telemetría. La única conexión posible es la comprobación de versión, que tú activas.
 
@@ -129,7 +129,7 @@ Las mejoras que tocan el juego (`skip_intro`, `fix_portal_chime`, `fix_death_cou
 
 ## Estados guardados y partidas
 
-Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (en Linux, `~/.local/share/alttp-recomp/saves`). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Nunca se publican.
+Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (en Linux, `~/.local/share/alttp-recomp/saves`). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Cada estado lleva al lado una miniatura (`.sN.thumb`) que el selector de ranuras enseña con la fecha; los estados guardados con una versión anterior salen sin miniatura hasta que se vuelven a guardar. Ni los estados ni las miniaturas se publican nunca.
 
 ## Actualizaciones
 

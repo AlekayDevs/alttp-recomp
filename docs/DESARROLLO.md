@@ -9,7 +9,7 @@ Volver al [README](../README.md). Aquí está lo que necesita quien quiere compi
 - `games/alttp_usa/widefill.c`: con la pantalla ancha (`wide` en `config.ini` o `--opt wide=N`), tapa en negro las columnas extra donde no hay mapa cargado: pasado el borde del área en el exterior, y en las salas y cuevas, siempre.
 - `games/alttp_usa/text.c`: vuelca los mensajes del juego a un fichero de texto y, con la opción `language`, los sustituye por los de `lang/es.txt`.
 - `games/alttp_usa/menutext.c`: lo mismo para el texto fijo de la selección de partida y del registro de nombre, con `lang/es_menu.txt`.
-- `scripts/check.ps1`: prueba que lo anterior funciona (necesita tu ROM).
+- `scripts/check.ps1` y `scripts/check.sh`: prueban que lo anterior funciona (necesitan tu ROM). `scripts/test_refund.c` y `scripts/test_hooks.c` comprueban la lógica de algunos arreglos sin partida: se compilan aparte con el C de `games/alttp_usa/quality.c`.
 - `scripts/release.ps1`: arma el paquete para repartir.
 
 ## Construir y ejecutar desde el código
@@ -63,6 +63,6 @@ En Linux, `scripts/check.sh [roms/alttp_usa.sfc] [ruta/a/snes-recomp]` hace lo m
 
 ## Limitaciones conocidas
 
-- Los estados guardados no incluyen el fotograma en curso (se redibuja) ni variables estáticas del C propio; por ahora se guardan en un único punto del bucle principal (`[resume]` en `00:8034`).
+- Los estados guardados no incluyen el fotograma en curso (se redibuja) ni variables estáticas del C propio; por ahora se guardan en un único punto del bucle principal (`[resume]` en `00:8034`). Cada uno lleva una miniatura (`.sN.thumb`) para el selector de ranuras, que no se publica.
 - De las 4 178 funciones de la ROM, 2 (`01:CA17`, `08:A8E3`) se quedan como *stub* y no se ejecutan en el juego.
 - La interpolación del DSP usa un núcleo en forma de campana, cercano a la gaussiana del hardware pero no su tabla exacta; la PPU no emula el entrelazado; los comportamientos que dependen de ciclos exactos no se reproducen.
