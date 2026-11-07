@@ -292,6 +292,15 @@ for opt in 0 1; do
         --poke 00202=08@5250 --poke 00303=0F@5250 --poke 00C4A=00@5290 --watch 05D --trace-frames 5250-5600 \
         --press B@5300-5390 --press Y@5391-5393 --game-opt "fix_medallion_abort=$opt"
 done
+# Ether ($F348, objeto $10 en $0303, $5D = 8) y Quake ($F349, objeto $11, $5D = $0A): lo mismo; con la opción duran hasta el 5602 y el 5622.
+for med in "ether:10:F348" "quake:11:F349"; do
+    IFS=: read -r mname mobj mvar <<<"$med"
+    for opt in 0 1; do
+        launch "med_$mname$opt" 5600 --poke 0F359=01@5250 --poke 0F379=FF@5250 --poke 0F3C5=02@5250 --poke "0$mvar=01@5250" --poke 0F36E=80@5250 \
+            --poke 00202=08@5250 --poke "00303=$mobj@5250" --poke 00C4A=00@5290 --watch 05D --trace-frames 5250-5600 \
+            --press B@5300-5390 --press Y@5391-5393 --game-opt "fix_medallion_abort=$opt"
+    done
+done
 # fix_magic_refund: la devolución de magia (07:B0E9) con la función de quality.c sola (scripts/test_refund.c, tabla de costes de la ROM): sin la
 # opción la magia pasa de 128 y con ella se queda en 128; por debajo del tope las dos dan lo mismo
 awk '/^void alttp_magic_refund/,/^}/' games/alttp_usa/quality.c >"$out/refund_body.c"
