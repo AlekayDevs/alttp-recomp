@@ -472,6 +472,26 @@ $refund = & "$out\test_refund.exe" (Resolve-Path $Rom).Path 2>&1
 $refundOk = ($LASTEXITCODE -eq 0)
 $refund | ForEach-Object { Write-Host "    $_" }
 Write-Host "fix_magic_refund: la función sola limita la magia a 128 con la opción y no cambia nada por debajo del tope -> $refundOk"
+# arreglos pequeños (fix_moldorm_sound, fix_swamola_bank, fix_kiki_bomb, fix_bunny_palette y los de ganchos guard): la lógica de sus ganchos con
+# scripts\test_hooks.c (no se prueba que el juego llegue a esas rutinas, solo lo que el gancho hace cuando llegan)
+$hooksBody = "$out\hooks_body.c"
+$inHooks = $false
+$(foreach ($l in Get-Content "games\alttp_usa\quality.c") {
+    if ($l -match '^static uint8_t moldorm_in_46') { $inHooks = $true }
+    if ($inHooks) { $l }
+}) | Set-Content -Encoding ascii $hooksBody
+$bodyArg2 = ($hooksBody -replace '\\', '/')
+$bat3 = Join-Path $out "build_hooks.bat"
+@"
+call "$Vcvars" >nul 2>&1
+cl /nologo /TC /std:c11 /DBODY=\"$bodyArg2\" scripts\test_hooks.c /Fe:"$out\test_hooks.exe" /Fo:"$out\\" >"$out\build_hooks.log" 2>&1
+"@ | Set-Content -Encoding ascii $bat3
+cmd /c $bat3
+if ($LASTEXITCODE -ne 0) { Get-Content "$out\build_hooks.log" -Tail 30; throw "no compila scripts\test_hooks.c" }
+$hooks = & "$out\test_hooks.exe" 2>&1
+$hooksOk = ($LASTEXITCODE -eq 0)
+$hooks | ForEach-Object { Write-Host $_ }
+Write-Host "arreglos pequeños: lógica de los ganchos -> $hooksOk"
 function Rupees($name) { $w = (Play $name).wram; return @(($w[0xF360] + 256 * $w[0xF361]), ($w[0xF362] + 256 * $w[0xF363])) }
 $rfu0 = Rupees "rfu0"; $rfu1 = Rupees "rfu1"; $rfd0 = Rupees "rfd0"; $rfd1 = Rupees "rfd1"
 $fastOk = ($rfu0[0] -eq 500) -and ($rfu0[1] -eq 150) -and ($rfu1[0] -eq 500) -and ($rfu1[1] -eq 500) -and ($rfd0[0] -eq 0) -and ($rfd0[1] -eq 350) -and ($rfd1[0] -eq 0) -and ($rfd1[1] -eq 0)
@@ -509,6 +529,7 @@ if (-not $deathOk) { Write-Error "con fix_death_count=1 continuar sin guardar no
 if (-not $medOk) { Write-Error "con fix_medallion_abort=1 Bombos no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $somOk) { Write-Error "con fix_somaria_nomagic=1 el bastón de Somaria sin magia no debe dejar el bit 6 de `$3A puesto (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $refundOk) { Write-Error "fix_magic_refund: la función sola debe limitar la magia a 128 con la opción (y sin ella pasar de 128)" -ErrorAction Continue; $ok = $false }
+if (-not $hooksOk) { Write-Error "arreglos pequeños: la lógica de algún gancho no es la esperada" -ErrorAction Continue; $ok = $false }
 if (-not $fastOk) { Write-Error "con rupee_fast=1 el marcador debe alcanzar la cartera mucho antes (subiendo y bajando) sin cambiarla, y sin la opción seguir de una en una" -ErrorAction Continue; $ok = $false }
 if (-not $bombOk) { Write-Error "con more_bombs=1 deben poder estar cuatro bombas a la vez, cada una gastando una (y sin la opción dos)" -ErrorAction Continue; $ok = $false }
 if (-not $ok) { exit 1 }
