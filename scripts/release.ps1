@@ -50,7 +50,7 @@ if (-not $NoTcc -and -not (Test-Path "$stage\toolchain\tcc\tcc.exe")) {
 # el juego: su README sustituye al del motor, y su licencia va junto a la del motor
 if (Test-Path "$stage\README.md") { Move-Item "$stage\README.md" "$stage\README-engine.md" -Force }
 if (Test-Path "$stage\LICENSE") { Move-Item "$stage\LICENSE" "$stage\LICENSE-engine" -Force }
-Copy-Item README.md, LICENSE $stage
+Copy-Item README.md, README.es.md, LICENSE $stage
 Copy-Item games $stage -Recurse
 # lo lee el aviso de version nueva del lanzador (src/update.rs del motor): repo y version instalada
 Set-Content -Path "$stage\update.info" -Value "repo=AlexPerez7/alttp-recomp`nversion=$Version" -Encoding ASCII

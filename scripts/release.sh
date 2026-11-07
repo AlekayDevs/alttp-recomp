@@ -14,7 +14,7 @@ stage="out/release/$name"
 "$motor/linux/build.sh" "$PWD/games/alttp_usa.toml" alttp-recomp
 rm -rf "$stage"; mkdir -p "$stage"
 cp -r "$motor/out/linux/alttp-recomp/." "$stage/"
-cp README.md LICENSE LICENSE-engine README-engine.md "$stage/"
+cp README.md README.es.md LICENSE LICENSE-engine README-engine.md "$stage/"
 printf 'repo=AlexPerez7/alttp-recomp\nversion=%s\n' "$ver" > "$stage/update.info" # lo lee el aviso de versión nueva del lanzador
 bad=$(find "$stage" -type f \( -iname '*.sfc' -o -iname '*.smc' -o -iname '*.srm' -o -iname '*.sst' -o -iname '*.thumb' -o -name 'rom_*.c' -o -name snes_entry.c -o -name snes_funcs.h \) -print)
 [ -z "$bad" ] || { echo "El paquete lleva ficheros que no deben ir:"; echo "$bad"; rm -rf "$stage"; exit 1; }
