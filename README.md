@@ -7,6 +7,7 @@
 <p align="center"><b>English</b> · <a href="README.es.md">Español</a> · <a href="https://alexperez7.github.io/alttp-recomp/">Download page</a></p>
 
 <p align="center">
+  <a href="https://alexperez7.github.io/alttp-recomp/"><img alt="Download page" src="https://img.shields.io/badge/web-download%20page-f8d860?labelColor=1c3a2a"></a>
   <a href="https://github.com/AlexPerez7/alttp-recomp/releases/latest"><img alt="Download" src="https://img.shields.io/github/v/release/AlexPerez7/alttp-recomp?label=download&color=2c5c3a&labelColor=1c3a2a"></a>
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-Windows%20%C2%B7%20Linux%20%C2%B7%20Android-c08820?labelColor=1c3a2a">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/code-MIT-f8d860?labelColor=1c3a2a"></a>
@@ -19,7 +20,7 @@ This is not an emulator: the cartridge's program is **translated to native code*
 
 ## Download and play
 
-Download the package for your system from the [latest release](https://github.com/AlexPerez7/alttp-recomp/releases/latest). **Nothing to install, no terminal needed.**
+The easiest way is the **[download page](https://alexperez7.github.io/alttp-recomp/)**: it detects your system and gives you the right file. You can also take the package from the [latest release](https://github.com/AlexPerez7/alttp-recomp/releases/latest). **Nothing to install, no terminal needed.**
 
 | | Windows | Linux | Android |
 |---|---|---|---|
@@ -48,9 +49,12 @@ The ROM stays where it is: only its path is remembered, and on Android it is cop
 - **Save states and rewind.** **F5** saves, **F7** loads, **F3**/**F4** change slot (up to 9), **F6** opens a picker with all nine slots (thumbnail and date for each) and holding **Backspace** rewinds about 10 seconds.
 - **Faster messages.** Hold **R** (or `W` on the keyboard) and text prints one character per frame.
 - **Optional quality-of-life improvements** (skip the intro with a key, item switching with L/R, a sword that picks up items and breaks pots, up to 9999 rupees…): [full list](#quality-of-life-improvements).
-- **Real Android support.** Touch controls with the game's own art (a D-pad with the Triforce, gem-style A/B/X/Y buttons), portrait and landscape layouts, and plates for save states: **SAVE**, **LOAD**, **SLOT** (the slot picker) and **REWIND**.
-- **One-click updates** (Windows and Linux), **off by default**: if you turn them on, the launcher notices a new version and installs it after checking its SHA-256. [Details →](#updates)
-- **Privacy.** No telemetry. The only possible connection is the version check, which you turn on yourself.
+- **Real Android support.** An APK with touch controls made for the game: the pad with the Triforce (the direction is read by angle, so a thumb slightly off-axis does not give two directions at once), gem-style A/B/X/Y buttons, portrait and landscape layouts, and plates for save states (**SAVE**, **LOAD**, **SLOT** and **REWIND**). The **options menu can be used by touch** too (tabs, rows, tap the left or right half of a value), and the start screen has the same look as the desktop launchers, with an **EN / ES** language button.
+- **Launchers for every system.** Windows: a window where you pick your ROM once. Linux: a self-contained native launcher (no gcc needed; it carries its own compiler) with the game's art and an **EN / ES** language button. Android: the app's start screen. All of them show **Play** once your ROM is chosen.
+- **Updates from inside the app.** Windows and Linux: the launcher notices a new version and installs it after checking its SHA-256 (**off by default**). Android: the app notices it, downloads the APK, checks its SHA-256 and hands it to Android's installer (**on by default**, switch it off on the start screen). [Details →](#updates)
+- **A download page.** [alexperez7.github.io/alttp-recomp](https://alexperez7.github.io/alttp-recomp/) picks the right package for your system and always points to the latest release.
+- **Tested.** Each improvement, the save states (a real game saved, damaged and loaded back must leave the machine bit for bit the same), the touch controls and the menu have automatic tests that play the game with a script.
+- **Privacy.** No telemetry and no accounts. The only possible connection is the version check; your ROM and your saves never leave your device.
 
 <p align="center">
   <img src="docs/img/android-controls.png" alt="Touch controls of the Android version" width="55%">
@@ -82,7 +86,7 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 - **Achievements** (RetroAchievements) for the game.
 - **Online play** (netplay) or shared sessions.
 - **Fixes for bugs of the original game**, as options you turn on one by one (every address is checked against the ROM) and more quality-of-life improvements in C, as they get tested.
-- **Windows testing** of the automatic update and of rebuilding the engine's `.exe`.
+- **A current Windows package.** The last one is 0.1; the Windows launcher still lacks the language switch and the newest tests, and its automatic update and the rebuild of the engine's `.exe` have not been tried on Windows.
 
 ## Quality-of-life improvements
 
