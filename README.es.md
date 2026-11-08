@@ -27,7 +27,7 @@ Descarga el paquete de tu sistema de la [última release](https://github.com/Ale
 | **1.** | Descomprime | Extrae | Descarga e instala (permite la fuente) |
 | **2.** | Abre `snes-port.exe` | Abre `alttp-recomp` | Abre la app |
 | **3.** | **Elegir ROM** y **Jugar** | **Elegir ROM** y **Jugar** | Elige tu ROM y juega |
-| **Requisitos** | Windows 10 o 11 | x86_64, glibc 2.38+ (Ubuntu 24.04, Debian 13…) | Android 10+ (arm64) |
+| **Requisitos** | Windows 10 o 11 | x86_64, glibc 2.34+ (Ubuntu 22.04, Debian 12 o posterior) | Android 10+ (arm64) |
 
 <p align="center">
   <img src="docs/img/launcher-es.png" alt="El lanzador" width="31%">

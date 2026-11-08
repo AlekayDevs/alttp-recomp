@@ -42,6 +42,8 @@ La primera vez construye el juego con gcc (unos 3 minutos) y lo guarda en `~/.ca
 
 **El lanzador del paquete de Linux** (`alttp-recomp`, del motor: `../snes-recomp/linux/launcher.c`) habla inglés o español. El idioma inicial es el que haya guardado el botón del globo (arriba a la derecha, o la tecla **L**) en `~/.local/share/alttp-recomp/lang.txt` o, si no hay nada, el del entorno (`LANGUAGE`, `LC_ALL`, `LC_MESSAGES`, `LANG`: español si empieza por `es`). En Windows el lanzador sigue el idioma del sistema y en Android todavía no hay selector. Para sacar capturas sin pantalla (así salen las de `docs/img/launcher*.png`): `SNES_PORT_SHOT=ruta.ppm SDL_VIDEODRIVER=dummy ./alttp-recomp [rom]` vuelca el último fotograma del lanzador, y el aviso de versión nueva se simula con un `update.info` junto al ejecutable, `check=1` en `update.txt` de la carpeta de datos y un servidor local en `SNES_PORT_UPDATE_API`. Con vídeo `dummy` el juego no arranca (solo el lanzador).
 
+**Paquete de Linux para repartir:** construirlo en local con `scripts/release.sh` da un ejecutable que pide la glibc de la máquina (2.39 en Ubuntu 24.04). Para repartir, `gh workflow run linux-package.yml -f version=X.Y` lo construye en Ubuntu 22.04 (`.github/workflows/linux-package.yml`) y deja el `.tar.gz` y `SHA256SUMS` como artefacto de la ejecución (`gh run download`); el paquete pide glibc 2.34. No publica ninguna release.
+
 ### Con el motor
 
 ```
@@ -79,5 +81,5 @@ Con un ejecutable instrumentado actualizado, `--only-sprites` prueba un corazón
 ## Limitaciones conocidas
 
 - Los estados guardados no incluyen el fotograma en curso (se redibuja) ni variables estáticas del C propio; por ahora se guardan en un único punto del bucle principal (`[resume]` en `00:8034`). Cada uno lleva una miniatura (`.sN.thumb`) para el selector de ranuras, que no se publica.
-- De las 4 178 funciones de la ROM, 2 (`01:CA17`, `08:A8E3`) se quedan como *stub* y no se ejecutan en el juego.
+- De las 4 178 funciones de la ROM, 2 (`01:CA17`, `08:A8E3`) se quedan como *stub* y no se ejecutan en el juego. Causa (registro del generador): un bloque se alcanza con anchos de registro distintos (`01:CA19` con M=16 X=16 y M=8 X=16; `08:A878` con M=16 X=8 y M=8 X=8); el generador las deja como *stub* con el motivo «register widths in conflict».
 - La interpolación del DSP usa un núcleo en forma de campana, cercano a la gaussiana del hardware pero no su tabla exacta; la PPU no emula el entrelazado; los comportamientos que dependen de ciclos exactos no se reproducen.
