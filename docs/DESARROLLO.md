@@ -40,6 +40,8 @@ git clone https://github.com/AlexPerez7/snes-recomp ../snes-recomp
 
 La primera vez construye el juego con gcc (unos 3 minutos) y lo guarda en `~/.cache/snes-port`; las siguientes arranca al instante. Opciones del juego tras `--`, como en Windows. Las partidas y los estados van a `saves/` junto a `snes-port` (o a `~/.local/share/snes-port/saves` si ahí no se puede escribir). Hace falta un motor que sepa construir en Linux (con el arreglo del nombre del ejecutable y la detección de SDL2 del sistema).
 
+**El lanzador del paquete de Linux** (`alttp-recomp`, del motor: `../snes-recomp/linux/launcher.c`) habla inglés o español. El idioma inicial es el que haya guardado el botón del globo (arriba a la derecha, o la tecla **L**) en `~/.local/share/alttp-recomp/lang.txt` o, si no hay nada, el del entorno (`LANGUAGE`, `LC_ALL`, `LC_MESSAGES`, `LANG`: español si empieza por `es`). En Windows el lanzador sigue el idioma del sistema y en Android todavía no hay selector. Para sacar capturas sin pantalla (así salen las de `docs/img/launcher*.png`): `SNES_PORT_SHOT=ruta.ppm SDL_VIDEODRIVER=dummy ./alttp-recomp [rom]` vuelca el último fotograma del lanzador, y el aviso de versión nueva se simula con un `update.info` junto al ejecutable, `check=1` en `update.txt` de la carpeta de datos y un servidor local en `SNES_PORT_UPDATE_API`. Con vídeo `dummy` el juego no arranca (solo el lanzador).
+
 ### Con el motor
 
 ```
@@ -60,6 +62,19 @@ powershell -File scripts\release.ps1
 ```
 
 En Linux, `scripts/check.sh [roms/alttp_usa.sfc] [ruta/a/snes-recomp]` hace lo mismo con gcc o clang (necesita Python 3 con Pillow y busca el motor en `../snes-recomp/target/release/`). `check.ps1` y `check.sh` se omiten con un aviso si falta la ROM, el motor o el compilador. `release.ps1` y `update-engine.ps1` son solo de Windows. `release.ps1` falla si el paquete llevara ROMs, partidas guardadas, estados guardados (`.sst`) o C generado.
+
+Para comprobar por separado la integración de los ganchos `guard` en Linux:
+
+```sh
+python3 scripts/check_guards.py
+# Rutas alternativas: --rom ruta/alttp_usa.sfc --engine ruta/snes-recomp
+```
+
+Requiere Python 3.11+ y gcc (o `CC=clang`), además del motor y la ROM. Genera y compila el juego en una carpeta nueva `out/guards-*`, sin borrar resultados anteriores. Instrumenta una copia de `quality.c` para contar llamadas reales desde el código recompilado y retornos de cada gancho. Compara WRAM, VRAM, CGRAM y OAM del recorrido de control con las ocho opciones apagadas y encendidas, y fuerza el estado de conejo temporal con `--poke` para comprobar que se alcanza su gancho. No sustituye una reproducción natural de ese bug ni valida ganchos cuyos contadores quedan a cero. Los registros y `summary.json` son resultados locales, no material para publicar.
+
+`--headless out/guards-…/headless` permite repetir escenarios con un ejecutable instrumentado anterior; úsalo solo si no han cambiado el perfil, el C propio, la ROM ni el motor. `--verify-results out/guards-…` vuelve a comprobar los registros y volcados de una ejecución existente. El escenario del conejo escribe tanto `$5D = $1C` como el temporizador de 16 bits `$03F5 = $0100`: con el temporizador a cero, `07:8365` revierte la transformación antes de llegar a la animación.
+
+Con un ejecutable instrumentado actualizado, `--only-sprites` prueba un corazón y un hada, `--only-hidden` compara la marca de un objeto escondido con la opción activada y desactivada, y `--only-mushroom` prueba la seta con el submódulo normal y con `$11 = 1`. El hada se coloca ocho píxeles por debajo de Link y se mantiene cerca unos fotogramas porque su colisión usa `$0F70 = 9`; el script comprueba la absorción con `fix_double_absorb=1` y su retorno con la opción apagada. En la ejecución completa, `GUARD_INJECT` prepara una sola vez el estado en la llamada de los ganchos de cámara, escaleras, Skull Woods y puertas para probar sus saltos y retornos; en puertas también se prepara `$6C = 1` para llegar a la rutina. Esto no equivale a provocar esos bugs en una partida real.
 
 ## Limitaciones conocidas
 
