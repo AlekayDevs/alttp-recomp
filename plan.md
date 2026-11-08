@@ -131,3 +131,4 @@ Los modos `--only-sprites`, `--only-hidden` y `--only-mushroom` del script se ej
 - **2026-11-08, v0.4**: diálogos y licencias de Android con el aspecto del lanzador, marco dentro de las barras del sistema; Linux reconstruido en CI con el mismo contenido que la 0.3. Sin paquete de Windows.
 - **2026-11-08, v0.5**: Android pasa siempre por el lanzador (Jugar y aviso de versión nueva); Linux reconstruido en CI con el mismo contenido. Sin paquete de Windows.
 - **2026-11-08, v0.6**: cruceta táctil por sectores angulares (la diagonal solo cerca de los 45°; prueba con 17 ángulos y dos radios en el motor); APK 0.6 y Linux reconstruido en CI. Sin paquete de Windows.
+- **2026-11-08, v0.7**: el menú de opciones responde al toque (`menu_tap` en el motor, prueba con toques en coordenadas del menú); APK 0.7 y Linux reconstruido en CI. Sin paquete de Windows; sin probar con un dedo real.
