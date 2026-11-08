@@ -28,8 +28,8 @@ Salva a la Princesa{43}{73}
 Zelda es tu{43} {43} {43}
 @015
 ¿Qué haces despierto tan{75}
-tarde, chico?  Trasnocharás{76}
-de mayor.  ¡A casa!
+tarde, chico?  Luego serás{76}
+un trasnochador.  ¡A casa!
 @016
 Veo que traes un mapa para no{75}
 perderte.  {45}Pulsa el botón{76}
