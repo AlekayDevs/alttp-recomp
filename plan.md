@@ -128,3 +128,4 @@ Los modos `--only-sprites`, `--only-hidden` y `--only-mushroom` del script se ej
 
 - **2026-11-08, Android y v0.2**: la app de Android descarga e instala la actualización (hash SHA-256, `PackageInstaller`, aviso activo por defecto, inglés/español según el teléfono; cambio `android-updates` del motor, tarea 4.4 sin probar en un móvil). Publicada la release `v0.2` con el APK 0.2 (misma firma que el 0.1), el paquete de Linux construido en CI (glibc 2.34) y `SHA256SUMS`; sin paquete de Windows todavía.
 - **2026-11-08, v0.3**: release publicada con el APK 0.3 (pantalla de inicio al estilo de los lanzadores y botón de idioma) y el paquete de Linux construido en CI (glibc 2.34); sigue sin paquete de Windows.
+- **2026-11-08, v0.4**: diálogos y licencias de Android con el aspecto del lanzador, marco dentro de las barras del sistema; Linux reconstruido en CI con el mismo contenido que la 0.3. Sin paquete de Windows.
