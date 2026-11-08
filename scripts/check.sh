@@ -301,6 +301,20 @@ for med in "ether:10:F348" "quake:11:F349"; do
             --press B@5300-5390 --press Y@5391-5393 --game-opt "fix_medallion_abort=$opt"
     done
 done
+# Estados guardados con la partida real: A guarda un estado en el fotograma 5700 y sigue; B estropea la partida antes (Link a otro sitio, otra
+# salud, rupias y bombas, movimiento a la izquierda) y carga ese estado en el 5700; C es B sin cargar. Si guardar y cargar es exacto, A y B
+# acaban con la WRAM, la VRAM, la CGRAM y la OAM idénticas, y C (el control) no.
+stCommon=(--press RIGHT@5300-5360 --press DOWN@5380-5440 --press B@5500-5520 --press DOWN@5600-5700 --press A@5750-5753 --press LEFT@5800-5900
+          --press RIGHT@6000-6100 --press B@6200-6240 --press DOWN@6300-6400)
+stBig=(--press LEFT@5450-5670 --poke 0F360=E703@5580 --poke 0F36C=A0@5580 --poke 0F36D=08@5580 --poke 0F343=63@5580 --poke 00022=00@5600
+       --poke 00023=03@5600 --poke 00020=00@5600 --poke 00021=03@5600)
+mkdir -p "$out/q_st_a"
+launch st_a 6600 "${stCommon[@]}" --state-save "$out/st_fuzz@5700"
+launch st_c 6600 "${stCommon[@]}" "${stBig[@]}"
+mkdir -p "$out/q_st_b"
+( while [ ! -f "$out/q_st_a/rc" ]; do sleep 1; done   # B carga el fichero que A tiene que haber guardado antes
+  "$HF" "$textRom" --frames 6600 --frame-blocks 20000 --dump "$out/q_st_b" "${toControl[@]}" "${stCommon[@]}" "${stBig[@]}" --state-load "$out/st_fuzz@5700" \
+      >"$out/q_st_b/log.txt" 2>"$out/q_st_b/err.txt"; echo $? >"$out/q_st_b/rc" ) &
 # fix_magic_refund: la devolución de magia (07:B0E9) con la función de quality.c sola (scripts/test_refund.c, tabla de costes de la ROM): sin la
 # opción la magia pasa de 128 y con ella se queda en 128; por debajo del tope las dos dan lo mismo
 awk '/^void alttp_magic_refund/,/^}/' games/alttp_usa/quality.c >"$out/refund_body.c"

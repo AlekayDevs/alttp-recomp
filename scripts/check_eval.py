@@ -203,6 +203,18 @@ def cmd_quality(out):
                f"fix_medallion_abort ({mname}): empieza en {e0[0]}; sin la opción se aborta en {e0[1]}; con ella no se aborta ({e1[1]})",
                f"con fix_medallion_abort=1 {mname} no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)")
 
+    # estados guardados con la partida real: cargar deja el resto de la partida idéntico a la que guardó; sin cargar (control) no
+    def dumps(n):
+        d = Path(out) / f"q_{n}"
+        return {f: (d / f"{f}.bin").read_bytes() for f in ("wram", "vram", "cgram", "oam")}
+
+    sa, sb, sc = dumps("st_a"), dumps("st_b"), dumps("st_c")
+    diff_b = {f: sum(x != y for x, y in zip(sa[f], sb[f])) for f in sa}
+    diff_c = sum(x != y for x, y in zip(sa["wram"], sc["wram"]))
+    report(not any(diff_b.values()) and diff_c > 0,
+           f"estados guardados (partida real, guardar en el 5700): cargar deja {sum(diff_b.values())} bytes distintos; sin cargar, {diff_c} en la WRAM",
+           "cargar un estado debe dejar la WRAM, la VRAM, la CGRAM y la OAM idénticas a las de la partida que lo guardó (y el control sin cargar, no)")
+
     # fix_somaria_nomagic
     so0, so1 = R("som0"), R("som1")
     report(so0.wram[0x3A] == 0x40 and so1.wram[0x3A] == 0 and so0.wram[0x350] == 0 and so1.wram[0x350] == 0,
