@@ -48,7 +48,7 @@ def verify(work):
             raise RuntimeError(f"{name}: no se ejecutó la rama de corrección")
     (work / "summary.json").write_text(json.dumps(results, indent=2) + "\n")
     print("OK: recorrido de control idéntico y guard del conejo temporal alcanzado.", flush=True)
-    print("Los ganchos sin escenario propio siguen pendientes de validación.", flush=True)
+    print("Corazón, hada, escondido y seta se prueban con --poke; la puerta, además, con recorridos por mazmorras.", flush=True)
 
 
 def main():
@@ -234,7 +234,62 @@ def main():
         run(case, ["--game-opt", option + "=1", *extra], inject=name)
         if results[case][name][1] == 0:
             raise RuntimeError(f"{name}: no se ejecutó la rama de corrección")
+    door_walks(exe, rom, base, work, results)
     verify(work)
+
+
+# Recorridos naturales por mazmorras: entrada de mazmorra puesta con $010E y el módulo 6 (carga del subsuelo), y Link camina.
+# Con las opciones encendidas y apagadas el estado final debe ser idéntico (no hay bug que corregir) y debe haberse
+# pasado por el guard de la puerta.
+DOOR_WALKS = {
+    "castle": (2, "UP@5600-5900"),
+    "east": (7, "UP@5600-5800 RIGHT@5800-5950 UP@5950-6100 LEFT@6100-6250"),
+    "castle3": (3, "UP@5600-5750 LEFT@5750-5900 UP@5900-6050 RIGHT@6050-6250"),
+    "castle8": (8, "UP@5600-5800 RIGHT@5800-5950 DOWN@5950-6100 LEFT@6100-6250"),
+}
+
+
+def door_walks(exe, rom, base, work, results):
+    from concurrent.futures import ThreadPoolExecutor
+    state = work / "base.sst"
+    # La partida del recorrido de control hasta el fotograma 5300 (en la casa de Link), guardada como estado.
+    subprocess.run(base + ["--state-save", f"{state}@5300"], text=True, capture_output=True,
+                   timeout=300, check=True)
+    options = ["fix_door_submodule", "fix_stair_tags", "fix_skullwoods_door", "fix_camera_twice"]
+
+    def walk(job):
+        name, (entrance, presses), opt = job
+        dest = work / f"walk_{name}_{opt}"
+        dest.mkdir()
+        cmd = [str(exe), str(rom), "--frames", "6300", "--frame-blocks", "20000",
+               "--state-load", f"{state}@5300",
+               "--poke", f"0010E={entrance:02X}@5310", "--poke", "0010F=00@5310",
+               "--poke", "00010=06@5310", "--poke", "00011=00@5310", "--poke", "000B0=00@5310"]
+        for press in presses.split():
+            cmd += ["--press", press]
+        for o in options:
+            cmd += ["--game-opt", f"{o}={opt}"]
+        cmd += ["--dump", str(dest)]
+        proc = subprocess.run(cmd, text=True, capture_output=True, timeout=300)
+        (dest / "stdout.txt").write_text(proc.stdout)
+        proc.check_returncode()
+        counts = {n: [int(a), int(b)] for n, a, b in
+                  re.findall(r'^GUARD (\w+) (\d+) (\d+)$', proc.stdout, re.M)}
+        return name, opt, dest, counts
+
+    jobs = [(n, w, o) for n, w in DOOR_WALKS.items() for o in (1, 0)]
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        done = list(pool.map(walk, jobs))
+    final = {(n, o): (d, c) for n, o, d, c in done}
+    for name in DOOR_WALKS:
+        (don, con), (doff, _) = final[(name, 1)], final[(name, 0)]
+        for file in ("wram.bin", "vram.bin", "cgram.bin", "oam.bin"):
+            if (don / file).read_bytes() != (doff / file).read_bytes():
+                raise RuntimeError(f"walk_{name}: opciones encendidas alteran el recorrido ({file})")
+        if sum(con["alttp_door_guard"]) == 0:
+            raise RuntimeError(f"walk_{name}: no se alcanzó el guard de la puerta")
+        results[f"walk_{name}"] = con
+        print(f"walk_{name}: guard puerta {con['alttp_door_guard']}, estado idéntico con opciones", flush=True)
 
 
 if __name__ == "__main__":
