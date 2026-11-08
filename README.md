@@ -135,7 +135,7 @@ Saves (`.srm`) and states (`.sst`) go to the `saves/` folder next to the program
 
 ## Updates
 
-On Windows and Linux the launcher can notice a new version and install it. It is **off by default**: tick **Check for updates (uses the Internet)** and it will query GitHub at most once a day. If there is a newer version it asks (**Update**, **Not now**, **Skip this version**); if you accept, it downloads the package for your system, checks its SHA-256 against the `SHA256SUMS` of the same release and copies the files over the installation (saves and the ROM are not touched). It only downloads; nothing is sent. On Android, the notice opens the release page.
+On Windows and Linux the launcher can notice a new version and install it. It is **off by default**: tick **Check for updates (uses the Internet)** and it will query GitHub at most once a day. If there is a newer version it asks (**Update**, **Not now**, **Skip this version**); if you accept, it downloads the package for your system, checks its SHA-256 against the `SHA256SUMS` of the same release and copies the files over the installation (saves and the ROM are not touched). It only downloads; nothing is sent. On Android the check is **on by default** (switch it off on the start screen) and the notice offers **Download and install**: the app downloads the APK, checks its SHA-256 against the same `SHA256SUMS` and hands it to Android's installer, which asks you to confirm (the first time Android also asks to allow this app to install apps). The new APK has to be signed with the same key, so it installs over the old one. The start screen also has a language button (EN / ES), and the options menu can be used by touch.
 
 ## Going further
 
