@@ -30,6 +30,15 @@ Los modos `--only-sprites`, `--only-hidden` y `--only-mushroom` del script se ej
 3. **Casos naturales** (la puerta ya tiene recorridos por mazmorra sin inyección): reproducir sin inyección los cambios de cámara, las etiquetas de escalera, la puerta de Skull Woods, el warp con seta, el conejo temporal y el objeto bajo roca. Las pruebas actuales cubren lógica y ejecución de ramas preparadas, no esas situaciones jugadas.
 4. **Windows**: actualizar los ejecutables del motor incluidos en la raíz para que admitan `guard`; después ejecutar `scripts/check.ps1` con la ROM y comprobar las mismas transiciones con MSVC. Este entorno Linux carece de Wine, PowerShell y compilador cruzado para ejecutar o reconstruir los `.exe`.
 
+## Pendiente para hacer desde el PC (2026-11-08)
+
+Cambios ya en `main` pero sin llegar al móvil, porque la app solo se actualiza desde una release de GitHub (APK firmado con la clave de las 0.1-0.7 más `SHA256SUMS`) y el entorno Linux de la sesión no tiene Gradle, el NDK ni la clave:
+
+1. **Probar el arreglo del botón táctil** (`snes-recomp`, `runtime/play.c`, `play_input_label`: con los controles táctiles se nombran A/B/X/Y por el botón de pantalla, no por la tecla del teclado). Antes salía «Pulsa el botón A para ver tu mapa» cuando el mapa se abre con X. Comprobar con `snes-port roms\alttp_usa.sfc -- --touch` en el escritorio y en el móvil que el mensaje `@016` dice X, y que con teclado o mando sigue diciendo la tecla o el botón que se usa. Solo se comprobó la sintaxis de `play.c` y `scripts/check.sh` (que no cubre la etiqueta).
+2. **Revisar el texto nuevo de `@015`** («Luego serás un trasnochador.  ¡A casa!», `lang/es.txt`): que no pase de 168 px en pantalla.
+3. **Actualizar el motor empaquetado** de este repositorio: en `snes-recomp`, `powershell -File scripts\release.ps1`; aquí, `powershell -File scripts\update-engine.ps1`, `scan`, commit y push (también cierra el pendiente 4 de arriba).
+4. **Publicar la v0.8**: construir el APK (`gradle assembleRelease` en `android/` de `snes-recomp`, ver su `README.md`), firmarlo con la misma clave, generar `SHA256SUMS` (`scripts/sums.sh`) y subir ambos a una release `v0.8` junto con el paquete de Linux (`scripts/release.sh`). Después, en el móvil, «Buscar actualizaciones ahora» debe ofrecer la 0.8.
+
 ## Ya existe (no hacer)
 
 | Cosa | Dónde |
