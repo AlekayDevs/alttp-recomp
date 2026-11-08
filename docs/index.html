@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALttP Recomp - Download</title>
+<meta name="description" content="Download ALttP Recomp for Windows, Linux and Android: The Legend of Zelda: A Link to the Past, recompiled to run natively. You bring your own ROM.">
+<meta property="og:title" content="ALttP Recomp">
+<meta property="og:description" content="The Legend of Zelda: A Link to the Past, recompiled to run natively on Windows, Linux and Android.">
+<meta property="og:image" content="img/banner.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 46 30H18z M18 32 32 58H4z M46 32 60 58H32z' fill='%23f8d860' stroke='%232a1a06' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg0: #0c1c14; --bg1: #1a3828; --plate: #16382a; --plate-hi: #2b6b47;
+  --gold: #f8d860; --gold-hi: #fff0a0; --gold-lo: #c08820; --ink: #2a1a06;
+  --text: #c8d8b8; --text-hi: #fffce8; --warn: #f89088;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--text); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg0) linear-gradient(var(--bg0), var(--bg1)) fixed;
+  min-height: 100vh;
+}
+body::before { /* the faint checker of the launcher */
+  content: ""; position: fixed; inset: 0; z-index: -1; opacity: .5;
+  background: conic-gradient(#2e5a4018 25%, transparent 0 50%, #2e5a4018 0 75%, transparent 0) 0 0 / 48px 48px;
+}
+a { color: var(--gold); }
+.frame { /* the gold frame, three rules like the launcher */
+  max-width: 880px; margin: 16px auto; padding: 36px 28px 28px; position: relative;
+  border: 2px solid var(--ink); outline: 2px solid var(--gold); outline-offset: -5px;
+  box-shadow: inset 0 0 0 7px var(--ink), inset 0 0 0 9px var(--gold-lo);
+  border-radius: 2px;
+}
+.frame::before, .frame::after { content: ""; position: absolute; width: 14px; height: 14px; background: var(--gold);
+  transform: rotate(45deg); border: 2px solid var(--ink); top: 4px; }
+.frame::before { left: 4px; } .frame::after { right: 4px; }
+.lang { position: absolute; top: 20px; right: 28px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  background: var(--plate); color: var(--gold-hi); border: 2px solid var(--gold); border-radius: 999px; padding: 4px 12px 4px 8px;
+  font: 700 14px system-ui, sans-serif; }
+.lang:hover, .lang:focus-visible { background: var(--plate-hi); }
+.lang svg { width: 18px; height: 18px; }
+header { text-align: center; }
+header svg.tri { width: 84px; height: 74px; filter: drop-shadow(0 2px 0 #0006); }
+h1 { margin: 10px 0 0; font-size: 2.2rem; color: var(--gold-hi); text-shadow: 2px 2px 0 var(--ink); letter-spacing: .02em; }
+.sub { margin: 2px 0 0; }
+.lead { max-width: 56ch; margin: 18px auto 0; text-align: center; }
+.cta { text-align: center; margin: 28px 0 8px; }
+.btn { display: inline-block; text-decoration: none; text-align: center; cursor: pointer; font-weight: 800; letter-spacing: .05em;
+  text-transform: uppercase; border: 2px solid var(--gold); border-radius: 999px; background: var(--plate); color: #e8e0b0; padding: 12px 22px; }
+.btn.main { background: var(--plate-hi); color: var(--gold-hi); font-size: 1.25rem; padding: 18px 34px; border-color: var(--gold-hi); }
+.btn:hover, .btn:focus-visible { background: #3b8058; color: var(--text-hi); }
+.btn small { display: block; font-weight: 500; letter-spacing: 0; text-transform: none; font-size: .8rem; opacity: .85; margin-top: 2px; }
+.btn[aria-disabled="true"] { opacity: .55; pointer-events: none; }
+.meta { text-align: center; font-size: .9rem; min-height: 1.4em; }
+h2 { color: var(--gold); font-size: 1.15rem; margin: 40px 0 12px; text-transform: uppercase; letter-spacing: .08em; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.card { background: #0c1c1499; border: 2px solid var(--gold-lo); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+.card.me { border-color: var(--gold); box-shadow: 0 0 0 2px #f8d86044; }
+.card h3 { margin: 0; color: var(--gold-hi); font-size: 1.05rem; }
+.card p { margin: 0; font-size: .9rem; flex: 1; }
+.card .btn { margin-top: 8px; padding: 10px 14px; font-size: .9rem; }
+.card .none { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; position: relative; padding-left: 46px; min-height: 34px; }
+ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--gold); color: var(--ink); font-weight: 800; display: grid; place-items: center; border: 2px solid var(--ink); }
+.note { border-left: 4px solid var(--gold); padding: 8px 14px; background: #0c1c1480; margin: 18px 0 0; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 8px; }
+.shots img { width: 100%; height: auto; border: 2px solid var(--gold-lo); border-radius: 8px; image-rendering: pixelated; }
+code { background: #0008; padding: 1px 6px; border-radius: 4px; font-size: .9em; white-space: nowrap; }
+footer { text-align: center; margin: 36px 0 0; font-size: .9rem; }
+footer a { margin: 0 8px; }
+.sr { position: absolute; left: -9999px; }
+html[lang="en"] [data-l="es"], html[lang="es"] [data-l="en"] { display: none; }
+@media (max-width: 560px) {
+  .frame { margin: 8px; padding: 70px 16px 20px; }
+  h1 { font-size: 1.8rem; }
+  .lang { top: 36px; right: 18px; }
+  .btn.main { width: 100%; padding: 16px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<main class="frame">
+  <button class="lang" id="lang" type="button" aria-label="Language / Idioma">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M12 3c-4 4-4 14 0 18M12 3c4 4 4 14 0 18"/></svg>
+    <span id="langcode">EN</span>
+  </button>
+
+  <header>
+    <svg class="tri" viewBox="0 0 96 84" aria-hidden="true">
+      <g fill="#f8d860" stroke="#2a1a06" stroke-width="3" stroke-linejoin="round">
+        <path d="M48 3 70 41H26z"/><path d="M26 43 48 81H4z"/><path d="M70 43 92 81H48z"/>
+      </g>
+      <g fill="#c08820"><path d="M48 6 66 38 61 38 48 14z" opacity=".0"/></g>
+    </svg>
+    <h1>ALttP Recomp</h1>
+    <p class="sub">The Legend of Zelda: A Link to the Past</p>
+  </header>
+
+  <p class="lead" data-l="en">The classic, recompiled to run natively on <b>Windows</b>, <b>Linux</b> and <b>Android</b>, with a touch interface, save states and optional fixes. <b>You bring your own ROM</b>: it is not included.</p>
+  <p class="lead" data-l="es">El clásico, recompilado para correr de forma nativa en <b>Windows</b>, <b>Linux</b> y <b>Android</b>, con interfaz táctil, estados guardados y arreglos opcionales. <b>Tú pones la ROM</b>: no está incluida.</p>
+
+  <div class="cta">
+    <a class="btn main" id="main" href="https://github.com/AlexPerez7/alttp-recomp/releases/latest" aria-disabled="false">
+      <span id="mainlabel" data-l="en">Download</span><span data-l="es" id="mainlabel-es">Descargar</span>
+      <small id="mainsmall"></small>
+    </a>
+  </div>
+  <p class="meta" id="meta" aria-live="polite"></p>
+
+  <h2 data-l="en">All downloads</h2><h2 data-l="es">Todas las descargas</h2>
+  <div class="cards" id="cards">
+    <div class="card" data-os="windows"><h3>Windows</h3><p data-l="en">Windows 10 or 11, 64-bit. Unzip and open <code>snes-port.exe</code>.</p><p data-l="es">Windows 10 u 11, 64 bits. Descomprime y abre <code>snes-port.exe</code>.</p><div class="slot"></div></div>
+    <div class="card" data-os="linux"><h3>Linux</h3><p data-l="en">x86_64, glibc 2.34+ (Ubuntu 22.04, Debian 12 or newer). Extract and run <code>alttp-recomp</code>.</p><p data-l="es">x86_64, glibc 2.34+ (Ubuntu 22.04, Debian 12 o más nuevo). Extrae y ejecuta <code>alttp-recomp</code>.</p><div class="slot"></div></div>
+    <div class="card" data-os="android"><h3>Android</h3><p data-l="en">Android 10+ (arm64). Open the APK and allow installing from this source. Later updates install from inside the app.</p><p data-l="es">Android 10+ (arm64). Abre el APK y permite instalar desde esta fuente. Las actualizaciones siguientes se instalan desde la propia app.</p><div class="slot"></div></div>
+  </div>
+
+  <h2 data-l="en">How to start</h2><h2 data-l="es">Cómo empezar</h2>
+  <ol class="steps" data-l="en">
+    <li><b>Download</b> the package for your system and open it.</li>
+    <li><b>Choose your ROM</b>: <i>The Legend of Zelda: A Link to the Past</i>, USA version, CRC32 <code>777AAC2F</code> (<code>.sfc</code> or <code>.smc</code>).</li>
+    <li><b>Play.</b> The first time the game is prepared on your device (a few seconds); after that it opens straight away. The ROM never leaves your device.</li>
+  </ol>
+  <ol class="steps" data-l="es">
+    <li><b>Descarga</b> el paquete de tu sistema y ábrelo.</li>
+    <li><b>Elige tu ROM</b>: <i>The Legend of Zelda: A Link to the Past</i>, versión USA, CRC32 <code>777AAC2F</code> (<code>.sfc</code> o <code>.smc</code>).</li>
+    <li><b>Juega.</b> La primera vez el juego se prepara en tu dispositivo (unos segundos); después abre al instante. La ROM nunca sale de tu dispositivo.</li>
+  </ol>
+
+  <div class="shots">
+    <img src="img/launcher-pick.png" alt="The launcher" data-l="en">
+    <img src="img/launcher-pick-es.png" alt="El lanzador" data-l="es">
+    <img src="img/android-controls.png" alt="Touch controls on Android">
+  </div>
+
+  <p class="note" data-l="en">Is the download safe? Each release has a <code>SHA256SUMS</code> file. The launchers and the Android app check it themselves before installing an update; you can also check it by hand with <code>sha256sum</code>. The source is on GitHub and the packages are built from it.</p>
+  <p class="note" data-l="es">¿Es seguro? Cada release lleva un fichero <code>SHA256SUMS</code>. Los lanzadores y la app de Android lo comprueban solos antes de instalar una actualización; también puedes comprobarlo a mano con <code>sha256sum</code>. El código está en GitHub y los paquetes se construyen desde él.</p>
+
+  <footer>
+    <a href="https://github.com/AlexPerez7/alttp-recomp" data-l="en">Source on GitHub</a><a href="https://github.com/AlexPerez7/alttp-recomp" data-l="es">Código en GitHub</a>
+    <a href="https://github.com/AlexPerez7/alttp-recomp/releases" data-l="en">All releases</a><a href="https://github.com/AlexPerez7/alttp-recomp/releases" data-l="es">Todas las releases</a>
+    <a href="https://github.com/AlexPerez7/alttp-recomp/blob/main/README.md" data-l="en">README</a><a href="https://github.com/AlexPerez7/alttp-recomp/blob/main/README.es.md" data-l="es">README</a>
+    <p data-l="en">Unofficial fan project, not affiliated with or endorsed by Nintendo. No game data is distributed.</p>
+    <p data-l="es">Proyecto de fans no oficial, sin relación con Nintendo ni respaldado por ella. No se distribuye ningún dato del juego.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var API = "https://api.github.com/repos/AlexPerez7/alttp-recomp/releases/latest";
+  var RELEASES = "https://github.com/AlexPerez7/alttp-recomp/releases/latest";
+  var T = {
+    en: { dl: "Download", for_: "Download for ", ver: "Latest version: ", soon: "Not available in this version yet", get: "Download",
+          size: "MB", other: "Pick your system below", fail: "Could not read the latest release; the button opens the releases page.",
+          names: { windows: "Windows", linux: "Linux", android: "Android" } },
+    es: { dl: "Descargar", for_: "Descargar para ", ver: "Última versión: ", soon: "Aún no disponible en esta versión", get: "Descargar",
+          size: "MB", other: "Elige tu sistema abajo", fail: "No se pudo leer la última release; el botón abre la página de releases.",
+          names: { windows: "Windows", linux: "Linux", android: "Android" } }
+  };
+  var lang = "en", release = null, failed = false;
+  var q = (location.search.match(/[?&]lang=(en|es)/) || [])[1]; /* ?lang=es picks the language for a shared link */
+  try { var s = q || localStorage.getItem("lang"); if (s === "en" || s === "es") lang = s; else if ((navigator.language || "").slice(0, 2) === "es") lang = "es"; } catch (e) {
+    lang = q || ((navigator.language || "").slice(0, 2) === "es" ? "es" : "en");
+  }
+  function os() {
+    var ua = navigator.userAgent || "", p = navigator.platform || "";
+    if (/Android/i.test(ua)) return "android";
+    if (/iPhone|iPad|iPod/i.test(ua)) return "other";
+    if (/Win/i.test(p) || /Windows/i.test(ua)) return "windows";
+    if (/Linux|X11/i.test(p + ua) && !/CrOS/.test(ua)) return "linux";
+    return "other";
+  }
+  function pick(name) {
+    if (!release) return null;
+    var re = { windows: /-win64\.zip$/i, linux: /-linux-x86_64\.tar\.gz$/i, android: /\.apk$/i }[name];
+    for (var i = 0; i < release.assets.length; i++) if (re.test(release.assets[i].name)) return release.assets[i];
+    return null;
+  }
+  function mb(a) { return (a.size / 1048576).toFixed(1) + " " + T[lang].size; }
+  function render() {
+    var t = T[lang], me = os();
+    document.documentElement.lang = lang;
+    document.getElementById("langcode").textContent = lang.toUpperCase();
+    var cards = document.querySelectorAll(".card");
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i], name = c.getAttribute("data-os"), a = pick(name), slot = c.querySelector(".slot");
+      c.className = "card" + (name === me ? " me" : "");
+      slot.innerHTML = "";
+      if (a) {
+        var l = document.createElement("a");
+        l.className = "btn"; l.href = a.browser_download_url; l.textContent = t.get + " " + release.tag_name;
+        var sm = document.createElement("small"); sm.textContent = a.name + " · " + mb(a); l.appendChild(sm);
+        slot.appendChild(l);
+      } else if (release) {
+        var n = document.createElement("div"); n.className = "none"; n.textContent = t.soon; slot.appendChild(n);
+      }
+    }
+    var main = document.getElementById("main"), small = document.getElementById("mainsmall"), a = pick(me);
+    document.getElementById("mainlabel").textContent = a ? t.for_ + t.names[me] : t.dl;
+    document.getElementById("mainlabel-es").textContent = a ? T.es.for_ + T.es.names[me] : T.es.dl;
+    if (a) { main.href = a.browser_download_url; small.textContent = release.tag_name + " · " + mb(a); main.setAttribute("aria-disabled", "false"); }
+    else { main.href = RELEASES; small.textContent = release ? (me === "other" ? t.other : t.soon) : ""; }
+    var meta = document.getElementById("meta");
+    meta.textContent = failed ? t.fail : release ? t.ver + release.tag_name + " (" + release.published_at.slice(0, 10) + ")" : "";
+  }
+  document.getElementById("lang").addEventListener("click", function () {
+    lang = lang === "es" ? "en" : "es";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    render();
+  });
+  render();
+  fetch(API, { headers: { Accept: "application/vnd.github+json" } })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (j) { release = j; render(); })
+    .catch(function () { failed = true; render(); });
+})();
+</script>
+</body>
+</html>

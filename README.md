@@ -4,7 +4,7 @@
 
 <h3 align="center">The Legend of Zelda: A Link to the Past, recompiled to native code</h3>
 
-<p align="center"><b>English</b> · <a href="README.es.md">Español</a></p>
+<p align="center"><b>English</b> · <a href="README.es.md">Español</a> · <a href="https://alexperez7.github.io/alttp-recomp/">Download page</a></p>
 
 <p align="center">
   <a href="https://github.com/AlexPerez7/alttp-recomp/releases/latest"><img alt="Download" src="https://img.shields.io/github/v/release/AlexPerez7/alttp-recomp?label=download&color=2c5c3a&labelColor=1c3a2a"></a>
