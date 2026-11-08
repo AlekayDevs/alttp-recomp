@@ -27,7 +27,7 @@ Download the package for your system from the [latest release](https://github.co
 | **1.** | Unzip | Extract | Download and install (allow the source) |
 | **2.** | Open `snes-port.exe` | Open `alttp-recomp` | Open the app |
 | **3.** | **Choose ROM** and **Play** | **Choose ROM** and **Play** | Pick your ROM and play |
-| **Requirements** | Windows 10 or 11 | x86_64, glibc 2.38+ (Ubuntu 24.04, Debian 13…) | Android 10+ (arm64) |
+| **Requirements** | Windows 10 or 11 | x86_64, glibc 2.34+ (Ubuntu 22.04, Debian 12 or newer) | Android 10+ (arm64) |
 
 <p align="center">
   <img src="docs/img/launcher.png" alt="The launcher" width="31%">
