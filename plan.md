@@ -39,6 +39,15 @@ Cambios ya en `main` pero sin llegar al móvil, porque la app solo se actualiza 
 3. **Actualizar el motor empaquetado** de este repositorio: en `snes-recomp`, `powershell -File scripts\release.ps1`; aquí, `powershell -File scripts\update-engine.ps1`, `scan`, commit y push (también cierra el pendiente 4 de arriba).
 4. **Publicar la v0.8**: construir el APK (`gradle assembleRelease` en `android/` de `snes-recomp`, ver su `README.md`), firmarlo con la misma clave, generar `SHA256SUMS` (`scripts/sums.sh`) y subir ambos a una release `v0.8` junto con el paquete de Linux (`scripts/release.sh`). Después, en el móvil, «Buscar actualizaciones ahora» debe ofrecer la 0.8.
 
+## Pendiente de la traducción (2026-11-09)
+
+Hecho: los 28 nombres de objeto del menú de pausa que son texto (`item.*` en `lang/es_menu.txt`, `menutext.c`). Falta:
+
+1. **Nombres que son dibujo** (arco, bumerán, red...) y etiquetas ITEM, DO, PENDANTS, EQUIPMENT: son gráficos comprimidos, haría falta sustituir los tiles.
+2. **Mapa**: nombres de las zonas.
+3. **Revisión en juego** de `es.txt` (líneas de 168 px como máximo, tildes y ñ) y de `es_menu.txt` (los nombres de objeto en la caja del menú de pausa).
+4. **Limitaciones conocidas**: los stubs `01:CA17` y `08:A8E3`; el entrelazado de la PPU y la tabla exacta del DSP van en `snes-recomp`.
+
 ## Ya existe (no hacer)
 
 | Cosa | Dónde |
