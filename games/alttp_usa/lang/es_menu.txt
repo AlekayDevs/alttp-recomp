@@ -1,4 +1,4 @@
-# Traduccion al espanol del texto fijo de la seleccion de partida, del registro de nombre y de las acciones del menu de pausa.
+# Traduccion al espanol del texto fijo de la seleccion de partida, del registro de nombre y de las acciones y los nombres de objeto del menu de pausa.
 # Texto propio: no contiene nada de la ROM. Formato: `clave = TEXTO` (ver el README); solo A-Z, espacio y ?; sin tildes ni enie.
 # select.title: hasta 14 letras
 select.title = ELIGE JUGADOR
@@ -46,3 +46,59 @@ pause.pull = TIRA
 pause.run = CORRE
 # pause.swim: hasta 4 letras
 pause.swim = NADA
+# item.hookshot: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.hookshot = GANCHO
+# item.bomb: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.bomb = BOMBA
+# item.mushroom: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.mushroom = SETA
+# item.firerod: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.firerod = VARA DE|FUEGO
+# item.icerod: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.icerod = VARA DE|HIELO
+# item.bombos: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.bombos = BOMBOS
+# item.ether: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.ether = ETER
+# item.quake: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.quake = TEMBLOR
+# item.lamp: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.lamp = LAMPARA
+# item.hammer: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.hammer = MARTILLO|MAGICO
+# item.shovel: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.shovel = PALA
+# item.book: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.book = LIBRO DE|MUDORA
+# item.mushroom2: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.mushroom2 = SETA
+# item.somaria: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.somaria = BASTON|SOMARIA
+# item.byrna: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.byrna = BASTON|BYRNA
+# item.cape: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.cape = CAPA|MAGICA
+# item.mushroom3: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.mushroom3 = SETA
+# item.bottle: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.bottle = BOTELLA
+# item.life: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.life = POCION|DE VIDA
+# item.magicmed: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.magicmed = POCION|MAGICA
+# item.cureall: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.cureall = POCION|TOTAL
+# item.faerie: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.faerie = HADA
+# item.bee: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.bee = ABEJA
+# item.goodbee: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.goodbee = ABEJA|BUENA
+# item.powder: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.powder = POLVO|MAGICO
+# item.flute: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.flute = FLAUTA
+# item.flute2: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.flute2 = FLAUTA
+# item.mirror: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.mirror = ESPEJO|MAGICO

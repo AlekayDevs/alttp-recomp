@@ -225,6 +225,115 @@ static int action_line(const char *path, int line, const char *key, char *val) {
     return 1;
 }
 
+
+/* ---- the item names of the pause menu ---- */
+
+/* The name of the selected item is two rows of eight tiles (tile, attribute: $25 for a letter, $24 for a space) in bank 0D, one entry every $20
+ * bytes. Names of one line sit on the second row, the way the ROM has them. The long names of the bow, the boomerang, the net and a few more are
+ * not text but pictures in the graphics, so they cannot be translated here. */
+typedef struct {
+    const char *key;
+    uint16_t at;           /* where the first row starts in bank 0D */
+    const char *orig1, *orig2; /* what the ROM has: eight characters each */
+    int ok;
+    uint8_t keep[32];
+} ItemName;
+
+static ItemName items[] = {
+    { "item.hookshot",   0xF209, "        ", "HOOKSHOT", 0, { 0 } },
+    { "item.bomb",       0xF229, "        ", "BOMB    ", 0, { 0 } },
+    { "item.mushroom",   0xF249, "        ", "MUSHROOM", 0, { 0 } },
+    { "item.firerod",    0xF269, "        ", "FIREROD ", 0, { 0 } },
+    { "item.icerod",     0xF289, "        ", "ICEROD  ", 0, { 0 } },
+    { "item.bombos",     0xF2A9, "        ", "BOMBOS  ", 0, { 0 } },
+    { "item.ether",      0xF2C9, "        ", "ETHER   ", 0, { 0 } },
+    { "item.quake",      0xF2E9, "        ", "QUAKE   ", 0, { 0 } },
+    { "item.lamp",       0xF309, "        ", "LAMP    ", 0, { 0 } },
+    { "item.hammer",     0xF329, "MAGIC   ", "  HAMMER", 0, { 0 } },
+    { "item.shovel",     0xF349, "        ", "SHOVEL  ", 0, { 0 } },
+    { "item.book",       0xF389, "BOOK OF ", "MUDORA  ", 0, { 0 } },
+    { "item.mushroom2",  0xF3A9, "        ", "MUSHROOM", 0, { 0 } },
+    { "item.somaria",    0xF3C9, "CANE OF ", " SOMARIA", 0, { 0 } },
+    { "item.byrna",      0xF3E9, "CANE OF ", "   BYRNA", 0, { 0 } },
+    { "item.cape",       0xF409, "MAGIC   ", "   CAPE ", 0, { 0 } },
+    { "item.mushroom3",  0xF449, "        ", "MUSHROOM", 0, { 0 } },
+    { "item.bottle",     0xF469, "        ", "BOTTLE  ", 0, { 0 } },
+    { "item.life",       0xF489, "LIFE    ", "MEDICINE", 0, { 0 } },
+    { "item.magicmed",   0xF4A9, "MAGIC   ", "MEDICINE", 0, { 0 } },
+    { "item.cureall",    0xF4C9, "CURE-ALL", "MEDICINE", 0, { 0 } },
+    { "item.faerie",     0xF4E9, "        ", "FAERIE  ", 0, { 0 } },
+    { "item.bee",        0xF509, "        ", "BEE     ", 0, { 0 } },
+    { "item.goodbee",    0xF529, "        ", "GOOD BEE", 0, { 0 } },
+    { "item.powder",     0xF549, "MAGIC   ", " POWDER ", 0, { 0 } },
+    { "item.flute",      0xF569, "        ", "FLUTE   ", 0, { 0 } },
+    { "item.flute2",     0xF589, "        ", "FLUTE   ", 0, { 0 } },
+    { "item.mirror",     0xF5A9, "MAGIC   ", "  MIRROR", 0, { 0 } },
+};
+#define N_ITEMS ((int)(sizeof items / sizeof items[0]))
+
+static int i_tile(char ch) { return ch == '-' ? 0x6A : a_tile(ch); }
+
+static char i_char(int tile) { return tile == 0x6A ? '-' : a_char(tile); }
+
+static void check_items(void) {
+    int n, i;
+    for (n = 0; n < N_ITEMS; n++) {
+        ItemName *it = &items[n];
+        it->ok = 1;
+        for (i = 0; i < 16; i++) {
+            char ch = i < 8 ? it->orig1[i] : it->orig2[i - 8];
+            uint8_t tile = bus_read8(rom24d(it->at) + (uint32_t)i * 2), attr = bus_read8(rom24d(it->at) + (uint32_t)i * 2 + 1);
+            if (tile != (uint8_t)i_tile(ch) || attr != (ch == ' ' ? 0x24 : 0x25)) it->ok = 0;
+        }
+        if (!it->ok) {
+            fprintf(stderr, "menu text: %s is not where this ROM has it: left alone\n", it->key);
+            continue;
+        }
+        for (i = 0; i < 32; i++) it->keep[i] = bus_read8(rom24d(it->at) + (uint32_t)i);
+    }
+}
+
+static void put_item(ItemName *it, const char *l1, const char *l2) { /* l1 == NULL: the original bytes */
+    uint8_t buf[32];
+    int i;
+    if (l1) {
+        for (i = 0; i < 16; i++) {
+            const char *l = i < 8 ? l1 : l2;
+            int k = i < 8 ? i : i - 8;
+            char ch = k < (int)strlen(l) ? l[k] : ' ';
+            buf[2 * i] = (uint8_t)i_tile(ch);
+            buf[2 * i + 1] = ch == ' ' ? 0x24 : 0x25;
+        }
+    } else memcpy(buf, it->keep, 32);
+    rom_overlay(rom24d(it->at), buf, 32);
+}
+
+/* A line `key = row1|row2` (or just `key = row2`) of the file when the key is an item: 1 if it was, 0 if not. */
+static int item_line(const char *path, int line, const char *key, char *val) {
+    int n, k, len1;
+    char *bar, *l1 = (char *)"", *l2 = val;
+    for (n = 0; n < N_ITEMS && strcmp(items[n].key, key); n++) {}
+    if (n == N_ITEMS) return 0;
+    if (!items[n].ok) return 1;
+    for (k = 0; val[k]; k++) if (val[k] >= 'a' && val[k] <= 'z') val[k] = (char)(val[k] - 'a' + 'A');
+    bar = strchr(val, '|');
+    if (bar) { *bar = 0; l1 = val; l2 = bar + 1; }
+    len1 = (int)strlen(l1);
+    for (k = 0; k < len1 + 1 + (int)strlen(l2); k++) {
+        char ch = k < len1 ? l1[k] : k == len1 ? ' ' : l2[k - len1 - 1];
+        if (i_tile(ch) < 0) {
+            fprintf(stderr, "%s:%d: %s: the font has no \"%c\" (A-Z, space and -): left in English\n", path, line, key, (unsigned char)ch < 0x80 ? ch : '?');
+            return 1;
+        }
+    }
+    if (len1 > 8 || (int)strlen(l2) > 8) {
+        fprintf(stderr, "%s:%d: %s: a row has at most 8 letters: left in English\n", path, line, key);
+        return 1;
+    }
+    put_item(&items[n], l1, l2);
+    return 1;
+}
+
 /* ---- the dump ---- */
 
 static void dump_menu(void) {
@@ -253,6 +362,15 @@ static void dump_menu(void) {
         for (i = 0; i < ac->n; i++) fputc(a_char(bus_read8(rom24d(ac->at) + (uint32_t)i * 2)), f);
         fputc('\n', f);
     }
+    for (s = 0; s < N_ITEMS; s++) {
+        const ItemName *it = &items[s];
+        if (!it->ok) continue;
+        fprintf(f, "# %s: row 1|row 2, at most 8 letters each (A-Z, space and -)\n%s = ", it->key, it->key);
+        for (i = 0; i < 8; i++) fputc(i_char(bus_read8(rom24d(it->at) + (uint32_t)i * 2)), f);
+        fputc('|', f);
+        for (i = 0; i < 8; i++) fputc(i_char(bus_read8(rom24d(it->at) + 16 + (uint32_t)i * 2)), f);
+        fputc('\n', f);
+    }
     fclose(f);
     fprintf(stderr, "wrote the menu text to %s\n", path);
     exit(0);
@@ -274,6 +392,7 @@ static void parse_file(const char *path, char *text, size_t n) {
     int line = 0, s;
     for (s = 0; s < N_SLOTS; s++) if (slots[s].ok) put_rows(&slots[s], NULL);
     for (s = 0; s < N_ACTIONS; s++) if (actions[s].ok) put_action(&actions[s], NULL);
+    for (s = 0; s < N_ITEMS; s++) if (items[s].ok) put_item(&items[s], NULL, NULL);
     text[n] = 0;
     while (pos < n) {
         char *ln = text + pos, *eq, *val;
@@ -292,7 +411,7 @@ static void parse_file(const char *path, char *text, size_t n) {
         if (*val == ' ') val++;
         for (s = 0; s < N_SLOTS && strcmp(slots[s].key, ln); s++) {}
         if (s == N_SLOTS) {
-            if (!action_line(path, line, ln, val)) fprintf(stderr, "%s:%d: no string called %s\n", path, line, ln);
+            if (!action_line(path, line, ln, val) && !item_line(path, line, ln, val)) fprintf(stderr, "%s:%d: no string called %s\n", path, line, ln);
             continue;
         }
         if (!slots[s].ok) continue;
@@ -352,6 +471,7 @@ void alttp_menu_poll(Cpu *c) {
     if (!started) {
         check_slots();
         check_actions();
+        check_items();
         started = 1;
     }
     if (game_opt("language", 0) == 1 && frames++ % 30 == 0) reload_if_changed();
