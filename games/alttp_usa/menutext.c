@@ -229,14 +229,19 @@ static int action_line(const char *path, int line, const char *key, char *val) {
 /* ---- the item names of the pause menu ---- */
 
 /* The name of the selected item is two rows of eight tiles (tile, attribute: $25 for a letter, $24 for a space) in bank 0D, one entry every $20
- * bytes. Names of one line sit on the second row, the way the ROM has them. The long names of the bow, the boomerang, the net and a few more are
- * not text but pictures in the graphics, so they cannot be translated here. */
+ * bytes. Names of one line sit on the second row, the way the ROM has them. The names of the bow (three of them), the boomerang and the net are not
+ * letter tiles but pictures (tiles of their own, narrower than a letter so that "SILVER ARROWS" fits in eight tiles): those entries (`pic`) are
+ * replaced by letter tiles like the others, so the Spanish name has the eight letters per row that every name has. The bow has two entries with the
+ * same name (`at2`). In English they stay as the ROM has them; the dump lists them with the English name shortened to what eight letters hold. */
 typedef struct {
     const char *key;
     uint16_t at;           /* where the first row starts in bank 0D */
     const char *orig1, *orig2; /* what the ROM has: eight characters each */
     int ok;
     uint8_t keep[32];
+    int pic;               /* the ROM has a picture there, not letters: `orig1` and `orig2` are only the name the dump shows */
+    uint16_t at2;          /* a second entry with the same name (0: none) */
+    uint8_t keep2[32];
 } ItemName;
 
 static ItemName items[] = {
@@ -268,6 +273,12 @@ static ItemName items[] = {
     { "item.flute",      0xF569, "        ", "FLUTE   ", 0, { 0 } },
     { "item.flute2",     0xF589, "        ", "FLUTE   ", 0, { 0 } },
     { "item.mirror",     0xF5A9, "MAGIC   ", "  MIRROR", 0, { 0 } },
+    /* pictures in the ROM */
+    { "item.bow",        0xF1C9, "        ", "BOW     ", 0, { 0 }, 1, 0xF5E9 },
+    { "item.bowarrows",  0xF5C9, "BOW &   ", "ARROWS  ", 0, { 0 }, 1 },
+    { "item.bowsilver",  0xF609, "BOW &   ", "SILVER  ", 0, { 0 }, 1 },
+    { "item.boomerang",  0xF1E9, "        ", "BOOMERAN", 0, { 0 }, 1 },
+    { "item.net",        0xF369, "BUG-NET ", "        ", 0, { 0 }, 1 },
 };
 #define N_ITEMS ((int)(sizeof items / sizeof items[0]))
 
@@ -283,13 +294,21 @@ static void check_items(void) {
         for (i = 0; i < 16; i++) {
             char ch = i < 8 ? it->orig1[i] : it->orig2[i - 8];
             uint8_t tile = bus_read8(rom24d(it->at) + (uint32_t)i * 2), attr = bus_read8(rom24d(it->at) + (uint32_t)i * 2 + 1);
-            if (tile != (uint8_t)i_tile(ch) || attr != (ch == ' ' ? 0x24 : 0x25)) it->ok = 0;
+            if (it->pic) { if (attr != 0x24 && attr != 0x25) it->ok = 0; } /* a picture: only the palette is a test (the ROM is the one of the profile's CRC32) */
+            else if (tile != (uint8_t)i_tile(ch) || attr != (ch == ' ' ? 0x24 : 0x25)) it->ok = 0;
+        }
+        if (it->pic && it->at2) {
+            for (i = 0; i < 16; i++) {
+                uint8_t attr = bus_read8(rom24d(it->at2) + (uint32_t)i * 2 + 1);
+                if (attr != 0x24 && attr != 0x25) it->ok = 0;
+            }
         }
         if (!it->ok) {
             fprintf(stderr, "menu text: %s is not where this ROM has it: left alone\n", it->key);
             continue;
         }
         for (i = 0; i < 32; i++) it->keep[i] = bus_read8(rom24d(it->at) + (uint32_t)i);
+        if (it->at2) for (i = 0; i < 32; i++) it->keep2[i] = bus_read8(rom24d(it->at2) + (uint32_t)i);
     }
 }
 
@@ -306,6 +325,7 @@ static void put_item(ItemName *it, const char *l1, const char *l2) { /* l1 == NU
         }
     } else memcpy(buf, it->keep, 32);
     rom_overlay(rom24d(it->at), buf, 32);
+    if (it->at2) rom_overlay(rom24d(it->at2), l1 ? buf : it->keep2, 32);
 }
 
 /* A line `key = row1|row2` (or just `key = row2`) of the file when the key is an item: 1 if it was, 0 if not. */
@@ -366,9 +386,9 @@ static void dump_menu(void) {
         const ItemName *it = &items[s];
         if (!it->ok) continue;
         fprintf(f, "# %s: row 1|row 2, at most 8 letters each (A-Z, space and -)\n%s = ", it->key, it->key);
-        for (i = 0; i < 8; i++) fputc(i_char(bus_read8(rom24d(it->at) + (uint32_t)i * 2)), f);
+        for (i = 0; i < 8; i++) fputc(it->pic ? it->orig1[i] : i_char(bus_read8(rom24d(it->at) + (uint32_t)i * 2)), f);
         fputc('|', f);
-        for (i = 0; i < 8; i++) fputc(i_char(bus_read8(rom24d(it->at) + 16 + (uint32_t)i * 2)), f);
+        for (i = 0; i < 8; i++) fputc(it->pic ? it->orig2[i] : i_char(bus_read8(rom24d(it->at) + 16 + (uint32_t)i * 2)), f);
         fputc('\n', f);
     }
     fclose(f);

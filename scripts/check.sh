@@ -133,8 +133,8 @@ dumpmenu() { hl "volcado de menus" "$H" "$textRom" --frames 300 --frame-blocks 2
 dumpmenu
 menuEn=$out/alttp_menu_en.txt
 menuKeys=$(grep -cE '^[a-z_.0-9]+ = ' "$menuEn")
-menuOk=$(b2i [ "$menuKeys" = 51 ])
-echo "claves del volcado de menús: $menuKeys (51) = $menuOk"
+menuOk=$(b2i [ "$menuKeys" = 56 ])
+echo "claves del volcado de menús: $menuKeys (56) = $menuOk"
 cp "$menuEn" "$textDir/lang/es_menu.txt"
 dumpmenu --game-opt language=es --game-dir "$textDir"
 menuRound=$(b2i [ "$(sha "$out/alttp_menu_es.txt")" = "$(sha "$menuEn")" ])
@@ -379,7 +379,7 @@ need "$textOk" "el volcado debe tener 397 mensajes y la huella de siempre"
 need "$roundTrip" "con es.txt igual al volcado, el texto debe salir idéntico"
 need "$editOk" "cambiar una línea de es.txt debe cambiar solo ese mensaje"
 need "$boxOk" "el primer cuadro de texto debe ser idéntico con language=en y language=es"
-need "$menuOk" "el volcado de menús debe tener 51 claves"
+need "$menuOk" "el volcado de menús debe tener 56 claves"
 need "$menuRound" "con es_menu.txt igual al volcado, el texto de los menús debe salir idéntico"
 need "$menuSame" "las pantallas de menú deben ser idénticas con language=en y language=es (es_menu.txt = volcado)"
 need "$menuEdit" "cambiar una cadena de menú debe cambiar solo su sitio en el mapa de BG3"

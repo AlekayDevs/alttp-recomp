@@ -102,3 +102,13 @@ item.flute = FLAUTA
 item.flute2 = FLAUTA
 # item.mirror: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
 item.mirror = ESPEJO|MAGICO
+# item.bow: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -). En la ROM inglesa es un dibujo; aqui sale con letras
+item.bow = ARCO
+# item.bowarrows: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.bowarrows = ARCO Y|FLECHAS
+# item.bowsilver: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.bowsilver = ARCO Y|F PLATA
+# item.boomerang: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.boomerang = BUMERAN
+# item.net: fila 1|fila 2, hasta 8 letras cada una (A-Z, espacio y -)
+item.net = RED PARA|INSECTOS
