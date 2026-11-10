@@ -349,6 +349,14 @@ foreach ($opt in 0, 1) {
         "--poke", "00202=08@5250", "--poke", "00303=0F@5250", "--poke", "00C4A=00@5290", "--watch", "05D", "--trace-frames", "5250-5600",
         "--press", "B@5300-5390", "--press", "Y@5391-5393", "--game-opt", "fix_medallion_abort=$opt")
 }
+# Ether ($F348, objeto $10 en $0303, $5D = 8) y Quake ($F349, objeto $11, $5D = $0A): lo mismo; con la opción duran hasta el 5602 y el 5622.
+foreach ($m in @(@("ether", "10", "F348"), @("quake", "11", "F349"))) {
+    foreach ($opt in 0, 1) {
+        Launch "med_$($m[0])$opt" 5600 @("--poke", "0F359=01@5250", "--poke", "0F379=FF@5250", "--poke", "0F3C5=02@5250", "--poke", "0$($m[2])=01@5250", "--poke", "0F36E=80@5250",
+            "--poke", "00202=08@5250", "--poke", "00303=$($m[1])@5250", "--poke", "00C4A=00@5290", "--watch", "05D", "--trace-frames", "5250-5600",
+            "--press", "B@5300-5390", "--press", "Y@5391-5393", "--game-opt", "fix_medallion_abort=$opt")
+    }
+}
 
 # fix_somaria_nomagic: con el bastón de Somaria ($F350, ranura 17 en $0202, objeto $12 en $0303) y sin magia, Y en el fotograma 5300 deja el bit 6
 # de $3A puesto (como si el objeto estuviera en uso); con la opción el bit se limpia al salir de 07:AEC0
@@ -448,6 +456,18 @@ function Medallion($name) {
 $med0 = Medallion "med0"; $med1 = Medallion "med1"
 $medOk = ($med0.Start -eq 1) -and ($med0.Abort -eq 1) -and ($med1.Start -eq 1) -and ($med1.Abort -eq 0) -and ($med1.State -eq 9)
 Write-Host "fix_medallion_abort: Bombos empieza $($med0.Start) vez; sin la opción el giro lo aborta $($med0.Abort) vez (`$5D = $($med0.State) al final); con ella `$5D = $($med1.State) -> $medOk"
+$medExtraOk = $true
+foreach ($m in @(@("ether", "08"), @("quake", "0A"))) {
+    $starts = @(); $aborts = @()
+    foreach ($opt in 0, 1) {
+        $w = @(Writes (Play "med_$($m[0])$opt").log | Where-Object { $_.Addr -eq 0x5D })
+        $starts += @($w | Where-Object { $_.Old -eq "00" -and $_.New -eq $m[1] }).Count
+        $aborts += @($w | Where-Object { $_.Old -eq $m[1] -and $_.New -eq "03" }).Count
+    }
+    $one = ($starts[0] -eq 1) -and ($aborts[0] -eq 1) -and ($starts[1] -eq 1) -and ($aborts[1] -eq 0)
+    Write-Host "fix_medallion_abort ($($m[0])): empieza $($starts[0]) vez; sin la opción se aborta $($aborts[0]) vez; con ella $($aborts[1]) -> $one"
+    if (-not $one) { $medExtraOk = $false }
+}
 $som0 = (Play "som0").wram; $som1 = (Play "som1").wram
 $somOk = ($som0[0x3A] -eq 0x40) -and ($som1[0x3A] -eq 0) -and ($som0[0x350] -eq 0) -and ($som1[0x350] -eq 0)
 Write-Host "fix_somaria_nomagic: con el bastón sin magia el bit 6 de `$3A queda en $($som0[0x3A]) sin la opción y en $($som1[0x3A]) con ella -> $somOk"
@@ -527,6 +547,7 @@ if (-not $potOk) { Write-Error "con sword_pots=1 un espadazo en mazmorra debe ro
 if (-not $portalOk) { Write-Error "con fix_portal_chime=1 la roca del portal (`$82) debe sonar aunque la pantalla ya esté vista (y sin la opción no); sin el bit debe sonar igual con las dos" -ErrorAction Continue; $ok = $false }
 if (-not $deathOk) { Write-Error "con fix_death_count=1 continuar sin guardar no debe contar la muerte (y sin la opción sí); guardar y continuar o salir la cuenta siempre" -ErrorAction Continue; $ok = $false }
 if (-not $medOk) { Write-Error "con fix_medallion_abort=1 Bombos no debe abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
+if (-not $medExtraOk) { Write-Error "con fix_medallion_abort=1 Ether y Quake no deben abortarse con el espadazo giratorio del mismo fotograma (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $somOk) { Write-Error "con fix_somaria_nomagic=1 el bastón de Somaria sin magia no debe dejar el bit 6 de `$3A puesto (y sin la opción sí)" -ErrorAction Continue; $ok = $false }
 if (-not $refundOk) { Write-Error "fix_magic_refund: la función sola debe limitar la magia a 128 con la opción (y sin ella pasar de 128)" -ErrorAction Continue; $ok = $false }
 if (-not $hooksOk) { Write-Error "arreglos pequeños: la lógica de algún gancho no es la esperada" -ErrorAction Continue; $ok = $false }
