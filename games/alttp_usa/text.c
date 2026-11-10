@@ -491,8 +491,10 @@ static void spell_buttons(void) {
         int kind = input_label(buttons[k].mask, text, sizeof text);
         spelled_n[k] = 0;
         icon_want[k] = -1;
-        if (kind >= 2 && text[0] && !text[1] && strchr("ABXY", text[0]))
-            icon_want[k] = kind == 3 ? (int)(strchr("ABXY", text[0]) - "ABXY") : 4 + (int)(strchr("ABXY", text[0]) - "ABXY");
+        static const char faces[] = "ABXY"; /* un solo literal: restar punteros de dos "ABXY" distintos solo vale si el compilador los une (TinyCC no) */
+        const char *face = kind >= 2 && text[0] && !text[1] ? strchr(faces, text[0]) : NULL;
+        if (face)
+            icon_want[k] = kind == 3 ? (int)(face - faces) : 4 + (int)(face - faces);
         else if (kind) spelled_n[k] = label_codes(text, spelled[k], 16);
     }
     if (!icon_read) { /* once, before any glyph is replaced */
