@@ -1011,7 +1011,7 @@ Puedo hablarte{76}
 telepáticamente cuando tocas{7E}{73}
 estas baldosas. Aquí tienes{73}
 una pista.  El tesoro de este{73}
-palacio vale contra blindados.
+palacio sirve contra armaduras.
 @181
 LINK, soy yo, Sahasrahla el{75}
 anciano.  Un orbe llamado Perla{76}
@@ -1125,7 +1125,7 @@ No tienes botellas vacías.{75}
 No hay otra opción{43}{76}
 Tendrás que soltarlo.
 @203
-Este intento tu tiempo fue{75}
+Tu tiempo en este intento fue{75}
 00 minutos 00 segundos.
 @204
 Si llegas a la meta en menos de{75}
@@ -1230,7 +1230,7 @@ nada por ti.
 espada perfectamente!
 @225
 Croac croac{43}  ¡Tu cuerpo no{75}
-cambió!  ¡No eres un tipo{76}
+cambió!  ¿No eres un tipo{76}
 normal, verdad?{7E}{73}
 Yo vivía en la Aldea Kakariko.{73}
 Me pregunto qué hará mi socio{73}
@@ -1395,7 +1395,7 @@ Je je.  Gracias.  Para ser{75}
 sincero, yo era ladrón en el{76}
 Mundo de la Luz{43}{7E}{73}
 algunos colegas se escondieron{73}
-por miedo a que los atraparán.{73}
+por miedo a que los atraparan.{73}
 Uno de ellos era un maestro{7E}{73}
 cerrajero, pero ahora oculta{73}
 que fue ladrón{43}{73}
@@ -1464,7 +1464,7 @@ secreto ante todos.
 @270
 Levanta la Espada Maestra y{75}
 obtendrás la magia del{76}
-Eter.
+Éter.
 @271
 Levanta la Espada Maestra y{75}
 obtendrás la magia de{76}
@@ -1592,7 +1592,7 @@ ocurre en la Tierra Dorada que{76}
 sellaron los siete sabios{43}{7E}{73}
 Debe ser un presagio del Gran{73}
 Cataclismo, vaticinado por los{73}
-de sangre Hylian{43}{7E}{73}
+de sangre Hylia{43}{7E}{73}
 {43} {43} {43}{73}
 La profecía dice, {4C}El Héroe{73}
 se alzará en el desierto con{7E}{73}
@@ -1959,7 +1959,7 @@ Poder Dorado debe derrotar al{73}
 hombre que creó este lugar{43}{7E}{73}
 Hasta entonces, estoy{73}
 atrapado en esta forma tan{73}
-rara. Pero que cosa tan{7E}{73}
+rara. Pero qué cosa tan{7E}{73}
 traviesa para dejarla por ahí{43}{73}
 El Poder del Oro{43}{73}
 Trifuerza{43}
