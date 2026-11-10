@@ -42,12 +42,11 @@ Cambios ya en `main` pero sin llegar al móvil, porque la app solo se actualiza 
 
 ## Pendiente de la traducción (2026-11-09)
 
-Hecho: los 28 nombres de objeto del menú de pausa que son texto (`item.*` en `lang/es_menu.txt`, `menutext.c`). Falta:
+Hecho: los 28 nombres de objeto que son texto (`item.*` en `lang/es_menu.txt`, `menutext.c`); los nombres con dibujo (arco en sus 4 estados, bumerán, red: `item.bow*`, `item.boomerang`, `item.net`, que redibujan las dos filas de la caja); y los rótulos OBJETOS, ACCION, COLGANTES y EQUIPO del marco, que `hud.c` (`alttp_pause_labels`) redibuja en la VRAM de BG3 solo en el módulo $0E y con `language=es` (`hud_text=0` lo apaga). Falta:
 
-1. **Nombres que son dibujo** (arco, bumerán, red...) y etiquetas ITEM, DO, PENDANTS, EQUIPMENT: son gráficos comprimidos, haría falta sustituir los tiles.
-2. **Mapa**: nombres de las zonas.
-3. **Revisión en juego** de `es.txt` (líneas de 168 px como máximo, tildes y ñ) y de `es_menu.txt` (los nombres de objeto en la caja del menú de pausa).
-4. **Limitaciones conocidas**: los stubs `01:CA17` y `08:A8E3`; el entrelazado de la PPU y la tabla exacta del DSP van en `snes-recomp`.
+1. **Mapa**: no se encontró texto de zonas que traducir; no se pudo abrir el mapa en las pruebas sin cabeza (Link sigue dentro de la casa y forzar el módulo $0E/$07 deja la pantalla rota). Falta mirarlo en el juego real, al aire libre.
+2. **Revisión en juego** de `es.txt` (líneas de 168 px como máximo, tildes y ñ) y de `es_menu.txt` (los nombres de objeto en la caja del menú de pausa).
+3. **Limitaciones conocidas**: los stubs `01:CA17` y `08:A8E3`; el entrelazado de la PPU y la tabla exacta del DSP van en `snes-recomp`.
 
 ## Ya existe (no hacer)
 
