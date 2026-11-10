@@ -487,7 +487,7 @@ echar nada en una botella llena.{76}
 Ahora enciendes antorchas y{76}
 ves en la oscuridad.
 @082
-¡Conseguiste el Boomerang!{75}
+¡Conseguiste el Bumerán!{75}
 ¡Pruébalo!  {45}Para elegir un{76}
 objeto, pulsa el botón Start.{46}
 @083
@@ -792,7 +792,7 @@ Te daré algo mejor a cambio.
 Vamos, vamos, no me mientas.{75}
 Por favor, quédatelo.
 @143
-¡Obtuviste el Boomerang{75}
+¡Obtuviste el Bumerán{75}
 Mágico! ¡Vuela más rápido y{76}
 más lejos que el anterior!
 @144
