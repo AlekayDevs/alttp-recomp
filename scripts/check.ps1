@@ -151,8 +151,8 @@ function DumpMenu($extra) {
 DumpMenu @()
 $menuEn = "$out\alttp_menu_en.txt"
 $menuKeys = (Select-String -Path $menuEn -Pattern '^[a-z_.0-9]+ = ').Count
-$menuOk = ($menuKeys -eq 51)
-Write-Host "claves del volcado de menús: $menuKeys (51) = $menuOk"
+$menuOk = ($menuKeys -eq 56)
+Write-Host "claves del volcado de menús: $menuKeys (56) = $menuOk"
 $menuTxt = (Get-Content $menuEn -Raw)
 [System.IO.File]::WriteAllText("$textDir\lang\es_menu.txt", $menuTxt)
 DumpMenu @("--game-opt", "language=es", "--game-dir", $textDir)
@@ -523,7 +523,7 @@ if (-not $textOk) { Write-Error "el volcado debe tener 397 mensajes y la huella 
 if (-not $roundTrip) { Write-Error "con es.txt igual al volcado, el texto debe salir idéntico" -ErrorAction Continue; $ok = $false }
 if (-not $editOk) { Write-Error "cambiar una línea de es.txt debe cambiar solo ese mensaje" -ErrorAction Continue; $ok = $false }
 if (-not $boxOk) { Write-Error "el primer cuadro de texto debe ser idéntico con language=en y language=es" -ErrorAction Continue; $ok = $false }
-if (-not $menuOk) { Write-Error "el volcado de menús debe tener 51 claves" -ErrorAction Continue; $ok = $false }
+if (-not $menuOk) { Write-Error "el volcado de menús debe tener 56 claves" -ErrorAction Continue; $ok = $false }
 if (-not $menuRound) { Write-Error "con es_menu.txt igual al volcado, el texto de los menús debe salir idéntico" -ErrorAction Continue; $ok = $false }
 if (-not $menuSame) { Write-Error "las pantallas de menú deben ser idénticas con language=en y language=es (es_menu.txt = volcado)" -ErrorAction Continue; $ok = $false }
 if (-not $menuEdit) { Write-Error "cambiar una cadena de menú debe cambiar solo su sitio en el mapa de BG3" -ErrorAction Continue; $ok = $false }
