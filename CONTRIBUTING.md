@@ -1,6 +1,6 @@
 # Contribuir
 
-Este repositorio es el juego (*A Link to the Past*, USA); el recompilador, el runtime y `snes-port` están en [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp), y sus reglas generales (OpenSpec, clean-room, pruebas) están en su [CONTRIBUTING.md](https://github.com/AlexPerez7/snes-recomp/blob/main/CONTRIBUTING.md). Un fallo del traductor, de la PPU o del sonido va allí.
+Este repositorio es el juego (*A Link to the Past*, USA); el recompilador, el runtime y `snes-port` están en [`snes-recomp`](https://github.com/AlekayDevs/snes-recomp), y sus reglas generales (OpenSpec, clean-room, pruebas) están en su [CONTRIBUTING.md](https://github.com/AlekayDevs/snes-recomp/blob/main/CONTRIBUTING.md). Un fallo del traductor, de la PPU o del sonido va allí.
 
 ## Reglas que no se negocian
 

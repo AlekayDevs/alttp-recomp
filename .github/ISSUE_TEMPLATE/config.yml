@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security problem / Problema de seguridad
-    url: https://github.com/AlexPerez7/alttp-recomp/security/advisories/new
+    url: https://github.com/AlekayDevs/alttp-recomp/security/advisories/new
     about: Report it privately, not as a public issue.
   - name: Engine bug (translator, PPU, sound) / Fallo del motor
-    url: https://github.com/AlexPerez7/snes-recomp/issues/new
+    url: https://github.com/AlekayDevs/snes-recomp/issues/new
     about: Crashes in the recompiler or runtime themselves go to snes-recomp.

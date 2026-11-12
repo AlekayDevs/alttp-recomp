@@ -4,23 +4,23 @@
 
 <h3 align="center">The Legend of Zelda: A Link to the Past, recompiled to native code</h3>
 
-<p align="center"><b>English</b> · <a href="README.es.md">Español</a> · <a href="https://alexperez7.github.io/alttp-recomp/">Download page</a></p>
+<p align="center"><b>English</b> · <a href="README.es.md">Español</a> · <a href="https://alekaydevs.github.io/alttp-recomp/">Download page</a></p>
 
 <p align="center">
-  <a href="https://alexperez7.github.io/alttp-recomp/"><img alt="Download page" src="https://img.shields.io/badge/web-download%20page-f8d860?labelColor=1c3a2a"></a>
-  <a href="https://github.com/AlexPerez7/alttp-recomp/releases/latest"><img alt="Download" src="https://img.shields.io/github/v/release/AlexPerez7/alttp-recomp?label=download&color=2c5c3a&labelColor=1c3a2a"></a>
+  <a href="https://alekaydevs.github.io/alttp-recomp/"><img alt="Download page" src="https://img.shields.io/badge/web-download%20page-f8d860?labelColor=1c3a2a"></a>
+  <a href="https://github.com/AlekayDevs/alttp-recomp/releases/latest"><img alt="Download" src="https://img.shields.io/github/v/release/AlekayDevs/alttp-recomp?label=download&color=2c5c3a&labelColor=1c3a2a"></a>
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-Windows%20%C2%B7%20Linux%20%C2%B7%20Android-c08820?labelColor=1c3a2a">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/code-MIT-f8d860?labelColor=1c3a2a"></a>
   <img alt="No ROM included" src="https://img.shields.io/badge/ROM-bring%20your%20own-c02828?labelColor=1c3a2a">
 </p>
 
-This is not an emulator: the cartridge's program is **translated to native code** (with the [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp) engine) and compiled on your machine from **your** copy of the game. The result starts instantly, holds 60 frames per second even on a high-end phone, and allows improvements an emulator can't give: widescreen, Spanish, save states and rewind, and a handful of quality-of-life options.
+This is not an emulator: the cartridge's program is **translated to native code** (with the [`snes-recomp`](https://github.com/AlekayDevs/snes-recomp) engine) and compiled on your machine from **your** copy of the game. The result starts instantly, holds 60 frames per second even on a high-end phone, and allows improvements an emulator can't give: widescreen, Spanish, save states and rewind, and a handful of quality-of-life options.
 
 > **Legal notice.** This repository contains neither the ROM nor any asset of the game (graphics, sound, text, maps), and never will. Everyone must supply their own legally obtained copy (USA, CRC32 `777AAC2F`). Nothing derived from it is distributed or leaves your machine. Independent project, not affiliated with Nintendo.
 
 ## Download and play
 
-The easiest way is the **[download page](https://alexperez7.github.io/alttp-recomp/)**: it detects your system and gives you the right file. You can also take the package from the [latest release](https://github.com/AlexPerez7/alttp-recomp/releases/latest). **Nothing to install, no terminal needed.**
+The easiest way is the **[download page](https://alekaydevs.github.io/alttp-recomp/)**: it detects your system and gives you the right file. You can also take the package from the [latest release](https://github.com/AlekayDevs/alttp-recomp/releases/latest). **Nothing to install, no terminal needed.**
 
 | | Windows | Linux | Android |
 |---|---|---|---|
@@ -52,7 +52,7 @@ The ROM stays where it is: only its path is remembered, and on Android it is cop
 - **Real Android support.** An APK with touch controls made for the game: the pad with the Triforce (the direction is read by angle, so a thumb slightly off-axis does not give two directions at once), gem-style A/B/X/Y buttons, portrait and landscape layouts, and plates for save states (**SAVE**, **LOAD**, **SLOT** and **REWIND**). The **options menu can be used by touch** too (tabs, rows, tap the left or right half of a value), and the start screen has the same look as the desktop launchers, with an **EN / ES** language button.
 - **Launchers for every system.** Windows: a window where you pick your ROM once. Linux: a self-contained native launcher (no gcc needed; it carries its own compiler) with the game's art and an **EN / ES** language button. Android: the app's start screen. All of them show **Play** once your ROM is chosen.
 - **Updates from inside the app.** Windows and Linux: the launcher notices a new version and installs it after checking its SHA-256 (**off by default**). Android: the app notices it, downloads the APK, checks its SHA-256 and hands it to Android's installer (**on by default**, switch it off on the start screen). [Details →](#updates)
-- **A download page.** [alexperez7.github.io/alttp-recomp](https://alexperez7.github.io/alttp-recomp/) picks the right package for your system and always points to the latest release.
+- **A download page.** [alekaydevs.github.io/alttp-recomp](https://alekaydevs.github.io/alttp-recomp/) picks the right package for your system and always points to the latest release.
 - **Tested.** Each improvement, the save states (a real game saved, damaged and loaded back must leave the machine bit for bit the same), the touch controls and the menu have automatic tests that play the game with a script.
 - **Privacy.** No telemetry and no accounts. The only possible connection is the version check; your ROM and your saves never leave your device.
 
@@ -147,7 +147,7 @@ Most of the documentation is in Spanish.
 
 - [**Translation and text**](docs/TRADUCCION.md): how messages and menus are dumped and translated without touching the ROM.
 - [**Development**](docs/DESARROLLO.md): building from source, repository layout, tests, packaging and known limitations.
-- [**`snes-recomp` engine**](https://github.com/AlexPerez7/snes-recomp): the recompiler, the PPU, the sound and the runtime.
+- [**`snes-recomp` engine**](https://github.com/AlekayDevs/snes-recomp): the recompiler, the PPU, the sound and the runtime.
 - [Contributing](CONTRIBUTING.md): never upload the ROM or anything derived from it.
 
 ## License
