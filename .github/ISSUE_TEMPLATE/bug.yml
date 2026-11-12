@@ -1,0 +1,53 @@
+name: Bug report / Informe de error
+description: Something in the game, launcher, translation or an option does not work. / Algo no funciona.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Never attach the ROM, saves, save states or screenshots/dumps with the game's graphics.** Describe it in words, or use a screenshot of the launcher or menu only. / Nunca adjuntes la ROM, partidas, estados ni capturas con gráficos del juego.
+  - type: input
+    id: version
+    attributes:
+      label: Version / Versión
+      description: Shown in the launcher or in the file name (e.g. 0.10).
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+      label: System / Sistema
+      options: [Windows, Linux, Android]
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and controller / Equipo y mando
+      description: OS version, phone model, keyboard or controller used.
+  - type: input
+    id: rom
+    attributes:
+      label: ROM CRC32
+      description: Must be 777AAC2F (USA). Other versions are not supported.
+      placeholder: 777AAC2F
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened / Qué ocurrió
+      description: What you did, what you expected, what you got. Where in the game (room, screen, menu)?
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options in use / Opciones activas
+      description: Language, widescreen, quality-of-life options, any `--game-opt` you passed.
+  - type: textarea
+    id: log
+    attributes:
+      label: Log or error text / Registro o mensaje
+      description: Text of the error shown by the launcher or the console, if any.
+      render: text
