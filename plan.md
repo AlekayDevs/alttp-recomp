@@ -44,6 +44,12 @@ Cambios ya en `main` pero sin llegar al móvil, porque la app solo se actualiza 
 
 https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.10 con el APK (`ALttP-Recomp-0.10.apk`, versionCode 10, misma clave que la 0.8), el paquete de Linux (CI), el zip de Windows y `SHA256SUMS`. Lleva la traducción de los nombres con dibujo y los rótulos del marco de la pausa, la revisión completa de `es.txt` y los avisos de estados en español desde el primer fotograma. Falta probar «Buscar actualizaciones ahora» desde la 0.9 (solo se puede con una versión mayor instalada) y mirar el mapa en el juego real.
 
+## v0.11 preparada, sin publicar (2026-11-12)
+
+Mantenimiento, sin cambios de juego. Los dos repositorios se transfirieron a la cuenta **AlekayDevs** (`AlekayDevs/alttp-recomp` y `AlekayDevs/snes-recomp`; la web pasa a https://alekaydevs.github.io/alttp-recomp/); los enlaces, la comprobación de versiones del lanzador (`src/update.rs`) y la URL de Android (`snesPort.updateUrl`) apuntan ya a la cuenta nueva. El nombre de paquete de Android `io.github.alexperez7.*` **no se cambia** (cambiarlo rompería las actualizaciones). Se reescribió la historia de los dos repositorios para quitar la línea `Co-Authored-By` (copias en `Proyectos\_backup_git`), se borraron las ramas `ccr-*` y se activaron los avisos privados de seguridad. Nuevos: `SECURITY.md` y plantillas de issues y de PR. Capturas `launcher.png` y `launcher-es.png` sin la ruta del sistema.
+
+Paquetes en `outelease0.11\` (zip de Windows, `.tar.gz` de Linux de la CI, APK 0.11 con la clave de la 0.10 y `SHA256SUMS`), con `check.ps1` en `OK`. Falta publicar la release (`gh release create v0.11 ... --notes-file out/release/v0.11/notes.md`; el entorno automático la bloqueó) y probar el APK en el móvil, y «Buscar actualizaciones» de la 0.10 a la 0.11. Las instalaciones 0.1 a 0.10 consultan `AlexPerez7` y dependen de la redirección de GitHub: no crear nunca un repositorio con ese nombre bajo la cuenta vieja.
+
 ## Pendiente de la traducción (2026-11-09)
 
 Hecho: los 28 nombres de objeto que son texto (`item.*` en `lang/es_menu.txt`, `menutext.c`); los nombres con dibujo (arco en sus 4 estados, bumerán, red: `item.bow*`, `item.boomerang`, `item.net`, que redibujan las dos filas de la caja); y los rótulos OBJETOS, ACCION, COLGANTES y EQUIPO del marco, que `hud.c` (`alttp_pause_labels`) redibuja en la VRAM de BG3 solo en el módulo $0E y con `language=es` (`hud_text=0` lo apaga). Falta:
