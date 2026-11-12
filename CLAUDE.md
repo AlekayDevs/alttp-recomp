@@ -45,7 +45,7 @@ Las partidas (`.srm`), los estados (`.sst`) y sus miniaturas (`.thumb`, una capt
 
 - `games/alttp_usa.toml`: perfil (entradas, tablas de saltos, ganchos `[[hook]]`). Solo direcciones, nombres y tamaños; ningún byte del juego.
 - `games/alttp_usa/*.c`: C propio (`dialog.c` mensajes rápidos con R; `widefill.c` franjas negras en la pantalla ancha; `text.c` volcado y traducción de los mensajes con `lang/es.txt`; `menutext.c` lo mismo para la selección de partida, el registro de nombre y las acciones del menú de pausa con `lang/es_menu.txt`; `hud.c` el rótulo «LIFE» del marcador, que con `language=es` dice «VIDA»); `icon.c` el icono de la ventana del juego, que `scripts\make_icon.py` (Pillow, arte propio) escribe. Usa la API de `snes_rt.h` del motor (`wram_read8/wram_write8`, `game_opt()`, `ppu_wide()`, `ppu_wide_blank()`...). Cada fichero nuevo hay que añadirlo también a la lista de `check.ps1`.
-- `scripts/`: `check.ps1` (Windows), `check.sh` + `check_eval.py` (Linux), `bench.sh` y `bench_play.sh` (rendimiento, Linux), `release.ps1`, `update-engine.ps1`, `make_icon.py`.
+- `scripts/`: `check.ps1` (Windows), `check.sh` + `check_eval.py` (Linux), `check_text.py` (la traducción: líneas de 168 px con la tabla de anchos de la ROM, ¿ ¡ que casan, límites de `es_menu.txt`; lo llaman `check.sh` y `check.ps1`, y se puede ejecutar solo: `python scripts/check_text.py roms/alttp_usa.sfc`), `bench.sh` y `bench_play.sh` (rendimiento, Linux), `release.ps1`, `update-engine.ps1`, `make_icon.py`.
 
 ## Reglas
 

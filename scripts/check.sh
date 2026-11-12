@@ -391,5 +391,8 @@ need "$wideOk" "con --wide 32 en un interior las columnas extra deben ser negras
 [ "$off" = "$plain" ] || fail "con dialog_skip=0, R no debe cambiar nada"
 [ "$qualityOk" = 0 ] || ok=0
 
+# la traducción: líneas de pantalla de 168 px como mucho (tabla de anchos de la ROM), signos ¿ ¡ que casan y textos del menú dentro de sus límites
+python3 -I "$root/scripts/check_text.py" "$ROM" || ok=0
+
 [ "$ok" = 1 ] || exit 1
 echo "OK"
