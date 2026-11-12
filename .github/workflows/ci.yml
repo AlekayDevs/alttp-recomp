@@ -16,7 +16,7 @@ jobs:
       - name: Motor (snes-recomp, solo para snes_rt.h)
         uses: actions/checkout@v4
         with:
-          repository: AlexPerez7/snes-recomp
+          repository: AlekayDevs/snes-recomp
           path: snes-recomp
 
       - name: Nada derivado de la ROM en git

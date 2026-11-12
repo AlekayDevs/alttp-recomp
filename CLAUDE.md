@@ -1,6 +1,6 @@
 # alttp-recomp
 
-*The Legend of Zelda: A Link to the Past* (USA, CRC32 `777AAC2F`) recompilado con el motor [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp) (repositorio hermano `..\snes-recomp` en esta máquina). Este repositorio es el **juego**: su perfil, el C propio que lo mejora y los scripts. El motor es una herramienta externa y compartida con otros juegos; aquí no se copia su código.
+*The Legend of Zelda: A Link to the Past* (USA, CRC32 `777AAC2F`) recompilado con el motor [`snes-recomp`](https://github.com/AlekayDevs/snes-recomp) (repositorio hermano `..\snes-recomp` en esta máquina). Este repositorio es el **juego**: su perfil, el C propio que lo mejora y los scripts. El motor es una herramienta externa y compartida con otros juegos; aquí no se copia su código.
 
 ## Comandos
 

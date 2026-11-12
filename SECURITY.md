@@ -4,7 +4,7 @@
 
 Please **do not open a public issue** for a security problem. Use GitHub's private reporting instead:
 **Security → Report a vulnerability** in this repository
-(<https://github.com/AlexPerez7/alttp-recomp/security/advisories/new>).
+(<https://github.com/AlekayDevs/alttp-recomp/security/advisories/new>).
 
 No abras un issue público para un problema de seguridad: usa el aviso privado de GitHub (enlace de arriba).
 
@@ -32,8 +32,8 @@ Releases are not code-signed yet, so Windows SmartScreen and some antivirus prog
 
 ## Supported versions / Versiones con soporte
 
-Only the [latest release](https://github.com/AlexPerez7/alttp-recomp/releases/latest).
+Only the [latest release](https://github.com/AlekayDevs/alttp-recomp/releases/latest).
 
 ## Out of scope / Fuera de alcance
 
-Bugs in the recompiler, PPU, sound or runtime belong in [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp); security problems there go through that repository's private reporting.
+Bugs in the recompiler, PPU, sound or runtime belong in [`snes-recomp`](https://github.com/AlekayDevs/snes-recomp); security problems there go through that repository's private reporting.

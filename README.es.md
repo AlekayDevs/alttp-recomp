@@ -4,23 +4,23 @@
 
 <h3 align="center">The Legend of Zelda: A Link to the Past, recompilado a código nativo</h3>
 
-<p align="center"><a href="README.md">English</a> · <b>Español</b> · <a href="https://alexperez7.github.io/alttp-recomp/?lang=es">Página de descargas</a></p>
+<p align="center"><a href="README.md">English</a> · <b>Español</b> · <a href="https://alekaydevs.github.io/alttp-recomp/?lang=es">Página de descargas</a></p>
 
 <p align="center">
-  <a href="https://alexperez7.github.io/alttp-recomp/?lang=es"><img alt="Página de descargas" src="https://img.shields.io/badge/web-p%C3%A1gina%20de%20descargas-f8d860?labelColor=1c3a2a"></a>
-  <a href="https://github.com/AlexPerez7/alttp-recomp/releases/latest"><img alt="Descargar" src="https://img.shields.io/github/v/release/AlexPerez7/alttp-recomp?label=descargar&color=2c5c3a&labelColor=1c3a2a"></a>
+  <a href="https://alekaydevs.github.io/alttp-recomp/?lang=es"><img alt="Página de descargas" src="https://img.shields.io/badge/web-p%C3%A1gina%20de%20descargas-f8d860?labelColor=1c3a2a"></a>
+  <a href="https://github.com/AlekayDevs/alttp-recomp/releases/latest"><img alt="Descargar" src="https://img.shields.io/github/v/release/AlekayDevs/alttp-recomp?label=descargar&color=2c5c3a&labelColor=1c3a2a"></a>
   <img alt="Plataformas" src="https://img.shields.io/badge/plataformas-Windows%20%C2%B7%20Linux%20%C2%B7%20Android-c08820?labelColor=1c3a2a">
   <a href="LICENSE"><img alt="Licencia MIT" src="https://img.shields.io/badge/c%C3%B3digo-MIT-f8d860?labelColor=1c3a2a"></a>
   <img alt="Sin ROM incluida" src="https://img.shields.io/badge/ROM-la%20pones%20t%C3%BA-c02828?labelColor=1c3a2a">
 </p>
 
-No es un emulador: el programa de la cartucho se **traduce a código nativo** (con el motor [`snes-recomp`](https://github.com/AlexPerez7/snes-recomp)) y se compila en tu equipo a partir de **tu** copia del juego. El resultado arranca al instante, mantiene los 60 fotogramas por segundo incluso en un móvil de gama alta y permite mejoras que un emulador no da: pantalla ancha, español, estados guardados y rebobinado, y un puñado de ajustes de calidad de vida.
+No es un emulador: el programa de la cartucho se **traduce a código nativo** (con el motor [`snes-recomp`](https://github.com/AlekayDevs/snes-recomp)) y se compila en tu equipo a partir de **tu** copia del juego. El resultado arranca al instante, mantiene los 60 fotogramas por segundo incluso en un móvil de gama alta y permite mejoras que un emulador no da: pantalla ancha, español, estados guardados y rebobinado, y un puñado de ajustes de calidad de vida.
 
 > **Aviso legal.** Este repositorio no contiene la ROM ni ningún recurso del juego (gráficos, sonido, texto, mapas), y no lo tendrá. Cada persona debe aportar su propia copia obtenida legalmente (USA, CRC32 `777AAC2F`). Nada derivado de ella se distribuye ni sale de tu equipo. Proyecto independiente y sin relación con Nintendo.
 
 ## Descargar y jugar
 
-Lo más fácil es la **[página de descargas](https://alexperez7.github.io/alttp-recomp/?lang=es)**: detecta tu sistema y te da el fichero correcto. También puedes tomar el paquete de la [última release](https://github.com/AlexPerez7/alttp-recomp/releases/latest). **No hay que instalar nada ni usar la terminal.**
+Lo más fácil es la **[página de descargas](https://alekaydevs.github.io/alttp-recomp/?lang=es)**: detecta tu sistema y te da el fichero correcto. También puedes tomar el paquete de la [última release](https://github.com/AlekayDevs/alttp-recomp/releases/latest). **No hay que instalar nada ni usar la terminal.**
 
 | | Windows | Linux | Android |
 |---|---|---|---|
@@ -52,7 +52,7 @@ La ROM se queda donde está: solo se recuerda su ruta, y en Android se copia a l
 - **Android de verdad.** Un APK con controles táctiles hechos para el juego: la cruceta con la Trifuerza (la dirección se lee por ángulo, así que un pulgar algo torcido no da dos direcciones a la vez), botones A/B/X/Y de gema, disposiciones vertical y horizontal y placas para los estados guardados (**SAVE**, **LOAD**, **SLOT** y **REWIND**). El **menú de opciones también se maneja con el dedo** (pestañas, filas, mitad izquierda o derecha de un valor) y la pantalla de inicio tiene el mismo aspecto que los lanzadores de escritorio, con un botón de idioma **EN / ES**.
 - **Lanzadores para cada sistema.** Windows: una ventana donde eliges tu ROM una vez. Linux: un lanzador nativo autónomo (sin gcc; lleva su propio compilador) con el arte del juego y un botón de idioma **EN / ES**. Android: la pantalla de inicio de la app. En todos sale **Jugar** cuando ya hay ROM elegida.
 - **Actualizaciones desde la propia app.** Windows y Linux: el lanzador avisa de una versión nueva y la instala tras comprobar su SHA-256 (**apagado por defecto**). Android: la app avisa, descarga el APK, comprueba su SHA-256 y se lo da al instalador de Android (**activo por defecto**, se apaga en la pantalla de inicio). [Detalles →](#actualizaciones)
-- **Una página de descargas.** [alexperez7.github.io/alttp-recomp](https://alexperez7.github.io/alttp-recomp/?lang=es) elige el paquete de tu sistema y apunta siempre a la última release.
+- **Una página de descargas.** [alekaydevs.github.io/alttp-recomp](https://alekaydevs.github.io/alttp-recomp/?lang=es) elige el paquete de tu sistema y apunta siempre a la última release.
 - **Probado.** Cada mejora, los estados guardados (una partida real guardada, estropeada y cargada de nuevo debe dejar la máquina idéntica bit a bit), los controles táctiles y el menú tienen pruebas automáticas que juegan con un guion.
 - **Privacidad.** Sin telemetría ni cuentas. La única conexión posible es la comprobación de versión; tu ROM y tus partidas nunca salen de tu dispositivo.
 
@@ -145,7 +145,7 @@ En Windows y Linux el lanzador puede avisar de una versión nueva e instalarla. 
 
 - [**Traducción y texto**](docs/TRADUCCION.md): cómo se vuelcan y traducen los mensajes y menús sin tocar la ROM.
 - [**Desarrollo**](docs/DESARROLLO.md): compilar desde el código, estructura del repositorio, pruebas, empaquetado y limitaciones conocidas.
-- [**Motor `snes-recomp`**](https://github.com/AlexPerez7/snes-recomp): el recompilador, la PPU, el sonido y el runtime.
+- [**Motor `snes-recomp`**](https://github.com/AlekayDevs/snes-recomp): el recompilador, la PPU, el sonido y el runtime.
 - [Contribuir](CONTRIBUTING.md): nunca subas la ROM ni nada derivado de ella.
 
 ## Licencia

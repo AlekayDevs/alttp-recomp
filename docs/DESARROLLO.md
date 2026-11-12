@@ -1,6 +1,6 @@
 # Desarrollo
 
-Volver al [README](../README.md). Aquí está lo que necesita quien quiere compilar, probar o empaquetar el proyecto; para jugar basta con las [releases](https://github.com/AlexPerez7/alttp-recomp/releases).
+Volver al [README](../README.md). Aquí está lo que necesita quien quiere compilar, probar o empaquetar el proyecto; para jugar basta con las [releases](https://github.com/AlekayDevs/alttp-recomp/releases).
 
 ## Qué contiene
 
@@ -33,7 +33,7 @@ Este repositorio lleva el motor ya hecho en la raíz (`snes-port.exe`, `snes-rec
 ```
 sudo apt install build-essential pkg-config libsdl2-dev python3-pil   # compilador de C, SDL2 y Pillow (solo para check.sh)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh        # Rust, si no lo tienes
-git clone https://github.com/AlexPerez7/snes-recomp ../snes-recomp
+git clone https://github.com/AlekayDevs/snes-recomp ../snes-recomp
 (cd ../snes-recomp && cargo build --release)
 ../snes-recomp/target/release/snes-port roms/alttp_usa.sfc --game games/alttp_usa.toml
 ```
@@ -47,8 +47,8 @@ La primera vez construye el juego con gcc (unos 3 minutos) y lo guarda en `~/.ca
 ### Con el motor
 
 ```
-git clone https://github.com/AlexPerez7/snes-recomp
-git clone https://github.com/AlexPerez7/alttp-recomp
+git clone https://github.com/AlekayDevs/snes-recomp
+git clone https://github.com/AlekayDevs/alttp-recomp
 cd snes-recomp
 cargo run --release --bin snes-port -- ..\mi-carpeta\alttp_usa.sfc --game ..\alttp-recomp\games\alttp_usa.toml
 ```
