@@ -553,5 +553,13 @@ if (-not $refundOk) { Write-Error "fix_magic_refund: la función sola debe limit
 if (-not $hooksOk) { Write-Error "arreglos pequeños: la lógica de algún gancho no es la esperada" -ErrorAction Continue; $ok = $false }
 if (-not $fastOk) { Write-Error "con rupee_fast=1 el marcador debe alcanzar la cartera mucho antes (subiendo y bajando) sin cambiarla, y sin la opción seguir de una en una" -ErrorAction Continue; $ok = $false }
 if (-not $bombOk) { Write-Error "con more_bombs=1 deben poder estar cuatro bombas a la vez, cada una gastando una (y sin la opción dos)" -ErrorAction Continue; $ok = $false }
+# la traducción: líneas de 168 px como mucho (tabla de anchos de la ROM), signos ¿ ¡ que casan y textos del menú dentro de sus límites (necesita Python 3)
+$py = Get-Command python -ErrorAction SilentlyContinue
+if ($py) {
+    & python -I scripts\check_text.py $Rom
+    if ($LASTEXITCODE -ne 0) { Write-Error "scripts\check_text.py encontró fallos en la traducción" -ErrorAction Continue; $ok = $false }
+} else {
+    Write-Host "aviso: sin python no se comprueba la traducción (scripts\check_text.py)"
+}
 if (-not $ok) { exit 1 }
 Write-Host "OK"

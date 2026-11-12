@@ -746,7 +746,7 @@ Espada Maestra!
 ¡Ahora, ve por el último!
 @133
 ¡Hola, amigo del Mundo de Luz!{75}
-Pareces buen tirador{43}  ¿Quieres{76}
+Pareces buen tirador{43} ¿Quieres{76}
 probar tu puntería en mi{7E}{73}
 galería de tiro?  Te doy cinco{73}
 disparos por 20 Rupias.  Si eres{73}
@@ -1927,7 +1927,7 @@ más Rupias{43}{76}
 cara de pez, eres bienvenido{76}
 aquí.{7E}{73}
 {43}{73}
-¡Gua ja ja!  Adiós{43}!
+¡Gua ja ja!  ¡Adiós{43}!
 @327
 ¡Hola LINK!{75}
 ¿El anciano? ¿Hablas del{76}
@@ -2176,7 +2176,7 @@ deseos malignos.{7A01}{7E}{74}                                          {75}
 más poderosa es la expresión{76}
 de la Trifuerza de ese deseo.{7A01}{7E}{74}                                          {75}
                                           {76}
-                                          {7A02}{74}El deseo de Ganon era conquistar{75}
+                                          {7A02}{74}El deseo de Ganon era dominar{75}
 el mundo.  Ese deseo convirtió{76}
 la Tierra Dorada en el Mundo{7E}{73}
 Oscuro.{7A01}{7E}{74}                                          {75}
