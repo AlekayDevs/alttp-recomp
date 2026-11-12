@@ -1,0 +1,27 @@
+name: Translation fix / Corrección de la traducción
+description: A wrong, cut-off or untranslated Spanish text. / Un texto en español mal, cortado o sin traducir.
+labels: [translation]
+body:
+  - type: markdown
+    attributes:
+      value: Write the text in your own words; do not paste the original English dialogue in bulk. / Escribe el texto con tus palabras, sin pegar el diálogo original en bloque.
+  - type: input
+    id: version
+    attributes:
+      label: Version / Versión
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where it appears / Dónde sale
+      description: Character or place, what you were doing, menu or message.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong and the proposed text / Qué falla y propuesta
+      description: Typo, accent, line cut off at the edge of the box, untranslated word...
+    validations:
+      required: true
