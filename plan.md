@@ -44,6 +44,12 @@ Cambios ya en `main` pero sin llegar al móvil, porque la app solo se actualiza 
 
 https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.10 con el APK (`ALttP-Recomp-0.10.apk`, versionCode 10, misma clave que la 0.8), el paquete de Linux (CI), el zip de Windows y `SHA256SUMS`. Lleva la traducción de los nombres con dibujo y los rótulos del marco de la pausa, la revisión completa de `es.txt` y los avisos de estados en español desde el primer fotograma. Falta probar «Buscar actualizaciones ahora» desde la 0.9 (solo se puede con una versión mayor instalada) y mirar el mapa en el juego real.
 
+## v0.12 publicada (2026-11-13)
+
+https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.12 (commit `e987520`) con el zip de Windows, el paquete de Linux (CI), el APK 0.12 (versionCode 12) y `SHA256SUMS`; los archivos descargados de GitHub coinciden con las sumas y `check.ps1` terminó en `OK`. Lo importante: el identificador de la app de Android cambió a `io.github.alekaydevs.alttprecomp`, así que en Android es **otra app** (se instala junto a la antigua, sin heredar partidas ni actualizar a las 0.1 a 0.11); las notas de la release lo avisan. Windows y Linux siguen igual. Trae también el escaneo del motor que ignora rampas con un byte fuera de línea (`00 02 ... FC FF`). Todos los commits de este repositorio y de los otros cinco de juegos llevan ya como autor y correo el `noreply` de AlekayDevs.
+
+Pendiente: probar el APK 0.12 en el móvil, el aviso de actualización de la app antigua hacia el APK nuevo (no se ha probado) y «Buscar actualizaciones» de Windows y Linux de la 0.11 a la 0.12. Las releases v0.1 a v0.11 consultan la cuenta anterior por la redirección de GitHub y no se pueden cambiar.
+
 ## v0.11 publicada (2026-11-12)
 
 https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.11 (commit `6223e4c`) con el zip de Windows, el paquete de Linux (CI), el APK 0.11 (versionCode 11, misma clave que la 0.10) y `SHA256SUMS`; los cuatro archivos descargados de GitHub coinciden con las sumas. Mantenimiento, sin cambios de juego, con tres correcciones de `es.txt` (@133 y @371 pasaban de 168 px, @326 sin `¡`) y `scripts/check_text.py` (anchos con la tabla de la ROM, `¿ ¡` que casan, límites de `es_menu.txt`; lo llaman `check.sh` y `check.ps1`).
