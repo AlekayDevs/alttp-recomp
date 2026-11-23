@@ -48,7 +48,7 @@ https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.10 con el APK (`ALttP
 
 https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.13 (commit `c67e220` de este repositorio; `a7ab256` del motor, que solo sube la versión de Android a 0.13, versionCode 13) con el zip de Windows, el paquete de Linux (CI), el APK 0.13 (misma clave e identificador que la 0.12) y `SHA256SUMS`; los tres archivos descargados de GitHub coinciden con las sumas. Lleva el arreglo del cambio de idioma en caliente (`menutext.c` y `hud.c`). Los paquetes se dejaron en `Proyectos\_release_v0.13` (fuera de `out\`, que `check.ps1` borra). El motor de la raíz no cambió: sigue siendo el de la 0.12.
 
-Probado: el APK 0.13 se instala encima de la 0.12 en la tablet, arranca y carga el estado guardado. Pendiente: «Buscar actualizaciones» de la 0.12 a la 0.13 en Android (la tablet ya tiene la 0.13), Windows y Linux; el audio y el rendimiento en Android.
+Probado: el APK 0.13 se instala encima de la 0.12 en la tablet, arranca y carga el estado guardado. **Actualización probada en la tablet (2026-11-22):** con la 0.12 recién instalada, «Buscar actualizaciones ahora» muestra «Hay una versión nueva: v0.13 (tienes 0.12)»; «Descargar e instalar» descarga el APK de la release, Android pregunta «¿Actualizar esta aplicación?» y queda la 0.13 (`versionCode=13`) sin que Play Protect lo bloquee esta vez. Android no deja bajar de versión con `adb install -d` (hubo que desinstalar la 0.13 y empezar de cero). Pendiente: «Buscar actualizaciones» en Windows y Linux; el audio y el rendimiento en Android.
 
 ## v0.12 publicada (2026-11-13)
 
