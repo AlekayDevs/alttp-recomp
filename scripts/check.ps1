@@ -18,6 +18,8 @@ param(
     [string]$Vcvars = ""
 )
 $ErrorActionPreference = "Continue"   # los programas nativos escriben en stderr; se comprueba $LASTEXITCODE
+# Prioridad baja: el script lanza muchas partidas a la vez y así el equipo sigue usable mientras corre (los procesos hijos la heredan).
+try { (Get-Process -Id $PID).PriorityClass = "BelowNormal" } catch {}
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
 
