@@ -407,12 +407,18 @@ static const char *lang_path(void) {
     return path;
 }
 
-static void parse_file(const char *path, char *text, size_t n) {
-    size_t pos = 0;
-    int line = 0, s;
+/* Puts every string back to the ROM's own bytes. */
+static void restore_english(void) {
+    int s;
     for (s = 0; s < N_SLOTS; s++) if (slots[s].ok) put_rows(&slots[s], NULL);
     for (s = 0; s < N_ACTIONS; s++) if (actions[s].ok) put_action(&actions[s], NULL);
     for (s = 0; s < N_ITEMS; s++) if (items[s].ok) put_item(&items[s], NULL, NULL);
+}
+
+static void parse_file(const char *path, char *text, size_t n) {
+    size_t pos = 0;
+    int line = 0, s;
+    restore_english();
     text[n] = 0;
     while (pos < n) {
         char *ln = text + pos, *eq, *val;
@@ -494,6 +500,12 @@ void alttp_menu_poll(Cpu *c) {
         check_items();
         started = 1;
     }
-    if (game_opt("language", 0) == 1 && frames++ % 30 == 0) reload_if_changed();
+    if (game_opt("language", 0) == 1) {
+        if (frames++ % 30 == 0) reload_if_changed();
+    } else if (file_stamp != -1) { /* language went back to English while the game runs: undo what was read */
+        restore_english();
+        file_stamp = file_size = -1;
+        frames = 0;
+    }
     if (game_opt("dump_menu", 0)) dump_menu();
 }

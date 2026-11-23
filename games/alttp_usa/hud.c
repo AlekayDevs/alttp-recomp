@@ -11,6 +11,7 @@
 #include "snes_rt.h"
 
 void alttp_pause_labels(void);
+void alttp_pause_labels_restore(void);
 
 #define TILE_LI 0x7558u /* word address of tile $AB of the sheet at $7000 */
 #define TILE_FE 0x7560u /* tile $AC */
@@ -62,7 +63,23 @@ static int is_tile(uint32_t at, const uint16_t want[8]) {
 void alttp_hud_poll(void) {
     uint16_t li[8], fe[8], vi[8], da[8];
     int r;
-    if (game_opt("language", 0) != 1 || !game_opt("hud_text", 1)) return; /* hud_text=0: the tests that compare pictures keep the label as it is */
+    memset(vi, 0, sizeof vi); memset(da, 0, sizeof da);
+    if (game_opt("language", 0) != 1 || !game_opt("hud_text", 1)) { /* hud_text=0: the tests that compare pictures keep the label as it is */
+        alttp_pause_labels_restore();
+        if (game_opt("language", 0) != 1) { /* language went back to English: "VIDA" becomes "LIFE" again (only if the tiles are ours) */
+            draw('V', 1, 'I', 5, vi);
+            draw('D', 0, 'A', 4, da);
+            if (is_tile(TILE_LI, vi) && is_tile(TILE_FE, da)) {
+                draw('L', 1, 'I', 5, li);
+                draw('F', 0, 'E', 4, fe);
+                for (r = 0; r < 8; r++) {
+                    ppu_vram_write16((uint16_t)(TILE_LI + (uint32_t)r), li[r]);
+                    ppu_vram_write16((uint16_t)(TILE_FE + (uint32_t)r), fe[r]);
+                }
+            }
+        }
+        return;
+    }
     alttp_pause_labels();
     draw('L', 1, 'I', 5, li);
     draw('F', 0, 'E', 4, fe);
@@ -140,15 +157,37 @@ static const Label labels[] = {
     { "EQUIPO",    0x15AC, 0x2479, 22, 22, 5, 5, { 0x079, 0x07A, 0x07B, 0x07C, 0x08C }, 0x24 },
 };
 
+#define N_LABELS ((int)(sizeof labels / sizeof labels[0]))
+
+/* The game's own tiles of each label, kept the first time they are drawn over, so that language = en brings them back without a restart. */
+static uint16_t kept[N_LABELS][5 * 8];
+static int kept_ok[N_LABELS];
+
+void alttp_pause_labels_restore(void) {
+    int n, t, r;
+    for (n = 0; n < N_LABELS; n++) {
+        const Label *lb = &labels[n];
+        if (!kept_ok[n]) continue;
+        for (t = 0; t < lb->own; t++)
+            for (r = 0; r < 8; r++) ppu_vram_write16((uint16_t)(BG3_SHEET + (uint32_t)(lb->tile[t] & 0x1FF) * 8u + (uint32_t)r), kept[n][t * 8 + r]);
+        kept_ok[n] = 0;
+    }
+}
+
 void alttp_pause_labels(void) {
     int n, t, r;
     uint16_t bitmaps[5 * 8];
     if (wram_read8(0x10) != 0x0E) return;
-    for (n = 0; n < (int)(sizeof labels / sizeof labels[0]); n++) {
+    for (n = 0; n < N_LABELS; n++) {
         const Label *lb = &labels[n];
         uint16_t w = (uint16_t)(wram_read8(lb->buffer) | wram_read8(lb->buffer + 1u) << 8);
         if (w != lb->word) continue; /* not the screen with the four boxes */
         if (ppu_vram_read16((uint16_t)(BG3_SHEET + (uint32_t)(lb->tile[0] & 0x1FF) * 8u)) != 0xFFFFu) continue; /* not the game's tile: the tiles' first row is all colour 3 */
+        if (!kept_ok[n]) {
+            for (t = 0; t < lb->own; t++)
+                for (r = 0; r < 8; r++) kept[n][t * 8 + r] = ppu_vram_read16((uint16_t)(BG3_SHEET + (uint32_t)(lb->tile[t] & 0x1FF) * 8u + (uint32_t)r));
+            kept_ok[n] = 1;
+        }
         label_tiles(lb->text, lb->n, bitmaps);
         for (t = 0; t < lb->n; t++) {
             for (r = 0; r < 8; r++) ppu_vram_write16((uint16_t)(BG3_SHEET + (uint32_t)(lb->tile[t] & 0x1FF) * 8u + (uint32_t)r), bitmaps[t * 8 + r]);
