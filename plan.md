@@ -23,6 +23,14 @@ Los registros, volcados y el resumen JSON quedan en `out/guards-*`, ignorados po
 
 Los modos `--only-sprites`, `--only-hidden` y `--only-mushroom` del script se ejecutaron de principio a fin con el binario Linux instrumentado; completaron sus partidas y sus aserciones. En la seta, la prueba con `$11 = 1` alcanzó el gancho 100 veces (27 retornos 0 y 73 retornos 1).
 
+### Casos guard naturales en Windows (2026-11-22, en curso)
+
+Sin inyectar ni preparar nada: `scripts/guards_win_build.py` genera el juego, le pone contadores a cada `guard` (como `check_guards.py`) y lo compila con MSVC en `out\guards-win\guard.exe`; `scripts/guards_win_fuzz.py ENTRADAS SEMILLAS PROCESOS` parte del estado guardado en el fotograma 5300, entra en una mazmorra con `$010E` y mueve a Link con pulsaciones pseudoaleatorias (1500 fotogramas), con las cuatro opciones de mazmorra a 1 y a 0, a prioridad baja. Compara WRAM final y cuenta cuántas veces cada guard devolvió 1.
+
+- **Primer resultado**: entrada 2 (castillo), semilla 1: `alttp_skullwoods_guard` devolvió 1 una vez **de forma natural** y la WRAM final fue idéntica con la opción apagada (la rama salta al final de `Module07_Dungeon` cuando el módulo deja de ser el 7; no cambia nada observable ahí).
+- **Barrido de las entradas 0 a 0x84 (una semilla)**: se lanzó y se paró a medias (87 de 266 partidas) a petición del usuario; el script solo imprime al final, así que no hay resultados parciales. Hay que repetirlo entero (unos 30 minutos con 3 procesos) y mirar qué guard devuelve 1 y si la WRAM difiere.
+- Siguen sin probarse de forma natural: seta (warp del espejo), conejo temporal, objeto bajo roca, hada sin `--poke`.
+
 ### Pendientes inmediatos de esta validación
 
 1. **Hada (`06:CFDC`)**: la absorción con posición preparada, la rama 1 y la comparación con `fix_double_absorb=0` ya pasaron. Falta una partida que encuentre y absorba un hada sin mantener su posición con `--poke`.
