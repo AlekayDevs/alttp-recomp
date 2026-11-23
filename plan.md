@@ -44,6 +44,12 @@ Cambios ya en `main` pero sin llegar al móvil, porque la app solo se actualiza 
 
 https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.10 con el APK (`ALttP-Recomp-0.10.apk`, versionCode 10, misma clave que la 0.8), el paquete de Linux (CI), el zip de Windows y `SHA256SUMS`. Lleva la traducción de los nombres con dibujo y los rótulos del marco de la pausa, la revisión completa de `es.txt` y los avisos de estados en español desde el primer fotograma. Falta probar «Buscar actualizaciones ahora» desde la 0.9 (solo se puede con una versión mayor instalada) y mirar el mapa en el juego real.
 
+## v0.13 publicada (2026-11-22)
+
+https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.13 (commit `c67e220` de este repositorio; `a7ab256` del motor, que solo sube la versión de Android a 0.13, versionCode 13) con el zip de Windows, el paquete de Linux (CI), el APK 0.13 (misma clave e identificador que la 0.12) y `SHA256SUMS`; los tres archivos descargados de GitHub coinciden con las sumas. Lleva el arreglo del cambio de idioma en caliente (`menutext.c` y `hud.c`). Los paquetes se dejaron en `Proyectos\_release_v0.13` (fuera de `out\`, que `check.ps1` borra). El motor de la raíz no cambió: sigue siendo el de la 0.12.
+
+Probado: el APK 0.13 se instala encima de la 0.12 en la tablet, arranca y carga el estado guardado. Pendiente: «Buscar actualizaciones» de la 0.12 a la 0.13 en Android (la tablet ya tiene la 0.13), Windows y Linux; el audio y el rendimiento en Android.
+
 ## v0.12 publicada (2026-11-13)
 
 https://github.com/AlekayDevs/alttp-recomp/releases/tag/v0.12 (commit `e987520`) con el zip de Windows, el paquete de Linux (CI), el APK 0.12 (versionCode 12) y `SHA256SUMS`; los archivos descargados de GitHub coinciden con las sumas y `check.ps1` terminó en `OK`. Lo importante: el identificador de la app de Android cambió a `io.github.alekaydevs.alttprecomp`, así que en Android es **otra app** (se instala junto a la antigua, sin heredar partidas ni actualizar a las 0.1 a 0.11); las notas de la release lo avisan. Windows y Linux siguen igual. Trae también el escaneo del motor que ignora rampas con un byte fuera de línea (`00 02 ... FC FF`). Todos los commits de este repositorio y de los otros cinco de juegos llevan ya como autor y correo el `noreply` de AlekayDevs.
