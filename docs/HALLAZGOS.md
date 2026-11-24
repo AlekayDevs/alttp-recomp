@@ -88,20 +88,35 @@ las etiquetas siguen en `(00,00)`: el cargador ya había leído la cabecera de l
 por puertas o escaleras. Ideas: reproducir una ruta con pulsaciones desde una entrada conocida, o escribir las variables del cambio de sala de una puerta
 (sala destino y submódulo) en vez de `$A0`.
 
-**5.3 `08:A8E3` = ancilla de tipo `0x25`.** El despachador (`08:836E`: `PLA; DEC A; ASL A; TAY; LDA $837F,Y`) indexa la tabla con *tipo − 1*; la
+**5.3 `08:A8E3` = ancilla de tipo `0x25`, que el juego no usa.** El despachador (`08:836E`: `PLA; DEC A; ASL A; TAY; LDA $837F,Y`) indexa la tabla con *tipo − 1*; la
 entrada 36 es el tipo `0x25` y la 21 (`08:A8E5`) el `0x16`. Crear un ancilla de esos tipos (`--poke 00C4A=25`) ejecuta cada manejador sin parar el juego.
 Si el juego lo crea, no se sabe: la búsqueda de `LDA #tipo; STA $0C4A,X` es inútil (ni la bomba, `0x07`, aparece: los ancillas se crean por otras rutas).
 Argumento a favor de que **no se use** en el juego original: el despachador deja el acarreo limpio (`ASL A` sobre `0x24`), así que el `BCC` de `08:A8E3` salta a
 `08:A876` (`ASL $18`, `ADC #$0C` y, con M=8, un `BRK`); en la consola eso rompería el juego. Es una **inferencia**, no una prueba (depende de que el
 despachador corra con M=8).
 
-**5.4 Comparar con la consola: no hay forma aquí.** No hay ningún emulador en este PC. Lo que daría una prueba de verdad es instalar uno con volcado de memoria
-(bsnes, Mesen2 o similar), grabar una partida de pulsaciones y comparar la WRAM cada N fotogramas con la recompilación.
+**Comprobado en BizHawk (referencia):** crear el ancilla `0x25` (`$0C4A=0x25`, mazmorra cargada) **cuelga el juego**: el contador de fotogramas `$1A` se
+queda fijo (`EC`) durante 200 fotogramas, mientras que con el `0x16` avanza con normalidad. Es decir, `08:A8E3` rompe el juego en la consola, por lo que el
+juego original no la usa; la inferencia de arriba (acarreo limpio, `BRK` con M=8) queda confirmada. Nuestra versión no se cuelga con el `0x25`, una
+divergencia sin consecuencias porque ese tipo no se crea nunca.
+
+**5.4 Comparación con un emulador de referencia: hecha para `01:CA17` (2026-11-24).** BizHawk 2.11.1 (núcleo Snes9x) con las mismas pulsaciones desde el
+arranque y los mismos pokes que la prueba de caja blanca (5.1) da **los mismos valores en los cinco casos**: sin disparo (0 bits, 3 bits, 4 bits en bytes
+bajos) todo a 0; con 4 bits altos o con `$0642=1`, `$041A=1`, `$02E4=1`, `$0FC1=1`, `$0403=0x10`. Es la primera prueba contra algo que no es nuestro C.
+`$012D` sale 0 en ambos (el audio lo consume). Limitación: solo cubre lo que se fuerza, no el recorrido natural hasta la sala.
+
+Recetas de herramienta (para los otros ports):
+- **Mesen2 2.1.1:** el modo `--testRunner` con scripts Lua se quedó colgado en todas mis pruebas con `io`; no lo usé.
+- **BizHawk:** `EmuHawk.exe <rom> --luaconsole --lua=<script.lua>` (la ROM primero). Sin `--luaconsole` el script no se carga. En Lua usa `/` en las rutas:
+  una barra invertida seguida de `U` es un escape inválido y el script muere sin avisar (el error solo sale en la ventana «Lua Console»; se lee con UI Automation).
+  `client.speedmode(6400)` acelera; `memory.readbyte(a, "WRAM")` / `memory.writebyte`; `joypad.set({["P1 A"]=true})` por fotograma; `client.exit()` al acabar.
+- Los fotogramas de ambos no están alineados al ciclo, pero con pulsaciones por fotograma el juego llega al mismo punto (módulo 7 en el fotograma 5300).
+- Al escribir scripts desde la shell, los heredocs se comen las barras invertidas y `\$`: escribe el fichero con una herramienta de ficheros.
 
 **5.5 Partida completa: sin hacer.** Es lo único que demuestra «se puede pasar»; todo lo anterior solo descarta bloqueos concretos.
 
 ## 6. Pendiente
 
 - Llegar **jugando** (o con una ruta de pulsaciones) a las salas `0x01B`, `0x043` y `0x097`.
-- Instalar un emulador de referencia y comparar WRAM por fotogramas (5.4).
+- Comparar el recorrido natural (no forzado) contra BizHawk: misma ruta de pulsaciones y WRAM cada N fotogramas.
 - Una partida completa.
