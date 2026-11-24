@@ -7,7 +7,11 @@
 <meta name="description" content="Download ALttP Recomp for Windows, Linux and Android: The Legend of Zelda: A Link to the Past, recompiled to run natively. You bring your own ROM.">
 <meta property="og:title" content="ALttP Recomp">
 <meta property="og:description" content="The Legend of Zelda: A Link to the Past, recompiled to run natively on Windows, Linux and Android.">
-<meta property="og:image" content="img/banner.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://argoxdevs.github.io/alttp-recomp/">
+<meta property="og:image" content="https://argoxdevs.github.io/alttp-recomp/img/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://argoxdevs.github.io/alttp-recomp/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 46 30H18z M18 32 32 58H4z M46 32 60 58H32z' fill='%23f8d860' stroke='%232a1a06' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
 :root {
@@ -67,6 +71,9 @@ ol.steps li { counter-increment: s; position: relative; padding-left: 46px; min-
 ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
   background: var(--gold); color: var(--ink); font-weight: 800; display: grid; place-items: center; border: 2px solid var(--ink); }
 .note { border-left: 4px solid var(--gold); padding: 8px 14px; background: #0c1c1480; margin: 18px 0 0; }
+.feats { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 18px; }
+.feats li { padding-left: 22px; position: relative; font-size: .95rem; }
+.feats li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 9px; height: 9px; background: var(--gold); border: 2px solid var(--ink); transform: rotate(45deg); }
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 8px; }
 .shots img { width: 100%; height: auto; border: 2px solid var(--gold-lo); border-radius: 8px; image-rendering: pixelated; }
 code { background: #0008; padding: 1px 6px; border-radius: 4px; font-size: .9em; white-space: nowrap; }
@@ -131,12 +138,34 @@ html[lang="en"] [data-l="es"], html[lang="es"] [data-l="en"] { display: none; }
     <li><b>Juega.</b> La primera vez el juego se prepara en tu dispositivo (unos segundos); después abre al instante. La ROM nunca sale de tu dispositivo.</li>
   </ol>
 
+  <h2 data-l="en">What you get</h2><h2 data-l="es">Qué incluye</h2>
+  <ul class="feats" data-l="en">
+    <li><b>Native, not emulated:</b> the game is translated to C and compiled on your device.</li>
+    <li><b>Widescreen</b> with clean black edges.</li>
+    <li><b>Complete Spanish</b> translation, accents included.</li>
+    <li><b>Save states, 9 slots and rewind.</b></li>
+    <li><b>Touch controls</b> made for the game on Android.</li>
+    <li><b>Optional fixes and comfort options</b>, each off until you turn it on: faster text, L/R item switching, 9999 rupees, 20 original-bug fixes.</li>
+    <li><b>No telemetry, no accounts.</b> The only connection is the optional update check.</li>
+  </ul>
+  <ul class="feats" data-l="es">
+    <li><b>Nativo, no emulado:</b> el juego se traduce a C y se compila en tu dispositivo.</li>
+    <li><b>Pantalla ancha</b> con bordes negros limpios.</li>
+    <li><b>Traducción completa al español</b>, con acentos.</li>
+    <li><b>Estados guardados, 9 ranuras y rebobinado.</b></li>
+    <li><b>Controles táctiles</b> hechos para el juego en Android.</li>
+    <li><b>Arreglos y ajustes opcionales</b>, apagados hasta que los actives: texto rápido, cambio de objeto con L/R, 9999 rupias, 20 arreglos de bugs del original.</li>
+    <li><b>Sin telemetría ni cuentas.</b> La única conexión es la comprobación opcional de versión.</li>
+  </ul>
+
   <div class="shots">
     <img src="img/launcher-pick.png" alt="The launcher" data-l="en">
     <img src="img/launcher-pick-es.png" alt="El lanzador" data-l="es">
     <img src="img/android-controls.png" alt="Touch controls on Android">
   </div>
 
+  <p class="note" data-l="en"><b>Project status.</b> The stable version is the one above. Newer <i>pre-releases</i> (Windows only, for testing) appear on the <a href="https://github.com/ArgoxDevs/alttp-recomp/releases">releases page</a>. A full playthrough has not been proven yet, so expect rough edges and <a href="https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose">report them</a>.</p>
+  <p class="note" data-l="es"><b>Estado del proyecto.</b> La versión estable es la de arriba. Los <i>pre-lanzamientos</i> más nuevos (solo Windows, para probar) salen en la <a href="https://github.com/ArgoxDevs/alttp-recomp/releases">página de releases</a>. Aún no está demostrada una partida completa, así que puede haber fallos: <a href="https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose">avísanos</a>.</p>
   <p class="note" data-l="en">Is the download safe? Each release has a <code>SHA256SUMS</code> file. The launchers and the Android app check it themselves before installing an update; you can also check it by hand with <code>sha256sum</code>. The source is on GitHub and the packages are built from it.</p>
   <p class="note" data-l="es">¿Es seguro? Cada release lleva un fichero <code>SHA256SUMS</code>. Los lanzadores y la app de Android lo comprueban solos antes de instalar una actualización; también puedes comprobarlo a mano con <code>sha256sum</code>. El código está en GitHub y los paquetes se construyen desde él.</p>
 

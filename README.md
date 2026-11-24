@@ -18,6 +18,12 @@ This is not an emulator: the cartridge's program is **translated to native code*
 
 > **Legal notice.** This repository contains neither the ROM nor any asset of the game (graphics, sound, text, maps), and never will. Everyone must supply their own legally obtained copy (USA, CRC32 `777AAC2F`). Nothing derived from it is distributed or leaves your machine. Independent project, not affiliated with Nintendo.
 
+## Status
+
+- **Stable version: 0.13** (Windows, Linux and Android). Versions **0.14** and **0.15** are Windows-only pre-releases, for testing: 0.15 fixes a game halt (`01:CA17`, a room-tag routine used by three rooms) and the generator now leaves **0 untranslated functions out of 4,178**.
+- **A full playthrough is not proven yet.** The intro, file select, the first areas and all 133 dungeon entrances load and run, but nobody has finished the game with the recompilation. Pre-releases stay pre-releases until that changes. What has been found along the way is written down in [`docs/HALLAZGOS.md`](docs/HALLAZGOS.md) (in Spanish).
+- If something breaks, [open an issue](https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose) with the version, where it happened and what you were doing (never attach the ROM, saves or screenshots with game graphics).
+
 ## Download and play
 
 The easiest way is the **[download page](https://argoxdevs.github.io/alttp-recomp/)**: it detects your system and gives you the right file. You can also take the package from the [latest release](https://github.com/ArgoxDevs/alttp-recomp/releases/latest). **Nothing to install, no terminal needed.**
@@ -86,7 +92,8 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 - **Achievements** (RetroAchievements) for the game.
 - **Online play** (netplay) or shared sessions.
 - **Fixes for bugs of the original game**, as options you turn on one by one (every address is checked against the ROM) and more quality-of-life improvements in C, as they get tested.
-- **A current Windows package.** The last one is 0.1; the Windows launcher still lacks the language switch and the newest tests, and its automatic update and the rebuild of the engine's `.exe` have not been tried on Windows.
+- **More languages.** Spanish is done; another language would be a translation written for the project (text of its own, never extracted from a ROM), like `lang/es.txt`. [How to propose one →](CONTRIBUTING.md)
+- **Windows checks.** The Windows launcher follows the system language (no switch button yet), and its automatic update has not been tried on a real installation.
 
 ## Quality-of-life improvements
 

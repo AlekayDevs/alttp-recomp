@@ -14,9 +14,15 @@
   <img alt="Sin ROM incluida" src="https://img.shields.io/badge/ROM-la%20pones%20t%C3%BA-c02828?labelColor=1c3a2a">
 </p>
 
-No es un emulador: el programa de la cartucho se **traduce a código nativo** (con el motor [`snes-recomp`](https://github.com/ArgoxDevs/snes-recomp)) y se compila en tu equipo a partir de **tu** copia del juego. El resultado arranca al instante, mantiene los 60 fotogramas por segundo incluso en un móvil de gama alta y permite mejoras que un emulador no da: pantalla ancha, español, estados guardados y rebobinado, y un puñado de ajustes de calidad de vida.
+No es un emulador: el programa del cartucho se **traduce a código nativo** (con el motor [`snes-recomp`](https://github.com/ArgoxDevs/snes-recomp)) y se compila en tu equipo a partir de **tu** copia del juego. El resultado arranca al instante, mantiene los 60 fotogramas por segundo incluso en un móvil de gama alta y permite mejoras que un emulador no da: pantalla ancha, español, estados guardados y rebobinado, y un puñado de ajustes de calidad de vida.
 
 > **Aviso legal.** Este repositorio no contiene la ROM ni ningún recurso del juego (gráficos, sonido, texto, mapas), y no lo tendrá. Cada persona debe aportar su propia copia obtenida legalmente (USA, CRC32 `777AAC2F`). Nada derivado de ella se distribuye ni sale de tu equipo. Proyecto independiente y sin relación con Nintendo.
+
+## Estado
+
+- **Versión estable: 0.13** (Windows, Linux y Android). Las versiones **0.14** y **0.15** son pre-lanzamientos solo de Windows, para probar: la 0.15 arregla una parada del juego (`01:CA17`, rutina de etiquetas de sala que usan tres salas) y el generador deja ya **0 funciones sin traducir de 4 178**.
+- **Una partida completa aún no está demostrada.** La intro, la selección de partida, las primeras zonas y las 133 entradas de mazmorra cargan y funcionan, pero nadie ha terminado el juego con la recompilación. Los pre-lanzamientos lo seguirán siendo hasta que eso cambie. Lo que se va descubriendo está en [`docs/HALLAZGOS.md`](docs/HALLAZGOS.md).
+- Si algo falla, [abre un issue](https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose) con la versión, dónde pasó y qué hacías (sin adjuntar nunca la ROM, partidas ni capturas con gráficos del juego).
 
 ## Descargar y jugar
 
@@ -86,7 +92,8 @@ Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni ti
 - **Logros** (RetroAchievements) para el juego.
 - **Juego en red** (netplay) o partida compartida.
 - **Arreglos de bugs del juego original**, como opciones que se activan una a una (cada dirección se comprueba contra la ROM) y más mejoras de calidad de vida en C, a medida que se prueben.
-- **Un paquete de Windows actual.** El último es el 0.1; al lanzador de Windows aún le faltan el selector de idioma y las pruebas más recientes, y su actualización automática y la reconstrucción del `.exe` del motor no se han probado en Windows.
+- **Más idiomas.** El español está hecho; otro idioma sería una traducción redactada para el proyecto (texto propio, nunca extraído de una ROM), como `lang/es.txt`. [Cómo proponerla →](CONTRIBUTING.md)
+- **Comprobaciones en Windows.** El lanzador de Windows sigue el idioma del sistema (aún sin botón de cambio) y su actualización automática no se ha probado en una instalación real.
 
 ## Mejoras de calidad de vida
 

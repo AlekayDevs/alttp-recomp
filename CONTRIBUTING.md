@@ -18,6 +18,7 @@ Este repositorio es el juego (*A Link to the Past*, USA); el recompilador, el ru
 
 - **Mejoras del juego**: ganchos `before`/`after`/`replace` en `games/alttp_usa.toml` con su C en `games/alttp_usa/`. Se activan con la ROM original y, si pueden molestar, tienen una opción (`game_opt("clave", defecto)`, que se pasa con `--game-opt clave=valor`).
 - **Direcciones y tablas** que falten (`snes-recomp discover <rom> --game games/alttp_usa.toml --unresolved` lista los saltos indirectos sin tabla).
+- **Traducciones a otros idiomas.** Como el español: texto redactado para el proyecto (`lang/xx.txt` y `lang/xx_menu.txt`, UTF-8), líneas de 168 px como máximo (`python scripts/check_text.py roms/alttp_usa.sfc`) y caracteres especiales dibujados al vuelo con la fuente del juego, de modo que solo haga falta la ROM USA. **No se aceptan** importadores que extraigan textos o fuentes de una ROM de otra región, aunque los archivos extraídos no se suban. Abre antes un issue para acordar el enfoque (el menú **F1** del motor es aparte, va en `snes-recomp`).
 - **Documentación** de cómo funciona una parte del juego y de las direcciones que usan los ganchos.
 
 El C de los ganchos usa solo la interfaz de `runtime/snes_rt.h` del motor: `wram_read8`/`wram_write8`, `joy1_state()` y `game_opt()`.
