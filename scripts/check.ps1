@@ -52,8 +52,12 @@ New-Item -ItemType Directory -Force $gen, "$gen\fast" | Out-Null
 $gen_cmd = if ((Split-Path $Engine -Leaf) -ieq "snes-recomp.exe") { @() } else { @("recomp") }
 # alttp-recomp.exe es un programa de ventanas: PowerShell no lo espera con `&` ni deja $LASTEXITCODE, así que Start-Process -Wait
 $gen_args = @($gen_cmd) + @("codegen", "`"$Rom`"", "--all", "-o", "`"$gen`"", "--game", "games\alttp_usa.toml")
-$proc = Start-Process -FilePath $Engine -ArgumentList $gen_args -Wait -PassThru -NoNewWindow
+$proc = Start-Process -FilePath $Engine -ArgumentList $gen_args -Wait -PassThru -NoNewWindow -RedirectStandardError "$out\codegen.err"
 if ($proc.ExitCode -ne 0) { throw "codegen fallo (código $($proc.ExitCode))" }
+# ninguna función de la ROM puede quedar como stub: alcanzarla detiene el juego (01:CA17 y 08:A8E3 lo hacían; ver docs/HALLAZGOS.md)
+$summary = Select-String -Path "$out\codegen.err" -Pattern "^functions: .* \((\d+) generated, (\d+) stubs\)" | Select-Object -First 1
+if (-not $summary) { throw "codegen no dio el resumen de funciones (out\codegen.err)" }
+if ($summary.Matches[0].Groups[2].Value -ne "0") { throw "el generador dejo funciones como stub: $($summary.Line)" }
 foreach ($f in "dialog.c", "widefill.c", "text.c", "menutext.c", "hud.c", "quality.c", "icon.c") {
     if (-not (Test-Path "$gen\game\$f")) { throw "el motor no copio $f a out\rom\game" }
 }

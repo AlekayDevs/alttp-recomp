@@ -37,7 +37,9 @@ gen=$out/rom
 rm -rf "$out"
 mkdir -p "$gen/fast"
 
-"$ENGINE" codegen "$ROM" --all -o "$gen" --game games/alttp_usa.toml >/dev/null 2>&1 || die "codegen fallo"
+"$ENGINE" codegen "$ROM" --all -o "$gen" --game games/alttp_usa.toml >/dev/null 2>"$gen/../codegen.err" || die "codegen fallo"
+# ninguna función de la ROM puede quedar como stub: alcanzarla detiene el juego (01:CA17 y 08:A8E3 lo hacían; ver docs/HALLAZGOS.md)
+grep -Eq "^functions: .* \([0-9]+ generated, 0 stubs\)" "$gen/../codegen.err" || die "el generador dejo funciones como stub: $(grep '^functions:' "$gen/../codegen.err")"
 for f in dialog.c widefill.c text.c menutext.c hud.c quality.c icon.c; do
     [ -f "$gen/game/$f" ] || die "el motor no copio $f a out/rom/game"
 done

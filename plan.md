@@ -4,6 +4,14 @@ Qué le falta al proyecto frente a los recompiladores y ports grandes de SNES (`
 
 Reparto (ver `CLAUDE.md`): lo general va al motor (`snes-recomp`, con OpenSpec); aquí solo lo específico de ALttP. Cada repositorio se commitea por separado.
 
+## ¿Se puede pasar el juego entero? (2026-11-24)
+
+Estado: **no está demostrado**. Nadie ha jugado una partida completa con la recompilación. Registro de lo que se va descubriendo en [docs/HALLAZGOS.md](docs/HALLAZGOS.md) (útil para los otros ports).
+
+- **Hecho:** los dos *stubs* que quedaban (`01:CA17`, `08:A8E3`) ya no lo son: `01:CA17` se alcanzaba en las salas `0x01B`, `0x043` y `0x097` y detenía el juego (`UNSUPPORTED`). Resuelto con `[[assume]]` en el perfil; `check.ps1` y `check.sh` exigen 0 *stubs*. Las 133 entradas de mazmorra cargan sin paradas.
+- **Falta:** llegar jugando a esas tres salas y comprobar que `01:CA17` hace lo de la consola; una partida completa (o un guion largo con comparación contra un emulador de referencia); `08:A8E3` (entrada `0x24` de la tabla de `08:837F`): no se sabe si el juego la usa.
+- **Hasta entonces** las versiones se publican como pre-lanzamiento (la 0.14 lo es).
+
 ## Validación de ganchos guard (2026-11-07)
 
 Comprobación de integración en Linux con `python3 scripts/check_guards.py` (uso en `docs/DESARROLLO.md`). Genera y compila el juego real e instrumenta una copia del C propio; no cambia los retornos de los ganchos. Resultados de cuatro partidas de 5400 fotogramas:
@@ -78,7 +86,7 @@ Hecho: los 28 nombres de objeto que son texto (`item.*` en `lang/es_menu.txt`, `
 
 1. **Mapa**: no se encontró texto de zonas que traducir; no se pudo abrir el mapa en las pruebas sin cabeza (Link sigue dentro de la casa y forzar el módulo $0E/$07 deja la pantalla rota). Falta mirarlo en el juego real, al aire libre.
 2. **Revisión en juego** de `es.txt` (líneas de 168 px como máximo, tildes y ñ) y de `es_menu.txt` (los nombres de objeto en la caja del menú de pausa).
-3. **Limitaciones conocidas**: los stubs `01:CA17` y `08:A8E3`; el entrelazado de la PPU y la tabla exacta del DSP van en `snes-recomp`.
+3. **Limitaciones conocidas**: el entrelazado de la PPU y la tabla exacta del DSP van en `snes-recomp`.
 
 ## Ya existe (no hacer)
 

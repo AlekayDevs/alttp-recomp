@@ -588,6 +588,37 @@ addr = "02:87AF"
 m = 8
 x = 8
 
+# Rutina de las etiquetas de sala 0x1C a 0x1F (tabla 01:C27D). Las llaman 01:C8D4 y 01:C98B con M=16 (REP #$20) y el
+# despachador por la tabla con M=8, pero el código usa `AND #$00FF`: con M=8 serían `AND #$FF` y un BRK, así que en la
+# consola solo se entra con M=16 (el camino de 8 bits es inalcanzable: ninguna sala usa 0x1E ni 0x1F). Sin esto el
+# generador la dejaba como stub y el juego se detenía en las salas 0x01B, 0x043 y 0x097.
+[[assume]]
+addr = "01:CA17"
+m = 16
+x = 16
+
+# El despachador de etiquetas (01:C30D con $AE y 01:C318 con $AF) sigue con `LDA #$01`, es decir, con M=8: los
+# manejadores de la tabla 01:C27D vuelven con M=8. 01:CA17 vuelve con M=16 (termina en `REP #$20`), pero solo se
+# llega a ella con M=16 desde 01:C8D4 y 01:C98B, que ya vuelven con M=8; las entradas 0x1E y 0x1F, que irían
+# directas, no las usa ninguna sala (en la consola romperían el juego). Se fuerza M=8 tras cada llamada.
+[[assume]]
+addr = "01:C310"
+m = 8
+x = 8
+
+[[assume]]
+addr = "01:C31B"
+m = 8
+x = 8
+
+# Entrada 0x24 de la tabla de manejadores de 08:837F (08:A8E3, dos bytes antes de la entrada 0x15, 08:A8E5): con el
+# acarreo puesto sigue a 08:A8E5 y con el acarreo limpio salta a 08:A876, que continúa con `ADC #$000C` (M=16). Se
+# fuerza M=16 en 08:A878, como lo ve el otro camino que llega ahí; sin esto quedaba como stub.
+[[assume]]
+addr = "08:A878"
+m = 16
+x = 8
+
 # Despacho de sprites por PHA/RTS: LDA $0E20,X (tipo) -> word de 06:9283 -> DEC A -> PHA -> RTS, o sea que el
 # destino es el word tal cual (bias 0). 243 tipos ($00-$F2); los huecos ($0000) no son código y se descartan.
 [[table]]
