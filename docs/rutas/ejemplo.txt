@@ -1,0 +1,5 @@
+# Ejemplo: la ruta de check.ps1 hasta el menú de selección de partida (fotogramas de nuestro runtime).
+@sample 60 0010:2 00A0:2
+1100-1110 START
+1300-1305 A
+1500-1504 A
