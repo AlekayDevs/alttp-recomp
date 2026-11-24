@@ -97,46 +97,46 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 
 ## Quality-of-life improvements
 
-These are game options: turn them on in the **Game** tab of the **F1** menu or with `--game-opt name=value`. Those marked ✔ are on by default; the rest are off.
+These are game options: turn them on in the **Game** tab of the **F1** menu or with `--game-opt name=value`. Everything here is implemented and tested; only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
 
 Music and sound-effect volume are adjusted separately in the menu's **Audio** tab (`music_volume` and `sfx_volume`); the profile tells the engine which sound voices are effects.
 
-| | Option | What it does |
+| Default | Option | What it does |
 |---|---|---|
-| ✔ | `dialog_skip` | Hold **R** during a message and it prints one character per frame. |
-| | `language=es` | The game in Spanish (messages, file select, menus). |
-| | `wide=N` | Widescreen with the extra columns covered in black where there is no map. |
-| | `item_switch_lr=1` | **L**/**R** (`Q`/`W`) pick the previous or next item and put it on Y without opening the menu. |
-| | `dash_turn=1` | Changing direction while dashing with the boots turns Link instead of cutting the dash short. |
-| | `bird_cancel=1` | On the flute-bird map, **B** cancels the trip and leaves you where you were. |
-| | `sword_pickup=1` | The sword swing picks up the floor items it reaches (rupees, hearts, magic, bombs, arrows, keys). |
-| | `sword_pots=1` | In dungeons, the sword breaks pots like the hammer. |
-| | `more_bombs=1` | Four bombs placed at once instead of two (each still uses one). |
-| | `rupees_9999=1` | The wallet holds up to 9999 rupees, with a four-digit counter. |
-| | `rupee_fast=1` | The rupee counter reaches the wallet in a couple of seconds (instead of one rupee per frame: 500 rupees take 8 s), going up and down. |
-| | `max_yellow=1` | Rupees, bombs and arrows at their cap are drawn in yellow. |
-| | `skip_intro=1` | **Start** or **A** during the intro (the logo, the story and the Triforce) jump to file select. |
-| | `fix_portal_chime=1` | Fix for an original bug: lifting the rock that covers the magic portal in the Ice Palace didn't play the discovery sound. |
-| | `fix_death_count=1` | Fix for an original bug: choosing "Continue" without saving on the game-over screen counted the death anyway. |
-| | `fix_medallion_abort=1` | Fix for an original bug: Bombos, Ether and Quake are no longer cancelled if you release the charged sword swing on the same frame you use them. |
-| | `fix_magic_refund=1` | Fix for an original bug: the magic refund (when an effect fails) no longer goes past 128. |
-| | `fix_somaria_nomagic=1` | Fix for an original bug: using the Cane of Somaria without magic and quickly switching to the mushroom or powder no longer scatters powder without pressing anything. |
-| | `fix_moldorm_sound=1` | Fix for an original bug: the giant Moldorm's hit on Link makes a sound (the original loses the sound when computing the pan). |
-| | `fix_swamola_bank=1` | Fix for an original bug: the Lanmolas (Swamola) of Misery Mire read their table with the wrong data bank and their segments come out wrong. |
-| | `fix_kiki_bomb=1` | Fix for an original bug: the bomb Kiki was carrying isn't left armed when he starts following you. |
-| | `fix_bunny_palette=1` | Fix for an original bug: dying as a bunny restores Link's palette during the death animation. |
-| | `fix_spell_lock=1` | Fix for an original bug: after casting a medallion and dying, the save menu no longer gets stuck. |
-| | `fix_ledge_platform=1` | Fix for an original bug: exiting while hopping a ledge and getting hit on a platform no longer lets you pass under solid layers. |
-| | `fix_shield_palette=1` | Fix for an original bug: the shield dropped by a Pikit loads its palette (Link doesn't keep the previous one's colors). |
-| | `fix_door_submodule=1` | Fix for an original bug: using a potion at a door no longer changes the submodule mid-frame. |
-| | `fix_stair_tags=1` | Fix for an original bug: entering a staircase just as the room tag triggers no longer puts objects in the wrong place. |
-| | `fix_skullwoods_door=1` | Fix for an original bug: the Cane of Somaria on a door switch when leaving Skull Woods no longer overwrites the submodule. |
-| | `fix_mushroom_warp=1` | Fix for an original bug: the mushroom can't be picked up in the middle of the mirror warp. |
-| | `fix_double_absorb=1` | Fix for an original bug: hearts and fairies aren't absorbed twice on the same frame. |
-| | `fix_hidden_hookshot=1` | Fix for an original bug: an object hidden under a rock releases the hookshot that was grabbing it. |
-| | `fix_camera_twice=1` | Fix for an original bug: the spin attack between bumpers no longer positions the camera twice in one frame. |
-| | `fix_bunny_walk=1` | Fix for an original bug: the temporary bunny uses the permanent one's walk animation. |
-| | `low_hp_beep=0` | Removes the low-health beep. |
+| on | `dialog_skip` | Hold **R** during a message and it prints one character per frame. |
+| off | `language=es` | The game in Spanish (messages, file select, menus). |
+| off | `wide=N` | Widescreen with the extra columns covered in black where there is no map. |
+| off | `item_switch_lr=1` | **L**/**R** (`Q`/`W`) pick the previous or next item and put it on Y without opening the menu. |
+| off | `dash_turn=1` | Changing direction while dashing with the boots turns Link instead of cutting the dash short. |
+| off | `bird_cancel=1` | On the flute-bird map, **B** cancels the trip and leaves you where you were. |
+| off | `sword_pickup=1` | The sword swing picks up the floor items it reaches (rupees, hearts, magic, bombs, arrows, keys). |
+| off | `sword_pots=1` | In dungeons, the sword breaks pots like the hammer. |
+| off | `more_bombs=1` | Four bombs placed at once instead of two (each still uses one). |
+| off | `rupees_9999=1` | The wallet holds up to 9999 rupees, with a four-digit counter. |
+| off | `rupee_fast=1` | The rupee counter reaches the wallet in a couple of seconds (instead of one rupee per frame: 500 rupees take 8 s), going up and down. |
+| off | `max_yellow=1` | Rupees, bombs and arrows at their cap are drawn in yellow. |
+| off | `skip_intro=1` | **Start** or **A** during the intro (the logo, the story and the Triforce) jump to file select. |
+| off | `fix_portal_chime=1` | Fix for an original bug: lifting the rock that covers the magic portal in the Ice Palace didn't play the discovery sound. |
+| off | `fix_death_count=1` | Fix for an original bug: choosing "Continue" without saving on the game-over screen counted the death anyway. |
+| off | `fix_medallion_abort=1` | Fix for an original bug: Bombos, Ether and Quake are no longer cancelled if you release the charged sword swing on the same frame you use them. |
+| off | `fix_magic_refund=1` | Fix for an original bug: the magic refund (when an effect fails) no longer goes past 128. |
+| off | `fix_somaria_nomagic=1` | Fix for an original bug: using the Cane of Somaria without magic and quickly switching to the mushroom or powder no longer scatters powder without pressing anything. |
+| off | `fix_moldorm_sound=1` | Fix for an original bug: the giant Moldorm's hit on Link makes a sound (the original loses the sound when computing the pan). |
+| off | `fix_swamola_bank=1` | Fix for an original bug: the Lanmolas (Swamola) of Misery Mire read their table with the wrong data bank and their segments come out wrong. |
+| off | `fix_kiki_bomb=1` | Fix for an original bug: the bomb Kiki was carrying isn't left armed when he starts following you. |
+| off | `fix_bunny_palette=1` | Fix for an original bug: dying as a bunny restores Link's palette during the death animation. |
+| off | `fix_spell_lock=1` | Fix for an original bug: after casting a medallion and dying, the save menu no longer gets stuck. |
+| off | `fix_ledge_platform=1` | Fix for an original bug: exiting while hopping a ledge and getting hit on a platform no longer lets you pass under solid layers. |
+| off | `fix_shield_palette=1` | Fix for an original bug: the shield dropped by a Pikit loads its palette (Link doesn't keep the previous one's colors). |
+| off | `fix_door_submodule=1` | Fix for an original bug: using a potion at a door no longer changes the submodule mid-frame. |
+| off | `fix_stair_tags=1` | Fix for an original bug: entering a staircase just as the room tag triggers no longer puts objects in the wrong place. |
+| off | `fix_skullwoods_door=1` | Fix for an original bug: the Cane of Somaria on a door switch when leaving Skull Woods no longer overwrites the submodule. |
+| off | `fix_mushroom_warp=1` | Fix for an original bug: the mushroom can't be picked up in the middle of the mirror warp. |
+| off | `fix_double_absorb=1` | Fix for an original bug: hearts and fairies aren't absorbed twice on the same frame. |
+| off | `fix_hidden_hookshot=1` | Fix for an original bug: an object hidden under a rock releases the hookshot that was grabbing it. |
+| off | `fix_camera_twice=1` | Fix for an original bug: the spin attack between bumpers no longer positions the camera twice in one frame. |
+| off | `fix_bunny_walk=1` | Fix for an original bug: the temporary bunny uses the permanent one's walk animation. |
+| — | `low_hp_beep=0` | Removes the low-health beep. |
 
 The improvements that touch the game (`skip_intro`, `fix_portal_chime`, `fix_death_count`, `fix_medallion_abort`, `fix_magic_refund`, `fix_somaria_nomagic`, `fix_moldorm_sound`, `fix_swamola_bank`, `fix_kiki_bomb`, `fix_bunny_palette`, `fix_spell_lock`, `fix_ledge_platform`, `fix_shield_palette`, `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`, `item_switch_lr`, `dash_turn`, `bird_cancel`, `sword_pickup`, `sword_pots`, `more_bombs`, `rupees_9999`, `rupee_fast`) are tested automatically with games played by a script (`scripts/check.ps1` / `check.sh`).
 

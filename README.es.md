@@ -97,46 +97,46 @@ Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni ti
 
 ## Mejoras de calidad de vida
 
-Son opciones del juego: se activan en la pestaña **Game** del menú **F1** o con `--game-opt nombre=valor`. Las marcadas con ✔ están activas por defecto; el resto, apagadas.
+Son opciones del juego: se activan en la pestaña **Game** del menú **F1** o con `--game-opt nombre=valor`. Todo lo de esta tabla está hecho y probado; solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
 
 El volumen de la música y el de los efectos se ajustan por separado en la pestaña **Audio** del menú (`music_volume` y `sfx_volume`); el perfil le dice al motor qué voces del sonido son efectos.
 
-| | Opción | Qué hace |
+| Por defecto | Opción | Qué hace |
 |---|---|---|
-| ✔ | `dialog_skip` | Mantén **R** durante un mensaje y sale un carácter por fotograma. |
-| | `language=es` | El juego en español (mensajes, selección de partida, menús). |
-| | `wide=N` | Pantalla ancha con las columnas extra tapadas en negro donde no hay mapa. |
-| | `item_switch_lr=1` | **L**/**R** (`Q`/`W`) eligen el objeto anterior o siguiente y lo ponen en Y sin abrir el menú. |
-| | `dash_turn=1` | Cambiar de dirección durante la carrera con las botas gira a Link en lugar de cortar la carrera. |
-| | `bird_cancel=1` | En el mapa del pájaro, **B** cancela el viaje y te deja donde estabas. |
-| | `sword_pickup=1` | El espadazo recoge los objetos del suelo que alcanza (rupias, corazones, magia, bombas, flechas, llaves). |
-| | `sword_pots=1` | En mazmorras, la espada rompe las vasijas como el martillo. |
-| | `more_bombs=1` | Cuatro bombas puestas a la vez en vez de dos (cada una sigue gastando una). |
-| | `rupees_9999=1` | La cartera guarda hasta 9999 rupias, con marcador de cuatro dígitos. |
-| | `rupee_fast=1` | El marcador de rupias alcanza la cartera en un par de segundos (en vez de una rupia por fotograma: 500 rupias tardan 8 s), subiendo y bajando. |
-| | `max_yellow=1` | Rupias, bombas y flechas en su tope se dibujan en amarillo. |
-| | `skip_intro=1` | **Start** o **A** durante la intro (el logo, la historia y el Triforce) saltan a la selección de partida. |
-| | `fix_portal_chime=1` | Arreglo de un bug del original: levantar la roca que tapa el portal mágico del Templo de Hielo no hacía el sonido de descubrimiento. |
-| | `fix_death_count=1` | Arreglo de un bug del original: elegir «Continuar» sin guardar en la pantalla de fin de partida contaba la muerte igualmente. |
-| | `fix_medallion_abort=1` | Arreglo de un bug del original: Bombos, Ether y Quake no se cancelan si sueltas el espadazo cargado en el mismo fotograma en que los usas. |
-| | `fix_magic_refund=1` | Arreglo de un bug del original: la devolución de magia (cuando falla un efecto) no pasa de 128. |
-| | `fix_somaria_nomagic=1` | Arreglo de un bug del original: usar el bastón de Somaria sin magia y cambiar enseguida a la seta o el polvo ya no esparce polvo sin pulsar nada. |
-| | `fix_moldorm_sound=1` | Arreglo de un bug del original: el golpe del Moldorm gigante a Link suena (el original pierde el sonido al calcular el pan). |
-| | `fix_swamola_bank=1` | Arreglo de un bug del original: los Lanmolas (Swamola) de Misery Mire leen su tabla con el banco de datos equivocado y sus segmentos salen mal. |
-| | `fix_kiki_bomb=1` | Arreglo de un bug del original: la bomba que Kiki llevaba no queda armada al empezar a seguirte. |
-| | `fix_bunny_palette=1` | Arreglo de un bug del original: morir de conejo restaura la paleta de Link durante la animación de muerte. |
-| | `fix_spell_lock=1` | Arreglo de un bug del original: tras lanzar un medallón y morir, el menú de guardar ya no se queda bloqueado. |
-| | `fix_ledge_platform=1` | Arreglo de un bug del original: salir mientras saltas una cornisa y recibir un golpe en una plataforma ya no te deja pasar bajo capas sólidas. |
-| | `fix_shield_palette=1` | Arreglo de un bug del original: el escudo que suelta un Pikit carga su paleta (Link no se queda con los colores del anterior). |
-| | `fix_door_submodule=1` | Arreglo de un bug del original: usar una poción en una puerta ya no cambia el submódulo a mitad de fotograma. |
-| | `fix_stair_tags=1` | Arreglo de un bug del original: entrar en una escalera justo cuando se activa la etiqueta de la sala ya no coloca los objetos en un sitio equivocado. |
-| | `fix_skullwoods_door=1` | Arreglo de un bug del original: el bastón de Somaria sobre un botón de puerta al salir de Skull Woods ya no pisa el submódulo. |
-| | `fix_mushroom_warp=1` | Arreglo de un bug del original: la seta no se coge a mitad del warp del espejo. |
-| | `fix_double_absorb=1` | Arreglo de un bug del original: el corazón y el hada no se absorben dos veces en el mismo fotograma. |
-| | `fix_hidden_hookshot=1` | Arreglo de un bug del original: un objeto escondido bajo una roca suelta el gancho que lo agarraba. |
-| | `fix_camera_twice=1` | Arreglo de un bug del original: el espadazo giratorio entre topes ya no coloca la cámara dos veces en un fotograma. |
-| | `fix_bunny_walk=1` | Arreglo de un bug del original: el conejo temporal usa la animación de andar del permanente. |
-| | `low_hp_beep=0` | Quita el pitido de poca vida. |
+| on | `dialog_skip` | Mantén **R** durante un mensaje y sale un carácter por fotograma. |
+| off | `language=es` | El juego en español (mensajes, selección de partida, menús). |
+| off | `wide=N` | Pantalla ancha con las columnas extra tapadas en negro donde no hay mapa. |
+| off | `item_switch_lr=1` | **L**/**R** (`Q`/`W`) eligen el objeto anterior o siguiente y lo ponen en Y sin abrir el menú. |
+| off | `dash_turn=1` | Cambiar de dirección durante la carrera con las botas gira a Link en lugar de cortar la carrera. |
+| off | `bird_cancel=1` | En el mapa del pájaro, **B** cancela el viaje y te deja donde estabas. |
+| off | `sword_pickup=1` | El espadazo recoge los objetos del suelo que alcanza (rupias, corazones, magia, bombas, flechas, llaves). |
+| off | `sword_pots=1` | En mazmorras, la espada rompe las vasijas como el martillo. |
+| off | `more_bombs=1` | Cuatro bombas puestas a la vez en vez de dos (cada una sigue gastando una). |
+| off | `rupees_9999=1` | La cartera guarda hasta 9999 rupias, con marcador de cuatro dígitos. |
+| off | `rupee_fast=1` | El marcador de rupias alcanza la cartera en un par de segundos (en vez de una rupia por fotograma: 500 rupias tardan 8 s), subiendo y bajando. |
+| off | `max_yellow=1` | Rupias, bombas y flechas en su tope se dibujan en amarillo. |
+| off | `skip_intro=1` | **Start** o **A** durante la intro (el logo, la historia y el Triforce) saltan a la selección de partida. |
+| off | `fix_portal_chime=1` | Arreglo de un bug del original: levantar la roca que tapa el portal mágico del Templo de Hielo no hacía el sonido de descubrimiento. |
+| off | `fix_death_count=1` | Arreglo de un bug del original: elegir «Continuar» sin guardar en la pantalla de fin de partida contaba la muerte igualmente. |
+| off | `fix_medallion_abort=1` | Arreglo de un bug del original: Bombos, Ether y Quake no se cancelan si sueltas el espadazo cargado en el mismo fotograma en que los usas. |
+| off | `fix_magic_refund=1` | Arreglo de un bug del original: la devolución de magia (cuando falla un efecto) no pasa de 128. |
+| off | `fix_somaria_nomagic=1` | Arreglo de un bug del original: usar el bastón de Somaria sin magia y cambiar enseguida a la seta o el polvo ya no esparce polvo sin pulsar nada. |
+| off | `fix_moldorm_sound=1` | Arreglo de un bug del original: el golpe del Moldorm gigante a Link suena (el original pierde el sonido al calcular el pan). |
+| off | `fix_swamola_bank=1` | Arreglo de un bug del original: los Lanmolas (Swamola) de Misery Mire leen su tabla con el banco de datos equivocado y sus segmentos salen mal. |
+| off | `fix_kiki_bomb=1` | Arreglo de un bug del original: la bomba que Kiki llevaba no queda armada al empezar a seguirte. |
+| off | `fix_bunny_palette=1` | Arreglo de un bug del original: morir de conejo restaura la paleta de Link durante la animación de muerte. |
+| off | `fix_spell_lock=1` | Arreglo de un bug del original: tras lanzar un medallón y morir, el menú de guardar ya no se queda bloqueado. |
+| off | `fix_ledge_platform=1` | Arreglo de un bug del original: salir mientras saltas una cornisa y recibir un golpe en una plataforma ya no te deja pasar bajo capas sólidas. |
+| off | `fix_shield_palette=1` | Arreglo de un bug del original: el escudo que suelta un Pikit carga su paleta (Link no se queda con los colores del anterior). |
+| off | `fix_door_submodule=1` | Arreglo de un bug del original: usar una poción en una puerta ya no cambia el submódulo a mitad de fotograma. |
+| off | `fix_stair_tags=1` | Arreglo de un bug del original: entrar en una escalera justo cuando se activa la etiqueta de la sala ya no coloca los objetos en un sitio equivocado. |
+| off | `fix_skullwoods_door=1` | Arreglo de un bug del original: el bastón de Somaria sobre un botón de puerta al salir de Skull Woods ya no pisa el submódulo. |
+| off | `fix_mushroom_warp=1` | Arreglo de un bug del original: la seta no se coge a mitad del warp del espejo. |
+| off | `fix_double_absorb=1` | Arreglo de un bug del original: el corazón y el hada no se absorben dos veces en el mismo fotograma. |
+| off | `fix_hidden_hookshot=1` | Arreglo de un bug del original: un objeto escondido bajo una roca suelta el gancho que lo agarraba. |
+| off | `fix_camera_twice=1` | Arreglo de un bug del original: el espadazo giratorio entre topes ya no coloca la cámara dos veces en un fotograma. |
+| off | `fix_bunny_walk=1` | Arreglo de un bug del original: el conejo temporal usa la animación de andar del permanente. |
+| — | `low_hp_beep=0` | Quita el pitido de poca vida. |
 
 Las mejoras que tocan el juego (`skip_intro`, `fix_portal_chime`, `fix_death_count`, `fix_medallion_abort`, `fix_magic_refund`, `fix_somaria_nomagic`, `fix_moldorm_sound`, `fix_swamola_bank`, `fix_kiki_bomb`, `fix_bunny_palette`, `fix_spell_lock`, `fix_ledge_platform`, `fix_shield_palette`, `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`, `item_switch_lr`, `dash_turn`, `bird_cancel`, `sword_pickup`, `sword_pots`, `more_bombs`, `rupees_9999`, `rupee_fast`) se prueban automáticamente con partidas jugadas por un script (`scripts/check.ps1` / `check.sh`).
 
