@@ -75,6 +75,10 @@ Resultado: **0 stubs de 4 178 funciones** (antes 2). `check.ps1` y `check.sh` fa
 - `adb`: antes de tocar la pantalla, comprueba `dumpsys window | grep mCurrentFocus`. Un toque a ciegas abrió una
   notificación ajena.
 
+- **`play.exe` sin `--game-dir` no traduce los mensajes.** La carpeta del juego es por defecto la de la ROM (`roms/`), y la traduccion se lee de `<carpeta del juego>/lang/es.txt`: el motor avisa por consola («cannot find ...: the messages stay in English») y los mensajes salen en ingles aunque el menu diga `es`. Con `alttp-recomp.exe` no pasa (encuentra `games/alttp_usa`); con un ejecutable lanzado a mano, `--game-dir games/alttp_usa`.
+- **Automatizar clics en la ventana del juego desde un script es peligroso:** si la ventana no esta delante, el clic cae en otra aplicacion. Las coordenadas de `GetClientRect` tampoco coinciden con la pantalla si el programa no declara DPI. Para el menu: `--menu-keys F1,tap@X:Y` y `--menu-shot` (sin ventana) en vez de simular el raton.
+- **TinyCC no compila el frontal con las cabeceras de SDL2 del repositorio sin `-DDECLSPEC= -DSDLCALL=`** (lo que hace `snes-port`), y `headless.c` usa `timespec_get`, que TinyCC no tiene: para una prueba rapida del frontal, `cl` con vcvars; para el sin-video con TinyCC, sustituir `timespec_get`.
+
 ## 5. Revisión de lo que seguía sin demostrarse (2026-11-24)
 
 **5.1 ¿`01:CA17` hace lo que dice su código? Sí, en lo observable.** Prueba de caja blanca con un ejecutable instrumentado (contador de
@@ -114,6 +118,8 @@ Recetas de herramienta (para los otros ports):
 - Al escribir scripts desde la shell, los heredocs se comen las barras invertidas y `\$`: escribe el fichero con una herramienta de ficheros.
 
 **5.5 Partida completa: sin hacer.** Es lo único que demuestra «se puede pasar»; todo lo anterior solo descarta bloqueos concretos.
+
+**5.6 Mazmorra de cada entrada (2026-11-24, `scripts/probe_entradas.py`).** Las 133 entradas (0 a 0x84) cargadas desde el estado de la casa (fotograma 5300) con `$010E`, `$10=6`: 15 mazmorras distintas en `$040C` (00 Alcantarillas, 02 Castillo, 04 Este, 06 Desierto, 08 Torre de Agahnim, 0A Pantano, 0C Palacio Oscuro, 0E Mire, 10 Skull Woods, 12 Hielo, 14 Hera, 16 Thieves, 18 Turtle Rock, 1A Ganon); las demas (`FF`) son casas y cuevas. Sala de entrada de cada una: Castillo 060-062, Este 0C9, Desierto 083-085 y 063, Pantano 028, Palacio Oscuro 04A, Mire 098, Hielo 00E, Hera 077, Thieves 0DB, Turtle Rock 023/024/0D5/0D6, Ganon 00C. Ninguna entrada cae en 0x01B, 0x043 ni 0x097. **Suposicion sin comprobar** (por la numeracion de salas y el vecino de entrada): 0x043 seria del Desierto, 0x097 del Mire y 0x01B del Palacio Oscuro; se confirma pasando por ellas con `--log-wram` de `$A0`.
 
 ## 6. Pendiente
 

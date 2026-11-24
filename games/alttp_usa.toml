@@ -893,6 +893,10 @@ label = "Language"
 names = ["en", "es"]
 default = "en"
 
+# Un solo jugador: el menu F1 no ofrece jugador 2 y el segundo teclado y el segundo mando no leen nada.
+[input]
+players = 1
+
 # Musica y efectos comparten las voces del DSP: el motor del sonido del juego guarda en la RAM del SPC700, en $1A, un bit por voz que ahora usan
 # los efectos (y en $4A el complementario para la musica). Medido en partida: las muestras de las voces marcadas como efecto y las de las no marcadas son
 # conjuntos distintos. El motor la lee al encender cada voz para el volumen de musica y de efectos del menu de Audio (music_volume, sfx_volume).
