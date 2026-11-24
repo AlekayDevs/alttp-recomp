@@ -79,6 +79,8 @@ Resultado: **0 stubs de 4 178 funciones** (antes 2). `check.ps1` y `check.sh` fa
 - **Automatizar clics en la ventana del juego desde un script es peligroso:** si la ventana no esta delante, el clic cae en otra aplicacion. Las coordenadas de `GetClientRect` tampoco coinciden con la pantalla si el programa no declara DPI. Para el menu: `--menu-keys F1,tap@X:Y` y `--menu-shot` (sin ventana) en vez de simular el raton.
 - **TinyCC no compila el frontal con las cabeceras de SDL2 del repositorio sin `-DDECLSPEC= -DSDLCALL=`** (lo que hace `snes-port`), y `headless.c` usa `timespec_get`, que TinyCC no tiene: para una prueba rapida del frontal, `cl` con vcvars; para el sin-video con TinyCC, sustituir `timespec_get`.
 
+- **Pendiente: una pieza roja con una «n» en la caja del menú de Select (mensaje `@390`, «Continuar partida / Guardar y salir»).** La vio una vez el jugador (2026-11-24, tras salvar a Zelda, ya en el exterior, con `language=es`): una pestaña roja de un mosaico de texto abajo a la derecha de la caja. No sale siempre. El estado guardado justo después (ranura 1) no la tiene, y el mensaje `@390` lleva en `es.txt` los mismos códigos que el inglés, sin color: no viene de la traduccion. Se sospecha un resto de otro mensaje o de un mosaico del cuadro sin borrar. Para reproducirlo hace falta un estado (F5) tomado mientras se ve. Con `--state-script load@N` y `--game-opt language=en` el HUD cambia pero un mensaje ya abierto conserva su idioma.
+
 ## 5. Revisión de lo que seguía sin demostrarse (2026-11-24)
 
 **5.1 ¿`01:CA17` hace lo que dice su código? Sí, en lo observable.** Prueba de caja blanca con un ejecutable instrumentado (contador de
