@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 work = ROOT / "out" / "guards-win"
 gen = work / "rom"; gen.mkdir(parents=True, exist_ok=True)
-subprocess.run([str(ROOT/"snes-recomp.exe"), "codegen", str(ROOT/"roms/alttp_usa.sfc"), "--all", "-o", str(gen),
+subprocess.run([str(ROOT/"alttp-recomp.exe"), "recomp", "codegen", str(ROOT/"roms/alttp_usa.sfc"), "--all", "-o", str(gen),
                 "--game", "games/alttp_usa.toml"], cwd=ROOT, check=True, capture_output=True)
 prof = tomllib.loads((ROOT/"games/alttp_usa.toml").read_text(encoding="utf-8"))
 names = sorted({h["call"] for h in prof["hook"] if h["kind"] == "guard"})
