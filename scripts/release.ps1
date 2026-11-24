@@ -87,7 +87,7 @@ if (Test-Path "$stage\LICENSE") { Move-Item "$stage\LICENSE" "$stage\LICENSE-eng
 Copy-Item README.md, README.es.md, LICENSE $stage
 Copy-Item games $stage -Recurse
 # lo lee el aviso de version nueva del lanzador (src/update.rs del motor): repo y version instalada
-Set-Content -Path "$stage\update.info" -Value "repo=AlekayDevs/alttp-recomp`nversion=$Version`nname=ALttP Recomp`ntagline=The Legend of Zelda: A Link to the Past" -Encoding ASCII
+Set-Content -Path "$stage\update.info" -Value "repo=ArgoxDevs/alttp-recomp`nversion=$Version`nname=ALttP Recomp`ntagline=The Legend of Zelda: A Link to the Past" -Encoding ASCII
 
 # la guarda: nada de ROMs, partidas guardadas ni C generado
 $bad = Get-ChildItem $stage -Recurse -File | Where-Object {
