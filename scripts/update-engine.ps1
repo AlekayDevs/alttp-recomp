@@ -1,5 +1,6 @@
-# Pone en la raíz de este repositorio el motor (snes-port.exe, snes-recomp.exe, sdl2\, toolchain\ con TinyCC): son los ficheros que
-# se suben, para que el juego no dependa del repositorio del motor. snes-port.exe junto a games\ abre el lanzador con doble clic.
+# Pone en la raíz de este repositorio el motor (alttp-recomp.exe, sdl2\, toolchain\ con TinyCC): son los ficheros que se suben, para
+# que el juego no dependa del repositorio del motor. alttp-recomp.exe es el snes-port.exe del motor con el nombre del juego: junto a
+# games\ abre el lanzador con doble clic, y `alttp-recomp.exe recomp <orden>` es la línea de comandos del generador (snes-recomp).
 #
 #   powershell -File scripts\update-engine.ps1 [-Zip <zip del motor>]
 #
@@ -26,7 +27,8 @@ if (-not (Test-Path "$src\snes-port.exe")) { Remove-Item -Recurse -Force $tmp; t
 if (-not (Test-Path "$src\toolchain\tcc\tcc.exe")) { Remove-Item -Recurse -Force $tmp; throw "el zip no trae toolchain\tcc\tcc.exe (¿se hizo con -NoTcc?)" }
 
 foreach ($old in "sdl2", "toolchain") { if (Test-Path $old) { Remove-Item -Recurse -Force $old } }
-Copy-Item "$src\snes-port.exe", "$src\snes-recomp.exe" $root -Force
+foreach ($old in "snes-port.exe", "snes-recomp.exe") { if (Test-Path $old) { Remove-Item -Force $old } }
+Copy-Item "$src\snes-port.exe" "$root\alttp-recomp.exe" -Force
 Copy-Item "$src\sdl2", "$src\toolchain" $root -Recurse -Force
 if (Test-Path "$src\README.md") { Copy-Item "$src\README.md" "$root\README-engine.md" -Force }
 if (Test-Path "$src\LICENSE") { Copy-Item "$src\LICENSE" "$root\LICENSE-engine" -Force }

@@ -1,4 +1,4 @@
-"""Dibuja el icono de la ventana del juego (arte propio, ningún gráfico del juego) y escribe games/alttp_usa/icon.c.
+"""Dibuja el icono de la ventana del juego (arte propio, ningún gráfico del juego) y escribe games/alttp_usa/icon.c y scripts/alttp-recomp.ico.
 
     python scripts/make_icon.py
 
@@ -67,6 +67,11 @@ def write_c(img, path, size=64):
 
 
 
+def write_ico(img, path):
+    """El icono del ejecutable de Windows (varios tamaños); release.ps1 lo pone en alttp-recomp.exe."""
+    img.convert("RGBA").save(path, format="ICO", sizes=[(16, 16), (24, 24), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
+
+
 DENSITIES = {"mdpi": 1, "hdpi": 1.5, "xhdpi": 2, "xxhdpi": 3, "xxxhdpi": 4}
 
 
@@ -109,6 +114,7 @@ def write_android(res, app_name, colors, ring):
 if __name__ == "__main__":
     icon = draw((0x1A, 0x46, 0x2C), (0x08, 0x20, 0x14), (0x62, 0xE0, 0x7E), (0x1F, 0x9A, 0x45), (0xC8, 0xFA, 0xD2), ring=(0xF2, 0xC1, 0x4E))
     write_c(icon, ROOT / "games" / "alttp_usa" / "icon.c")
+    write_ico(icon, ROOT / "scripts" / "alttp-recomp.ico")
     write_android(ROOT / "games" / "alttp_usa" / "android" / "res", "ALttP Recomp",
                   ((0x1A, 0x46, 0x2C), (0x08, 0x20, 0x14), (0x62, 0xE0, 0x7E), (0x1F, 0x9A, 0x45), (0xC8, 0xFA, 0xD2)), (0xF2, 0xC1, 0x4E))
     if (ROOT / "out").is_dir():

@@ -55,7 +55,7 @@ Para jugar, omite `--no-launch`. Las opciones propias se pasan tras `--`, por ej
 En Windows:
 
 ```powershell
-.\snes-port.exe roms\alttp_usa.sfc --no-launch
+.\alttp-recomp.exe roms\alttp_usa.sfc --no-launch
 powershell -File scripts\check.ps1
 ```
 
@@ -78,7 +78,7 @@ git archive HEAD | tar -x -C "$scan_dir"
 ../snes-recomp/target/release/snes-recomp scan roms/alttp_usa.sfc "$scan_dir"
 ```
 
-En Windows usa `snes-recomp.exe scan` sobre una exportación equivalente. Este control de `HEAD` no cubre cambios sin commitear.
+En Windows usa `alttp-recomp.exe recomp scan` sobre una exportación equivalente. Este control de `HEAD` no cubre cambios sin commitear.
 
 ## Empaquetado
 

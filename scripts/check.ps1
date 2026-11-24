@@ -8,7 +8,7 @@
 # Por último comprueba las mejoras de games/alttp_usa/quality.c en una partida nueva (Link ya se maneja en su casa, fotograma 5200,
 # y fuera de ella): max_yellow, low_hp_beep y dash_turn, mirando las escrituras en la WRAM.
 #
-#   powershell -File scripts\check.ps1 [-Rom roms\alttp_usa.sfc] [-Engine ruta\a\snes-recomp.exe]   (por defecto: el de la raíz)
+#   powershell -File scripts\check.ps1 [-Rom roms\alttp_usa.sfc] [-Engine ruta\a\alttp-recomp.exe o snes-recomp.exe]   (por defecto: el de la raíz)
 #
 # Se omite con un aviso (código 0) si falta la ROM, el motor o un compilador de Visual Studio. Todo lo que genera va a
 # out\ (ignorado por git): deriva de la ROM y no se sube.
@@ -30,10 +30,10 @@ if ($Engine -eq "") {
     # SNES_ENGINE (una carpeta) o el motor de la raíz de este repositorio
     $cands = @()
     if ($env:SNES_ENGINE) { $cands += "$env:SNES_ENGINE\snes-recomp.exe" }
-    $cands += (Join-Path $root "snes-recomp.exe")
+    $cands += (Join-Path $root "alttp-recomp.exe")
     $Engine = $cands | Where-Object { Test-Path $_ } | Select-Object -First 1
 }
-if (-not $Engine -or -not (Test-Path $Engine)) { Skip "no hay motor (snes-recomp.exe en la raíz: scripts\update-engine.ps1; o define SNES_ENGINE)" }
+if (-not $Engine -or -not (Test-Path $Engine)) { Skip "no hay motor (alttp-recomp.exe en la raíz: scripts\update-engine.ps1; o define SNES_ENGINE)" }
 if ($Vcvars -eq "") {
     $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
     if (Test-Path $vswhere) {
@@ -48,8 +48,12 @@ $gen = Join-Path $out "rom"
 if (Test-Path $out) { Remove-Item -Recurse -Force $out }
 New-Item -ItemType Directory -Force $gen, "$gen\fast" | Out-Null
 
-& $Engine codegen $Rom --all -o $gen --game games\alttp_usa.toml 2>$null
-if ($LASTEXITCODE -ne 0) { throw "codegen fallo" }
+# el ejecutable del juego lleva el generador tras "recomp"; el snes-recomp.exe de un motor suelto, no
+$gen_cmd = if ((Split-Path $Engine -Leaf) -ieq "snes-recomp.exe") { @() } else { @("recomp") }
+# alttp-recomp.exe es un programa de ventanas: PowerShell no lo espera con `&` ni deja $LASTEXITCODE, así que Start-Process -Wait
+$gen_args = @($gen_cmd) + @("codegen", "`"$Rom`"", "--all", "-o", "`"$gen`"", "--game", "games\alttp_usa.toml")
+$proc = Start-Process -FilePath $Engine -ArgumentList $gen_args -Wait -PassThru -NoNewWindow
+if ($proc.ExitCode -ne 0) { throw "codegen fallo (código $($proc.ExitCode))" }
 foreach ($f in "dialog.c", "widefill.c", "text.c", "menutext.c", "hud.c", "quality.c", "icon.c") {
     if (-not (Test-Path "$gen\game\$f")) { throw "el motor no copio $f a out\rom\game" }
 }

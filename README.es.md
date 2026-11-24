@@ -26,7 +26,7 @@ Lo más fácil es la **[página de descargas](https://alekaydevs.github.io/alttp
 |---|---|---|---|
 | **Fichero** | `alttp-recomp-…-win64.zip` | `alttp-recomp-…-linux-x86_64.tar.gz` | `ALttP-Recomp-….apk` |
 | **1.** | Descomprime | Extrae | Descarga e instala (permite la fuente) |
-| **2.** | Abre `snes-port.exe` | Abre `alttp-recomp` | Abre la app |
+| **2.** | Abre `alttp-recomp.exe` | Abre `alttp-recomp` | Abre la app |
 | **3.** | **Elegir ROM** y **Jugar** | **Elegir ROM** y **Jugar** | Elige tu ROM y juega |
 | **Requisitos** | Windows 10 o 11 | x86_64, glibc 2.34+ (Ubuntu 22.04, Debian 12 o posterior) | Android 10+ (arm64) |
 

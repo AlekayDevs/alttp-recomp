@@ -17,14 +17,14 @@ Volver al [README](../README.md). Aquí está lo que necesita quien quiere compi
 ### En Windows
 
 ```
-snes-port.exe                                  # doble clic: el lanzador (eliges la ROM y juegas)
-snes-port.exe roms\alttp_usa.sfc               # construye si hace falta y abre el juego
-snes-port.exe roms\alttp_usa.sfc --no-launch   # solo construye
-snes-port.exe clean roms\alttp_usa.sfc         # borra la caché de la ROM (si un cambio no se nota)
-snes-port.exe roms\alttp_usa.sfc -- --game-opt dialog_skip=0   # opciones del juego
+alttp-recomp.exe                                  # doble clic: el lanzador (eliges la ROM y juegas)
+alttp-recomp.exe roms\alttp_usa.sfc               # construye si hace falta y abre el juego
+alttp-recomp.exe roms\alttp_usa.sfc --no-launch   # solo construye
+alttp-recomp.exe clean roms\alttp_usa.sfc         # borra la caché de la ROM (si un cambio no se nota)
+alttp-recomp.exe roms\alttp_usa.sfc -- --game-opt dialog_skip=0   # opciones del juego
 ```
 
-Este repositorio lleva el motor ya hecho en la raíz (`snes-port.exe`, `snes-recomp.exe`, `sdl2\`, `toolchain\` con TinyCC; licencia y README del motor como `LICENSE-engine` y `README-engine.md`), así que no hace falta clonar `snes-recomp` para jugar: **doble clic en `snes-port.exe`** abre la ventana del lanzador (reconoce el juego por `games\`), eliges tu ROM y juegas; con una ROM como argumento lo hace sin ventana. Para actualizar el motor: en `snes-recomp`, `powershell -File scripts\release.ps1`; aquí, `powershell -File scripts\update-engine.ps1`, y se sube como cualquier cambio.
+Este repositorio lleva el motor ya hecho en la raíz (`alttp-recomp.exe`, `sdl2\`, `toolchain\` con TinyCC; licencia y README del motor como `LICENSE-engine` y `README-engine.md`), así que no hace falta clonar `snes-recomp` para jugar: **doble clic en `alttp-recomp.exe`** abre la ventana del lanzador (reconoce el juego por `games\`), eliges tu ROM y juegas; con una ROM como argumento lo hace sin ventana. Para actualizar el motor: en `snes-recomp`, `powershell -File scripts\release.ps1`; aquí, `powershell -File scripts\update-engine.ps1`, y se sube como cualquier cambio.
 
 ### En Linux
 

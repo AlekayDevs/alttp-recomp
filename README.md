@@ -26,7 +26,7 @@ The easiest way is the **[download page](https://alekaydevs.github.io/alttp-reco
 |---|---|---|---|
 | **File** | `alttp-recomp-…-win64.zip` | `alttp-recomp-…-linux-x86_64.tar.gz` | `ALttP-Recomp-….apk` |
 | **1.** | Unzip | Extract | Download and install (allow the source) |
-| **2.** | Open `snes-port.exe` | Open `alttp-recomp` | Open the app |
+| **2.** | Open `alttp-recomp.exe` | Open `alttp-recomp` | Open the app |
 | **3.** | **Choose ROM** and **Play** | **Choose ROM** and **Play** | Pick your ROM and play |
 | **Requirements** | Windows 10 or 11 | x86_64, glibc 2.34+ (Ubuntu 22.04, Debian 12 or newer) | Android 10+ (arm64) |
 
