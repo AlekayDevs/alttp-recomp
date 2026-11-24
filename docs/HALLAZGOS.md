@@ -75,9 +75,33 @@ Resultado: **0 stubs de 4 178 funciones** (antes 2). `check.ps1` y `check.sh` fa
 - `adb`: antes de tocar la pantalla, comprueba `dumpsys window | grep mCurrentFocus`. Un toque a ciegas abrió una
   notificación ajena.
 
-## 5. Pendiente
+## 5. Revisión de lo que seguía sin demostrarse (2026-11-24)
 
-- Llegar **jugando** a las salas `0x01B`, `0x043` y `0x097` (¿en qué mazmorras están? ¿se pueden saltar?) y comprobar que
-  el comportamiento de `01:CA17` es el de la consola; hoy solo se sabe que ya no detiene el juego.
-- Una partida completa (la prueba que falta para decir que el juego se pasa de principio a fin).
-- Comparar con un emulador de referencia (ver `plan.md`, punto 9 de la lista de pruebas).
+**5.1 ¿`01:CA17` hace lo que dice su código? Sí, en lo observable.** Prueba de caja blanca con un ejecutable instrumentado (contador de
+entradas en la función): se fuerza la etiqueta `0x1C` en una mazmorra cargada y se prepara `$0540..$055F`. Sin disparo (0 bits, 3 bits, o 4 bits
+en los bytes bajos, que no cuentan) no cambia nada; con 4 palabras con el bit 15 puesto, o con `$0642 != 0`, queda `$041A=1`, `$02E4=1`, `$0FC1=1`,
+`$0403=0x10`, y la función no se vuelve a llamar (la otra rama de `01:C8D4`). **No observable:** `$012D = 7` (petición de efecto de sonido que el audio
+consume en el mismo fotograma) y que el resultado sea el de la consola; solo se comprueba contra el código.
+
+**5.2 Llegar a las salas `0x01B`, `0x043`, `0x097`: no se ha conseguido.** Escribir `$A0` mientras carga una mazmorra deja la sala pedida y el módulo 7, pero
+las etiquetas siguen en `(00,00)`: el cargador ya había leído la cabecera de la sala de la entrada. Las 133 entradas no caen en ellas, así que hay que ir
+por puertas o escaleras. Ideas: reproducir una ruta con pulsaciones desde una entrada conocida, o escribir las variables del cambio de sala de una puerta
+(sala destino y submódulo) en vez de `$A0`.
+
+**5.3 `08:A8E3` = ancilla de tipo `0x25`.** El despachador (`08:836E`: `PLA; DEC A; ASL A; TAY; LDA $837F,Y`) indexa la tabla con *tipo − 1*; la
+entrada 36 es el tipo `0x25` y la 21 (`08:A8E5`) el `0x16`. Crear un ancilla de esos tipos (`--poke 00C4A=25`) ejecuta cada manejador sin parar el juego.
+Si el juego lo crea, no se sabe: la búsqueda de `LDA #tipo; STA $0C4A,X` es inútil (ni la bomba, `0x07`, aparece: los ancillas se crean por otras rutas).
+Argumento a favor de que **no se use** en el juego original: el despachador deja el acarreo limpio (`ASL A` sobre `0x24`), así que el `BCC` de `08:A8E3` salta a
+`08:A876` (`ASL $18`, `ADC #$0C` y, con M=8, un `BRK`); en la consola eso rompería el juego. Es una **inferencia**, no una prueba (depende de que el
+despachador corra con M=8).
+
+**5.4 Comparar con la consola: no hay forma aquí.** No hay ningún emulador en este PC. Lo que daría una prueba de verdad es instalar uno con volcado de memoria
+(bsnes, Mesen2 o similar), grabar una partida de pulsaciones y comparar la WRAM cada N fotogramas con la recompilación.
+
+**5.5 Partida completa: sin hacer.** Es lo único que demuestra «se puede pasar»; todo lo anterior solo descarta bloqueos concretos.
+
+## 6. Pendiente
+
+- Llegar **jugando** (o con una ruta de pulsaciones) a las salas `0x01B`, `0x043` y `0x097`.
+- Instalar un emulador de referencia y comparar WRAM por fotogramas (5.4).
+- Una partida completa.
