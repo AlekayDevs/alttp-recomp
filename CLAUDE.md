@@ -37,7 +37,7 @@ El motor va **en este repositorio**, en la raíz (`alttp-recomp.exe`, `sdl2\`, `
 
 ## Estados guardados
 
-El perfil declara `[resume]` en `00:8034` (la espera del NMI del bucle principal, dentro de la función de reset, con `S = $01FF`). El motor guarda y carga ahí: F5 guarda, F7 carga, F3/F4 cambian de ranura, F6 abre el selector de ranuras (miniatura y fecha de cada una; en Android, las placas SAVE, LOAD, SLOT y REWIND), Retroceso rebobina. En la intro y la pantalla de título no se puede (el juego cambia de pila entre NMI e IRQ); en la partida sí. Si algún C de este repositorio guarda estado propio en variables estáticas, hay que poder recuperarlo desde la WRAM.
+El perfil declara `[resume]` en `00:8034` (la espera del NMI del bucle principal, dentro de la función de reset, con `S = $01FF`). El motor guarda y carga ahí: F5 guarda, F7 carga, F3/F4 cambian de ranura, F6 (o F1 → Session → States) abre el selector de ranuras (miniatura y fecha de cada una; con S o el botón GUARDAR se guarda en la ranura elegida, con L o CARGAR se carga; con mando, X guarda e Y carga; en Android, las placas SAVE, LOAD, SLOT y REWIND), Retroceso rebobina. En la intro y la pantalla de título no se puede (el juego cambia de pila entre NMI e IRQ); en la partida sí. Si algún C de este repositorio guarda estado propio en variables estáticas, hay que poder recuperarlo desde la WRAM.
 
 Las partidas (`.srm`), los estados (`.sst`) y sus miniaturas (`.thumb`, una captura reducida del juego: material derivado de la ROM) van a `saves\` junto a `alttp-recomp.exe` (carpeta por instalación; `%APPDATA%\snes-port\saves` si ahí no se puede escribir). Está en `.gitignore`.
 

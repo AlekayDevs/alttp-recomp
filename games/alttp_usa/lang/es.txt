@@ -223,11 +223,11 @@ Bueno, no recuerdo bien los{73}
 detalles, pero{43}
 @044
 Hace mucho, un pueblo próspero{75}
-llamado los Hylia habitaba{76}
+llamado los hylianos habitaba{76}
 esta tierra{43}{7E}{73}
 Las leyendas hablan de muchos{73}
-tesoros que los Hylia ocultaron{73}
-por toda la tierra{43}{7E}{73}
+tesoros que los hylianos{73}
+ocultaron por toda la tierra{43}{7E}{73}
 La Espada Maestra, una espada{73}
 poderosa forjada contra los de{73}
 corazón malvado, es uno de{7E}{73}
@@ -336,7 +336,7 @@ más de la leyenda{43}{7E}{73}
 Hace tres o cuatro{73}
 generaciones, una orden de{73}
 caballeros protegía a la{7E}{73}
-realeza de los Hylia. Estos{73}
+realeza hyliana. Estos{73}
 Caballeros de Hyrule eran{73}
 también guardianes del{7E}{73}
 Colgante del Valor. Por{73}
@@ -375,7 +375,7 @@ de la leyenda que lo rodea.{7E}{73}
 Hace tres o cuatro{73}
 generaciones una orden de{73}
 caballeros protegía a la{7E}{73}
-realeza de los Hylia. Estos{73}
+realeza hyliana. Estos{73}
 Caballeros de Hyrule eran{73}
 también guardianes del{7E}{73}
 Colgante del Valor. Por{73}
@@ -540,7 +540,7 @@ el botón {5E}{46}.
 @093
 ¡Encontraste el Libro de{75}
 Mudora! ¡Puedes usarlo para{76}
-leer la lengua de los Hylia!
+leer la lengua hyliana!
 @094
 ¡Encontraste la Perla Lunar!{75}
 Protege al Héroe de los{76}
@@ -1592,14 +1592,14 @@ ocurre en la Tierra Dorada que{76}
 sellaron los siete sabios{43}{7E}{73}
 Debe ser un presagio del Gran{73}
 Cataclismo, vaticinado por los{73}
-de sangre Hylia{43}{7E}{73}
+de sangre hyliana{43}{7E}{73}
 {43} {43} {43}{73}
 La profecía dice, {4C}El Héroe{73}
 se alzará en el desierto con{7E}{73}
 el Libro de Mudora.{4C}{73}
 Si tienes el Libro de Mudora{73}
 podrás leer la lengua del{7E}{73}
-pueblo Hylia.{73}
+pueblo hyliano.{73}
 Debe estar en la casa de los{73}
 libros de la aldea{43}{7E}{73}
 ¡Debes conseguirlo!{73}
@@ -1613,7 +1613,7 @@ duerme en el bosque será tuya.
 @295
 ¡Ajaa!  Es el Libro de Mudora.{75}
 Con él puedes leer la lengua{76}
-del pueblo Hylia.
+del pueblo hyliano.
 @296
 Eres el verdadero Héroe{43}{75}
 Creo que devolverás la paz{76}
@@ -1761,10 +1761,10 @@ de ser el Héroe de la leyenda.{73}
 {7A02}LINK, gracias a ti escapó de{75}
 las garras de los monstruos{76}
 malignos.  ¡Gracias!{7E}{73}
-Dicen que el pueblo Hylia{73}
+Dicen que el pueblo hyliano{73}
 dominaba poderes misteriosos,{73}
 igual que los siete sabios.{7E}{73}
-Pero la sangre de los Hylia se{73}
+Pero la sangre hyliana se{73}
 ha diluido con el tiempo.  Los{73}
 que llevamos la sangre de los{7E}{73}
 siete sabios ya no tenemos{73}
