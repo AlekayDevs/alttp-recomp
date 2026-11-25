@@ -25,7 +25,7 @@ ROM ──► carga y cabecera ──► descubrimiento de código ──► gra
                                tablas de saltos,            diagnósticos)                   una etiqueta por bloque)
                                anchos M/X)                                                          │
                                                                                                     ▼
-                                         runtime (C): bus LoROM · DMA/HDMA · PPU · SPC700+DSP · entrada · SRAM ──► ejecutable
+                                         runtime (C): bus LoROM/HiROM · DMA/HDMA · PPU · SPC700+DSP · entrada · SRAM ──► ejecutable
 ```
 
 - **Descubrimiento:** sigue el código desde los vectores y las entradas del perfil del juego (`games/<id>.toml`), resuelve saltos indirectos con tablas comprobadas a mano contra la ROM y sigue los anchos de los registros M/X por contexto de función.
@@ -36,7 +36,7 @@ ROM ──► carga y cabecera ──► descubrimiento de código ──► gra
 
 | Área | Estado |
 |---|---|
-| Carga de ROM (LoROM, cabecera de copiador, CRC32, vectores) | hecho |
+| Carga de ROM (LoROM y HiROM, cabecera de copiador, CRC32, vectores) | hecho |
 | Decodificador 65816 y desensamblador, con seguimiento de M/X | hecho |
 | Descubrimiento de código y tablas de saltos | hecho (ALttP: 0 saltos sin resolver) |
 | Grafo de funciones y bloques | hecho |
@@ -178,7 +178,7 @@ Opciones útiles: `--sample FICHERO:CADA:DIR[:LONGITUD],...` (volcar la WRAM cad
 
 | Ruta | Contenido |
 |---|---|
-| `src/rom.rs`, `src/games.rs` | carga de ROM, mapeo LoROM, búsqueda e identificación de perfiles por CRC32 |
+| `src/rom.rs`, `src/games.rs` | carga de ROM, mapeo LoROM y HiROM, búsqueda e identificación de perfiles por CRC32 |
 | `src/opcodes.rs`, `src/disasm.rs` | tabla de opcodes y decodificador |
 | `src/discover.rs`, `src/graph.rs` | descubrimiento de código, bloques y funciones |
 | `src/codegen.rs` | generador de C |

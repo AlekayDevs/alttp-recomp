@@ -177,7 +177,9 @@ void alttp_pause_labels_restore(void) {
 void alttp_pause_labels(void) {
     int n, t, r;
     uint16_t bitmaps[5 * 8];
-    if (wram_read8(0x10) != 0x0E) return;
+    /* Module $0E is also the Select menu ("Continuar partida / Guardar y salir", submodule $0B), which keeps the pause menu's buffers in the WRAM:
+     * only the pause menu itself (submodule $01) has the four boxes, and the spare tiles ($1F8 to $1FA) belong to the dialog text there. */
+    if (wram_read8(0x10) != 0x0E || wram_read8(0x11) != 0x01) return;
     for (n = 0; n < N_LABELS; n++) {
         const Label *lb = &labels[n];
         uint16_t w = (uint16_t)(wram_read8(lb->buffer) | wram_read8(lb->buffer + 1u) << 8);
