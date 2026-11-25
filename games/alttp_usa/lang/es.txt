@@ -273,8 +273,8 @@ cualquiera puede usar esa arma.{73}
 Dicen que solo el Héroe de los{7E}{73}
 Colgantes puede blandir la{73}
 espada. {43}   {43}   {43}{7E}{73}
-¿De verdad quieres{73}
-encontrarla?     {44} ¡Sí!{73}
+¿Quieres encontrarla?{73}
+    {44} ¡Sí!{73}
        ¡Claro que sí!{68}
 @051
 Bien. Como prueba, ¿puedes{75}
