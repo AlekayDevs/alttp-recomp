@@ -126,8 +126,22 @@ Recetas de herramienta (para los otros ports):
 
 **5.6 Mazmorra de cada entrada (2026-11-24, `scripts/probe_entradas.py`).** Las 133 entradas (0 a 0x84) cargadas desde el estado de la casa (fotograma 5300) con `$010E`, `$10=6`: 15 mazmorras distintas en `$040C` (00 Alcantarillas, 02 Castillo, 04 Este, 06 Desierto, 08 Torre de Agahnim, 0A Pantano, 0C Palacio Oscuro, 0E Mire, 10 Skull Woods, 12 Hielo, 14 Hera, 16 Thieves, 18 Turtle Rock, 1A Ganon); las demas (`FF`) son casas y cuevas. Sala de entrada de cada una: Castillo 060-062, Este 0C9, Desierto 083-085 y 063, Pantano 028, Palacio Oscuro 04A, Mire 098, Hielo 00E, Hera 077, Thieves 0DB, Turtle Rock 023/024/0D5/0D6, Ganon 00C. Ninguna entrada cae en 0x01B, 0x043 ni 0x097. **Suposicion sin comprobar** (por la numeracion de salas y el vecino de entrada): 0x043 seria del Desierto, 0x097 del Mire y 0x01B del Palacio Oscuro; se confirma pasando por ellas con `--log-wram` de `$A0`.
 
+**5.7 Las tres salas con su cabecera real (2026-11-26; forzado, no jugado).** Desde el estado de la sala del trono del Castillo (entrada 2, módulo 7 estable en el fotograma 5400) se escribe `$A0` = sala y `$11` = 2, 6 o 7 (`--poke 000A0=..@5400 --poke 00011=..@5400`): el módulo 7 carga la sala `$A0` con sus rutinas (las de un cambio de sala) y no con la de la entrada. Resultado a los 6300 fotogramas, sin `UNSUPPORTED` y con `$10`=7 estable, `$041A`=0 (así que `01:CA17` se llama):
+
+| sala | `$AE` (etiqueta 1) | `$AF` (etiqueta 2) |
+|---|---|---|
+| 0x01B | 0x03 | 0x1C |
+| 0x043 | 0x00 | 0x1D |
+| 0x097 | 0x1C | 0x00 |
+
+Coincide con las cabeceras de `04:F502` (§5, 0x01B tag2, 0x043 tag2, 0x097 tag1). Con `$11` = 1, 3, 4, 5 u 8 no carga la sala (`$A0` no cambia o el juego se va a otro sitio). Trampas: (1) escribir `$A0` en el fotograma de la entrada, o justo después, **no** recarga nada (la carga de la entrada ocurre entera en un fotograma; las capturas con y sin poke son idénticas): hay que escribirlo ya en módulo 7. (2) `--watch` del headless mira registros de la PPU, no la WRAM; para seguir una variable de la WRAM, `--sample FICHERO:CADA:DIR:LEN` con `CADA`=1. (3) Los pokes se aplican al terminar el fotograma indicado. (4) La captura de justo después muestra dos salas a medio desplazar: es el cambio de sala forzado, no un fallo. (5) `route.py ... args` en Windows deja `\r`: quítalo (`tr -d '\r'`) antes de pasar los argumentos. (6) El `headless` de `out\` de `check.ps1` es el del motor de la raíz, que no lleva `--state-save`/`--sample`; se regenera con `snes-recomp.exe codegen` y `cl` a otra carpeta (`out\rom2`).
+
+**Las 296 salas (2026-11-26, `scripts/probe_salas.py`).** Misma técnica con las salas 0 a 0x127, 300 fotogramas cada una: **295 acaban en módulo 7 con `$A0` = la sala forzada, sin `UNSUPPORTED` ni parada del motor**. Las tres de `01:CA17` incluidas. La excepción es la **0x089**, que acaba en la **0x0A9** (piso inferior) con `$AE`=0x17: Link queda en las coordenadas de la sala del trono y, sin tocar nada, el propio juego lo mueve de sala. No es un fallo del port: muestreando cada fotograma (`--sample f.txt:1:A0:2,10:2,AE:2,20:4,A4:1,5D:1,A2:2`), Link aparece en la 0x089 en Y=0x03C0, X=0x04F8 (las del trono), a los ~120 fotogramas `$5D`=1 (cae por un agujero), el submódulo vuelve a 0 y a los ~175 la sala pasa a 0x0A9 con `$A2`=0x089 (sala anterior). Es la caída normal a la planta de abajo. Trampas del script: los pokes del fotograma del estado guardado no se aplican al cargarlo (hay que poner `@5401` para un estado del 5400); con 6 procesos a la vez el equipo se quedó sin memoria, van 2.
+
+Sigue sin ser jugado: un cambio de sala forzado salta las puertas y no ejecuta el código de entrada a la sala por la vía normal.
+
 ## 6. Pendiente
 
-- Llegar **jugando** (o con una ruta de pulsaciones) a las salas `0x01B`, `0x043` y `0x097`.
+- Llegar **jugando** (o con una ruta de pulsaciones) a las salas `0x01B`, `0x043` y `0x097` (con la cabecera real ya cargan y corren: §5.7).
 - Comparar el recorrido natural (no forzado) contra BizHawk: misma ruta de pulsaciones y WRAM cada N fotogramas.
 - Una partida completa.
