@@ -4,7 +4,7 @@
 
 Este repositorio contiene el perfil y las mejoras propias de *The Legend of Zelda: A Link to the Past*, USA, CRC32 `777AAC2F`. El motor es `snes-recomp`, un proyecto separado cuyo código fuente está normalmente en `../snes-recomp`.
 
-- Consulta `README.md` para el producto y las opciones del jugador, `docs/DESARROLLO.md` para desarrollo, `docs/TRADUCCION.md` para traducción y `plan.md` para avances y pendientes.
+- Consulta `README.md` para el producto y las opciones del jugador, `docs/DESARROLLO.md` para desarrollo, `docs/TRADUCCION.md` para traducción y `docs/ROADMAP.md` para los pendientes.
 - Estas instrucciones proceden de `CLAUDE.md`. Mantén ambos documentos coherentes cuando cambien las reglas de trabajo.
 - El plan mezcla notas históricas con avances posteriores: contrasta sus pendientes con el perfil, el C y las pruebas antes de implementar algo que ya exista. No presentes como probado lo que solo está previsto o tiene una prueba de lógica.
 - Documentación y mensajes de commit en español.
