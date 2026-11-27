@@ -95,6 +95,9 @@ if (-not $NoTcc -and -not (Test-Path "$stage\toolchain\tcc\tcc.exe")) {
 if (Test-Path "$stage\README.md") { Move-Item "$stage\README.md" "$stage\README-engine.md" -Force }
 if (Test-Path "$stage\LICENSE") { Move-Item "$stage\LICENSE" "$stage\LICENSE-engine" -Force }
 Copy-Item README.md, README.es.md, LICENSE $stage
+Copy-Item scripts\package-readme.txt "$stage\README.txt"
+# sdl2\: TinyCC solo enlaza con SDL2.dll y la ruta de Visual C++ con SDL2.lib; los simbolos de depuracion (6,6 MB) y las libs de main y de pruebas no hacen falta
+foreach ($f in "SDL2.pdb", "SDL2main.lib", "SDL2test.lib") { Remove-Item (Join-Path $stage "sdl2\lib\x64\$f") -ErrorAction SilentlyContinue }
 Copy-Item games $stage -Recurse
 # lo lee el aviso de version nueva del lanzador (src/update.rs del motor): repo y version instalada
 Set-Content -Path "$stage\update.info" -Value "repo=ArgoxDevs/alttp-recomp`nversion=$Version`nname=ALttP Recomp`ntagline=The Legend of Zelda: A Link to the Past" -Encoding ASCII

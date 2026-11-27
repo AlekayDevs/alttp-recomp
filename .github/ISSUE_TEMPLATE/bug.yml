@@ -49,5 +49,5 @@ body:
     id: log
     attributes:
       label: Log or error text / Registro o mensaje
-      description: Text of the error shown by the launcher or the console, if any.
+      description: Text of the error shown by the launcher or the console, if any. If the game stopped, paste the exact `UNSUPPORTED ...` line and say which room or screen you were in.
       render: text

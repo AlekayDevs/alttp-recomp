@@ -165,7 +165,7 @@ En Windows y Linux el lanzador puede avisar de una versión nueva e instalarla. 
 - [**Desarrollo**](docs/DESARROLLO.md): compilar desde el código, estructura del repositorio, pruebas, empaquetado y limitaciones conocidas.
 - [**Motor `snes-recomp`**](https://github.com/ArgoxDevs/snes-recomp): el recompilador, la PPU, el sonido y el runtime.
 - [**Preguntas frecuentes y problemas comunes**](docs/FAQ.es.md) (ROM, antivirus, Play Protect, partidas) · [Registro de cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md)
-- [Contribuir](CONTRIBUTING.md): nunca subas la ROM ni nada derivado de ella.
+- [Contribuir](CONTRIBUTING.es.md): nunca subas la ROM ni nada derivado de ella.
 
 ## Licencia
 

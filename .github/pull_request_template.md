@@ -10,4 +10,4 @@
 - [ ] `snes-recomp scan` termina sin error sobre lo que se sube.
 - [ ] `scripts/check.ps1` o `scripts/check.sh` en `OK` (si se tocó C o el perfil).
 - [ ] Una mejora que pueda cambiar la dificultad está apagada por defecto.
-- [ ] Mensaje de commit en español.
+- [ ] Commit message in English / Mensaje de commit en inglés.

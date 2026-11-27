@@ -12,7 +12,7 @@ jobs:
   paquete:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           fetch-tags: true
@@ -41,7 +41,7 @@ jobs:
             echo "$f: $(objdump -T "$f" | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -1)"
           done
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: alttp-recomp-${{ steps.v.outputs.version }}-linux-x86_64
           path: |

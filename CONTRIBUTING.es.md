@@ -1,0 +1,39 @@
+# Contribuir
+
+[English](CONTRIBUTING.md)
+
+Este repositorio es el juego (*A Link to the Past*, USA); el recompilador, el runtime y `snes-port` están en [`snes-recomp`](https://github.com/ArgoxDevs/snes-recomp), y sus reglas generales (OpenSpec, clean-room, pruebas) están en su [CONTRIBUTING.md](https://github.com/ArgoxDevs/snes-recomp/blob/main/CONTRIBUTING.md). Un fallo del traductor, de la PPU o del sonido va allí.
+
+## Reglas que no se negocian
+
+- **Nunca la ROM ni nada derivado de ella**: ni en commits, ni en issues, ni en PR. Eso incluye volcados de VRAM/WRAM, capturas con gráficos del juego, el C generado y bytes de tablas copiados de la ROM. `.gitignore` excluye `*.sfc`, `*.smc`, `*.srm`, `roms/` y `out/`. Antes de abrir un PR, con el motor compilado:
+
+  ```
+  .\alttp-recomp.exe recomp scan ruta\a\alttp_usa.sfc .
+  ```
+
+  Debe terminar sin error.
+- **Código propio.** El C que añadas aquí es original (clean-room). Documentación pública sobre el juego (mapas de memoria de la comunidad) puede servir de pista para encontrar una dirección, pero la dirección se comprueba a mano contra la ROM real.
+- **Tablas de saltos** comprobadas a mano antes de añadirlas a `games/alttp_usa.toml`.
+
+## Qué se puede aportar
+
+- **Mejoras del juego**: ganchos `before`/`after`/`replace` en `games/alttp_usa.toml` con su C en `games/alttp_usa/`. Se activan con la ROM original y, si pueden molestar, tienen una opción (`game_opt("clave", defecto)`, que se pasa con `--game-opt clave=valor`).
+- **Direcciones y tablas** que falten (`snes-recomp discover <rom> --game games/alttp_usa.toml --unresolved` lista los saltos indirectos sin tabla).
+- **Traducciones a otros idiomas.** Como el español: texto redactado para el proyecto (`lang/xx.txt` y `lang/xx_menu.txt`, UTF-8), líneas de 168 px como máximo (`python scripts/check_text.py roms/alttp_usa.sfc`) y caracteres especiales dibujados al vuelo con la fuente del juego, de modo que solo haga falta la ROM USA. **No se aceptan** importadores que extraigan textos o fuentes de una ROM de otra región, aunque los archivos extraídos no se suban. Abre antes un issue para acordar el enfoque (el menú **F1** del motor es aparte, va en `snes-recomp`).
+- **Documentación** de cómo funciona una parte del juego y de las direcciones que usan los ganchos.
+
+El C de los ganchos usa solo la interfaz de `runtime/snes_rt.h` del motor: `wram_read8`/`wram_write8`, `joy1_state()` y `game_opt()`.
+
+## Probar
+
+```
+powershell -File scripts\check.ps1 -Rom ruta\a\alttp_usa.sfc
+```
+
+Genera el C con el motor, lo compila y ejecuta el juego sin ventana hasta el primer mensaje. Si añades un gancho nuevo, amplía `check.ps1` con una comprobación del byte de WRAM que cambia (mira cómo lo hace con `$1CD9`). Para ver el efecto a mano: `snes-port ... --game games\alttp_usa.toml`.
+
+## Commits y PR
+
+- **Mensajes de commit en inglés**, en imperativo, con el qué y el porqué en la primera línea. La documentación sí va en español (y en inglés donde ya hay versión inglesa).
+- Describe en el PR qué dirección de la ROM tocas, cómo la comprobaste y con qué ROM (sin adjuntar nada de ella).
