@@ -30,7 +30,6 @@ No hechos a propósito: la superbomba (los tres cambios de `zelda3` dependen uno
 
 ## 4. Paridad del lanzador y opciones
 
-- Botón de idioma en el lanzador de Windows (hoy sigue el idioma del sistema); en Android el selector ya existe.
 - Probar de verdad el aviso de actualización en Windows y en Linux (instalar la N-1, publicar la N, «Buscar ahora», comprobar que `saves\` sigue intacta).
 - Mejoras de calidad de vida en el menú F1: el perfil solo declara `language`; el motor admite como mucho 16 opciones y ALttP tiene 32 más. Hace falta subir el límite en el motor y declarar un `[[option]]` por mejora.
 - Probar en un Windows limpio (sin Visual Studio ni gcc, con y sin red), en un Android de gama media y con mando Bluetooth.

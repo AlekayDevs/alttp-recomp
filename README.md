@@ -93,7 +93,7 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 - **Online play** (netplay) or shared sessions.
 - **Fixes for bugs of the original game**, as options you turn on one by one (every address is checked against the ROM) and more quality-of-life improvements in C, as they get tested.
 - **More languages.** Spanish is done; another language would be a translation written for the project (text of its own, never extracted from a ROM), like `lang/es.txt`. [How to propose one →](CONTRIBUTING.md)
-- **Windows checks.** The Windows launcher follows the system language (no switch button yet), and its automatic update has not been tried on a real installation.
+- **Windows checks.** The automatic update of the Windows launcher has not been tried on a real installation.
 
 ## Quality-of-life improvements
 
@@ -153,7 +153,7 @@ The improvements that touch the game (`skip_intro`, `fix_portal_chime`, `fix_dea
 
 ## Save states and saves
 
-Saves (`.srm`) and states (`.sst`) go to the `saves/` folder next to the program (on Linux, `~/.local/share/alttp-recomp/saves`). States can only be saved during gameplay, not in the intro or on the title screen. Each state has a thumbnail next to it (`.sN.thumb`) that the slot picker shows with the date; states saved with an earlier version appear without a thumbnail until they are saved again. Neither states nor thumbnails are ever published.
+Saves (`.srm`) and states (`.sst`) go to the `saves/` folder next to the program (if that folder cannot be written: `%APPDATA%\snes-port\saves` on Windows, `~/.local/share/snes-port/saves` on Linux; see the [FAQ](docs/FAQ.md)). States can only be saved during gameplay, not in the intro or on the title screen. Each state has a thumbnail next to it (`.sN.thumb`) that the slot picker shows with the date; states saved with an earlier version appear without a thumbnail until they are saved again. Neither states nor thumbnails are ever published.
 
 ## Updates
 
@@ -166,6 +166,7 @@ Most of the documentation is in Spanish.
 - [**Translation and text**](docs/TRADUCCION.md): how messages and menus are dumped and translated without touching the ROM.
 - [**Development**](docs/DESARROLLO.md): building from source, repository layout, tests, packaging and known limitations.
 - [**`snes-recomp` engine**](https://github.com/ArgoxDevs/snes-recomp): the recompiler, the PPU, the sound and the runtime.
+- [**FAQ and common problems**](docs/FAQ.md) (ROM, antivirus, Play Protect, saves) · [Changelog](CHANGELOG.md) · [Roadmap](docs/ROADMAP.md)
 - [Contributing](CONTRIBUTING.md): never upload the ROM or anything derived from it.
 
 ## License

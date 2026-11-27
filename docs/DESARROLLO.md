@@ -10,7 +10,11 @@ Volver al [README](../README.md). Aquí está lo que necesita quien quiere compi
 - `games/alttp_usa/text.c`: vuelca los mensajes del juego a un fichero de texto y, con la opción `language`, los sustituye por los de `lang/es.txt`.
 - `games/alttp_usa/menutext.c`: lo mismo para el texto fijo de la selección de partida y del registro de nombre, con `lang/es_menu.txt`.
 - `scripts/check.ps1` y `scripts/check.sh`: prueban que lo anterior funciona (necesitan tu ROM). `scripts/test_refund.c` y `scripts/test_hooks.c` comprueban la lógica de algunos arreglos sin partida: se compilan aparte con el C de `games/alttp_usa/quality.c`.
-- `scripts/release.ps1`: arma el paquete para repartir.
+- `games/alttp_usa/quality.c`: las mejoras de calidad de vida y los arreglos de fallos del original (cada una con su opción `--game-opt`).
+- `games/alttp_usa/hud.c`: el rótulo «LIFE» del marcador y los rótulos del marco del menú de pausa, que con `language=es` salen en español.
+- `games/alttp_usa/icon.c`: el icono de la ventana del juego (lo escribe `scripts/make_icon.py`).
+- `scripts/check_text.py` (la traducción; `--sin-rom` para CI), `scripts/check_guards.py`, `guards_win_build.py` y `guards_win_fuzz.py` (los ganchos `guard`), `probe_entradas.py` y `probe_salas.py` (sala y mazmorra de cada entrada; carga forzada de las 296 salas), `route.py` y `compare_samples.py` (rutas de pulsaciones y comparación con BizHawk).
+- `scripts/release.ps1` y `scripts/release.sh`: arman el paquete para repartir; la versión sale del fichero `VERSION`.
 
 ## Construir y ejecutar desde el código
 
@@ -40,7 +44,7 @@ git clone https://github.com/ArgoxDevs/snes-recomp ../snes-recomp
 
 La primera vez construye el juego con gcc (unos 3 minutos) y lo guarda en `~/.cache/snes-port`; las siguientes arranca al instante. Opciones del juego tras `--`, como en Windows. Las partidas y los estados van a `saves/` junto a `snes-port` (o a `~/.local/share/snes-port/saves` si ahí no se puede escribir). Hace falta un motor que sepa construir en Linux (con el arreglo del nombre del ejecutable y la detección de SDL2 del sistema).
 
-**El lanzador del paquete de Linux** (`alttp-recomp`, del motor: `../snes-recomp/linux/launcher.c`) habla inglés o español. El idioma inicial es el que haya guardado el botón del globo (arriba a la derecha, o la tecla **L**) en `~/.local/share/alttp-recomp/lang.txt` o, si no hay nada, el del entorno (`LANGUAGE`, `LC_ALL`, `LC_MESSAGES`, `LANG`: español si empieza por `es`). En Windows el lanzador sigue el idioma del sistema y en Android todavía no hay selector. Para sacar capturas sin pantalla (así salen las de `docs/img/launcher*.png`): `SNES_PORT_SHOT=ruta.ppm SDL_VIDEODRIVER=dummy ./alttp-recomp [rom]` vuelca el último fotograma del lanzador, y el aviso de versión nueva se simula con un `update.info` junto al ejecutable, `check=1` en `update.txt` de la carpeta de datos y un servidor local en `SNES_PORT_UPDATE_API`. Con vídeo `dummy` el juego no arranca (solo el lanzador).
+**El lanzador del paquete de Linux** (`alttp-recomp`, del motor: `../snes-recomp/linux/launcher.c`) habla inglés o español. El idioma inicial es el que haya guardado el botón del globo (arriba a la derecha, o la tecla **L**) en `~/.local/share/alttp-recomp/lang.txt` o, si no hay nada, el del entorno (`LANGUAGE`, `LC_ALL`, `LC_MESSAGES`, `LANG`: español si empieza por `es`). En Windows y en Android el lanzador también tiene botón de idioma. Para sacar capturas sin pantalla (así salen las de `docs/img/launcher*.png`): `SNES_PORT_SHOT=ruta.ppm SDL_VIDEODRIVER=dummy ./alttp-recomp [rom]` vuelca el último fotograma del lanzador, y el aviso de versión nueva se simula con un `update.info` junto al ejecutable, `check=1` en `update.txt` de la carpeta de datos y un servidor local en `SNES_PORT_UPDATE_API`. Con vídeo `dummy` el juego no arranca (solo el lanzador).
 
 **Paquete de Linux para repartir:** construirlo en local con `scripts/release.sh` da un ejecutable que pide la glibc de la máquina (2.39 en Ubuntu 24.04). Para repartir, `gh workflow run linux-package.yml` (la versión sale del fichero `VERSION`, igual que en `release.ps1` y `release.sh`) lo construye en Ubuntu 22.04 (`.github/workflows/linux-package.yml`) y deja el `.tar.gz` y `SHA256SUMS` como artefacto de la ejecución (`gh run download`); el paquete pide glibc 2.34. No publica ninguna release.
 

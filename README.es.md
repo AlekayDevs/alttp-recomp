@@ -93,7 +93,7 @@ Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni ti
 - **Juego en red** (netplay) o partida compartida.
 - **Arreglos de bugs del juego original**, como opciones que se activan una a una (cada dirección se comprueba contra la ROM) y más mejoras de calidad de vida en C, a medida que se prueben.
 - **Más idiomas.** El español está hecho; otro idioma sería una traducción redactada para el proyecto (texto propio, nunca extraído de una ROM), como `lang/es.txt`. [Cómo proponerla →](CONTRIBUTING.md)
-- **Comprobaciones en Windows.** El lanzador de Windows sigue el idioma del sistema (aún sin botón de cambio) y su actualización automática no se ha probado en una instalación real.
+- **Comprobaciones en Windows.** La actualización automática del lanzador de Windows no se ha probado en una instalación real.
 
 ## Mejoras de calidad de vida
 
@@ -153,7 +153,7 @@ Las mejoras que tocan el juego (`skip_intro`, `fix_portal_chime`, `fix_death_cou
 
 ## Estados guardados y partidas
 
-Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (en Linux, `~/.local/share/alttp-recomp/saves`). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Cada estado lleva al lado una miniatura (`.sN.thumb`) que el selector de ranuras enseña con la fecha; los estados guardados con una versión anterior salen sin miniatura hasta que se vuelven a guardar. Ni los estados ni las miniaturas se publican nunca.
+Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (si en esa no se puede escribir: `%APPDATA%\snes-port\saves` en Windows, `~/.local/share/snes-port/saves` en Linux; mira las [preguntas frecuentes](docs/FAQ.es.md)). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Cada estado lleva al lado una miniatura (`.sN.thumb`) que el selector de ranuras enseña con la fecha; los estados guardados con una versión anterior salen sin miniatura hasta que se vuelven a guardar. Ni los estados ni las miniaturas se publican nunca.
 
 ## Actualizaciones
 
@@ -164,6 +164,7 @@ En Windows y Linux el lanzador puede avisar de una versión nueva e instalarla. 
 - [**Traducción y texto**](docs/TRADUCCION.md): cómo se vuelcan y traducen los mensajes y menús sin tocar la ROM.
 - [**Desarrollo**](docs/DESARROLLO.md): compilar desde el código, estructura del repositorio, pruebas, empaquetado y limitaciones conocidas.
 - [**Motor `snes-recomp`**](https://github.com/ArgoxDevs/snes-recomp): el recompilador, la PPU, el sonido y el runtime.
+- [**Preguntas frecuentes y problemas comunes**](docs/FAQ.es.md) (ROM, antivirus, Play Protect, partidas) · [Registro de cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md)
 - [Contribuir](CONTRIBUTING.md): nunca subas la ROM ni nada derivado de ella.
 
 ## Licencia
