@@ -20,7 +20,7 @@ This is not an emulator: the cartridge's program is **translated to native code*
 
 ## Status
 
-- **Beta.** The latest release marked "stable" (**0.13**, Windows, Linux and Android) **stops the game** when you enter three dungeon rooms (`0x01B`, `0x043` and `0x097`): a routine of the game was not translated. The fix is in **0.15**, published for now as a **Windows-only pre-release**; the generator now leaves **0 untranslated functions out of 4,178**. Until a release with the fix for all three systems is out, on Windows use the latest pre-release, and on Linux and Android expect that halt (the [FAQ](docs/FAQ.md) explains the message). The [CHANGELOG](CHANGELOG.md) has the details.
+- **Beta.** Release **0.16** and later include the fix for the halt in rooms `0x01B`, `0x043` and `0x097` on Windows, Linux and Android (the generator leaves 0 untranslated functions out of 4,178). If you are on 0.13 or earlier, update. No one has finished the game with the recompilation yet: please report anything that stops or breaks (the [FAQ](docs/FAQ.md) explains the `UNSUPPORTED` message). The [CHANGELOG](CHANGELOG.md) has the details.
 - **A full playthrough is not proven yet.** The intro, file select, the first areas and all 133 dungeon entrances load and run, but nobody has finished the game with the recompilation. Until that changes, treat every version as a beta. What has been found along the way is written down in [`docs/HALLAZGOS.md`](docs/HALLAZGOS.md) (in Spanish).
 - If something breaks, [open an issue](https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose) with the version, where it happened and what you were doing (never attach the ROM, saves or screenshots with game graphics).
 

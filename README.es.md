@@ -20,7 +20,7 @@ No es un emulador: el programa del cartucho se **traduce a código nativo** (con
 
 ## Estado
 
-- **Beta.** La última release marcada como «estable» (**0.13**, Windows, Linux y Android) **detiene el juego** al entrar en tres salas de mazmorra (`0x01B`, `0x043` y `0x097`): una rutina del juego no se traducía. El arreglo está en la **0.15**, publicada por ahora como **pre-lanzamiento solo de Windows**; el generador deja ya **0 funciones sin traducir de 4 178**. Hasta que salga una release con el arreglo para los tres sistemas, en Windows usa el último pre-lanzamiento, y en Linux y Android espera esa parada (las [preguntas frecuentes](docs/FAQ.es.md) explican el mensaje). El [registro de cambios](CHANGELOG.md) da el detalle.
+- **Beta.** Las releases **0.16** y posteriores llevan el arreglo de la parada en las salas `0x01B`, `0x043` y `0x097` en Windows, Linux y Android (el generador deja 0 funciones sin traducir de 4 178). Si tienes la 0.13 o anterior, actualiza. Nadie ha terminado aún el juego con la recompilación: cuéntanos cualquier parada o fallo (las [preguntas frecuentes](docs/FAQ.es.md) explican el mensaje `UNSUPPORTED`). El [CHANGELOG](CHANGELOG.md) tiene los detalles.
 - **Una partida completa aún no está demostrada.** La intro, la selección de partida, las primeras zonas y las 133 entradas de mazmorra cargan y funcionan, pero nadie ha terminado el juego con la recompilación. Hasta que eso cambie, trata cualquier versión como una beta. Lo que se va descubriendo está en [`docs/HALLAZGOS.md`](docs/HALLAZGOS.md).
 - Si algo falla, [abre un issue](https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose) con la versión, dónde pasó y qué hacías (sin adjuntar nunca la ROM, partidas ni capturas con gráficos del juego).
 

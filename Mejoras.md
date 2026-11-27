@@ -5,7 +5,7 @@ Revisión del 2026-11-26 sobre `main` (`1603872`). Cada punto dice **qué** pasa
 
 Lo que es del motor (`snes-recomp`) va marcado **[motor]**: se arregla allí y aquí solo se actualiza el binario o la documentación.
 
-> **Progreso (2026-11-27):** ✅ hecho 19 · 🔶 parcial 10 · ⬜ pendiente 4 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+> **Progreso (2026-11-27):** ✅ hecho 20 · 🔶 parcial 10 · ⬜ pendiente 3 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ---
 
@@ -40,8 +40,8 @@ No se ha ejecutado `check.ps1` ni `check.sh`, ni se ha jugado: todo lo anterior 
 
 ## 1. Bloqueantes 🔴
 
-### ⬜ 1.1 Linux y Android siguen con la parada de `01:CA17`
-- **Estado (2026-11-26): Falta la release con los tres paquetes (Windows, Linux, APK). Notas EN/ES listas en `_release_v0.16/NOTES.md`.**
+### ✅ 1.1 Linux y Android siguen con la parada de `01:CA17`
+- **Estado (2026-11-27): ✅ publicada la v0.16 como «Latest» con zip de Windows, `.tar.gz` de Linux (workflow en Ubuntu 22.04), APK (misma firma que la 0.13) y `SHA256SUMS`; notas EN/ES. Sin probar: instalar los tres paquetes desde la release en máquinas limpias y el aviso de actualización de la 0.13 a la 0.16.**
 - La versión estable (`v0.13`, «Latest» en GitHub) es la única que hay para Linux y Android, y **detiene el juego** (`UNSUPPORTED`) al entrar en las salas `0x01B`, `0x043` y `0x097` (HALLAZGOS §1 y §5.7). El arreglo solo está en las pre-releases `v0.14`/`v0.15`, que son **solo de Windows**.
 - La página de descargas y el aviso de actualización usan `releases/latest`, así que hoy reparten la 0.13 a todo el mundo, Windows incluido.
 - **Hacer:** una release (0.16 o 1.0) con los **tres** paquetes (zip de Windows, `.tar.gz` de Linux desde `linux-package.yml` y APK) que lleve el perfil con los `[[assume]]`, y marcarla como «Latest». Es lo más urgente: un jugador que avance unas cuantas mazmorras se queda bloqueado.
