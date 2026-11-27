@@ -30,7 +30,7 @@ No hechos a propósito: la superbomba (los tres cambios de `zelda3` dependen uno
 
 ## 4. Paridad del lanzador y opciones
 
-- Probar de verdad el aviso de actualización en Windows y en Linux (instalar la N-1, publicar la N, «Buscar ahora», comprobar que `saves\` sigue intacta).
+- Aviso de actualización: probada en Windows la instalación real de la 0.15 a la 0.16 (2026-11-27, sin ratón: `saves\` intacta). Falta pulsar los botones en la ventana y probar en Linux.
 - Mejoras de calidad de vida en el menú F1: hecho en código (2026-11-27; motor con 64 opciones, desplazamiento y `desc`; 32 `[[option]]` aquí). Subido, con la ayuda en el menú táctil y las etiquetas en español; falta probarlo en un Android real.
 - Probar en un Windows limpio (sin Visual Studio ni gcc, con y sin red), en un Android de gama media y con mando Bluetooth.
 
