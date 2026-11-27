@@ -58,7 +58,7 @@ That is a bug. Version 0.13 and earlier stop when you enter the rooms `0x01B`, `
 
 ## How do I turn on the quality-of-life improvements?
 
-In the **Game** tab of the F1 menu (on Android, Menu → Game options): one row per option, saved in `config.ini` (on the desktop, a help line under the list explains the one under the cursor). The labels and help lines are in English even with the game in Spanish. For a single run there is also `--game-opt name=value` on the command line (see the README).
+In the **Game** tab of the F1 menu (on Android, Menu → Game options): one row per option, saved in `config.ini` (a help line under the list explains the one under the cursor; in Spanish with `language=es`). For a single run there is also `--game-opt name=value` on the command line (see the README).
 
 ## How do I add a language?
 

@@ -58,7 +58,7 @@ Es un fallo. La 0.13 y anteriores se paran al entrar en las salas `0x01B`, `0x04
 
 ## ¿Cómo activo las mejoras de calidad de vida?
 
-En la pestaña **Juego** del menú F1 (en Android, Menú → Opciones del juego): una fila por opción, guardada en `config.ini` (en el escritorio, una línea bajo la lista explica la del cursor). Las etiquetas y la línea de ayuda están en inglés aunque el juego esté en español. Para una sola partida está también `--game-opt nombre=valor` en la línea de órdenes (mira el README).
+En la pestaña **Juego** del menú F1 (en Android, Menú → Opciones del juego): una fila por opción, guardada en `config.ini` (una línea bajo la lista explica la del cursor; en español con `language=es`). Para una sola partida está también `--game-opt nombre=valor` en la línea de órdenes (mira el README).
 
 ## ¿Cómo añado un idioma?
 

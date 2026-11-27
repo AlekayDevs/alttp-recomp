@@ -97,7 +97,7 @@ Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni ti
 
 ## Mejoras de calidad de vida
 
-Son opciones del juego: se activan en la pestaña **Juego** del menú **F1** (en Android, Menú → Opciones del juego); en el escritorio cada una tiene una línea que la explica. O solo para una partida con `--game-opt nombre=valor`. El menú las guarda en `config.ini`. Todo lo de esta tabla está hecho y tiene prueba automática ([cuánto está probado cada arreglo](#cuánto-está-probado-cada-arreglo)); solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
+Son opciones del juego: se activan en la pestaña **Juego** del menú **F1** (en Android, Menú → Opciones del juego); cada una tiene una línea que la explica, y con `language=es` el menú sale en español. O solo para una partida con `--game-opt nombre=valor`. El menú las guarda en `config.ini`. Todo lo de esta tabla está hecho y tiene prueba automática ([cuánto está probado cada arreglo](#cuánto-está-probado-cada-arreglo)); solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
 
 El volumen de la música y el de los efectos se ajustan por separado en la pestaña **Audio** del menú (`music_volume` y `sfx_volume`); el perfil le dice al motor qué voces del sonido son efectos.
 

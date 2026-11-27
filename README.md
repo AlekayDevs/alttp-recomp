@@ -97,7 +97,7 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 
 ## Quality-of-life improvements
 
-These are game options: turn them on in the **Game** tab of the **F1** menu (on Android, Menu → Game options); on the desktop each one has a short line explaining it. Or turn them on for one run with `--game-opt name=value` (see Commands). The menu saves them in `config.ini`. Everything here is implemented and has an automatic test (see [how well each one is tested](#how-well-the-fixes-are-tested)); only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
+These are game options: turn them on in the **Game** tab of the **F1** menu (on Android, Menu → Game options); each one has a short line explaining it, and the menu shows it in Spanish with `language=es`. Or turn them on for one run with `--game-opt name=value` (see Commands). The menu saves them in `config.ini`. Everything here is implemented and has an automatic test (see [how well each one is tested](#how-well-the-fixes-are-tested)); only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
 
 Music and sound-effect volume are adjusted separately in the menu's **Audio** tab (`music_volume` and `sfx_volume`); the profile tells the engine which sound voices are effects.
 

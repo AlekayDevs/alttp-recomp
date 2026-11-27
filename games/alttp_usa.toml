@@ -902,6 +902,8 @@ label = "Fast text (R)"
 names = ["Off", "On"]
 default = "On"
 desc = "Hold R: text one letter a frame"
+label_es = "Texto rápido"
+desc_es = "Mantén R: el texto va letra a letra"
 
 [[option]]
 key = "low_hp_beep"
@@ -909,6 +911,8 @@ label = "Low HP beep"
 names = ["Off", "On"]
 default = "On"
 desc = "The beep when your health is low"
+label_es = "Pitido de vida"
+desc_es = "Pitido cuando queda poca vida"
 
 [[option]]
 key = "skip_intro"
@@ -916,6 +920,8 @@ label = "Skip the intro"
 names = ["Off", "On"]
 default = "Off"
 desc = "Start or A skip the intro"
+label_es = "Saltar intro"
+desc_es = "Start o A saltan la intro"
 
 [[option]]
 key = "item_switch_lr"
@@ -923,6 +929,8 @@ label = "Items on L/R"
 names = ["Off", "On"]
 default = "Off"
 desc = "L and R change the Y item"
+label_es = "Objetos L/R"
+desc_es = "L y R cambian el objeto de Y"
 
 [[option]]
 key = "dash_turn"
@@ -930,6 +938,8 @@ label = "Dash turning"
 names = ["Off", "On"]
 default = "Off"
 desc = "Turning keeps the boots dash"
+label_es = "Giro con botas"
+desc_es = "Girar con botas sigue la carrera"
 
 [[option]]
 key = "bird_cancel"
@@ -937,6 +947,8 @@ label = "Bird cancel"
 names = ["Off", "On"]
 default = "Off"
 desc = "B on the bird's map cancels it"
+label_es = "Cancelar ave"
+desc_es = "B en el mapa del ave lo cancela"
 
 [[option]]
 key = "sword_pickup"
@@ -944,6 +956,8 @@ label = "Sword picks up"
 names = ["Off", "On"]
 default = "Off"
 desc = "The sword collects items"
+label_es = "Espada recoge"
+desc_es = "La espada recoge del suelo"
 
 [[option]]
 key = "sword_pots"
@@ -951,6 +965,8 @@ label = "Sword on pots"
 names = ["Off", "On"]
 default = "Off"
 desc = "In dungeons the sword breaks pots"
+label_es = "Rompe vasijas"
+desc_es = "Espada rompe vasijas en mazmorras"
 
 [[option]]
 key = "more_bombs"
@@ -958,6 +974,8 @@ label = "Four bombs"
 names = ["Off", "On"]
 default = "Off"
 desc = "Four bombs at once, not two"
+label_es = "Cuatro bombas"
+desc_es = "Cuatro bombas a la vez, no dos"
 
 [[option]]
 key = "rupees_9999"
@@ -965,6 +983,8 @@ label = "Wallet of 9999"
 names = ["Off", "On"]
 default = "Off"
 desc = "Up to 9999 rupees, four digits"
+label_es = "Cartera 9999"
+desc_es = "Hasta 9999 rupias, 4 cifras"
 
 [[option]]
 key = "rupee_fast"
@@ -972,6 +992,8 @@ label = "Fast rupees"
 names = ["Off", "On"]
 default = "Off"
 desc = "The rupee counter counts fast"
+label_es = "Rupias rápidas"
+desc_es = "El contador de rupias va rápido"
 
 [[option]]
 key = "max_yellow"
@@ -979,6 +1001,8 @@ label = "Yellow at max"
 names = ["Off", "On"]
 default = "Off"
 desc = "Full counters turn yellow"
+label_es = "Amarillo: tope"
+desc_es = "Contadores llenos en amarillo"
 
 [[option]]
 key = "fix_portal_chime"
@@ -986,6 +1010,8 @@ label = "Fix: portal"
 names = ["Off", "On"]
 default = "Off"
 desc = "Ice Palace portal rock chimes"
+label_es = "Arr.: portal"
+desc_es = "Palacio de Hielo: portal suena"
 
 [[option]]
 key = "fix_death_count"
@@ -993,6 +1019,8 @@ label = "Fix: deaths"
 names = ["Off", "On"]
 default = "Off"
 desc = "Continue unsaved: no extra death"
+label_es = "Arr.: muertes"
+desc_es = "Continuar sin guardar: sin muerte"
 
 [[option]]
 key = "fix_medallion_abort"
@@ -1000,6 +1028,8 @@ label = "Fix: medallions"
 names = ["Off", "On"]
 default = "Off"
 desc = "Sword release won't cancel them"
+label_es = "Arr.: medallón"
+desc_es = "La espada no cancela medallones"
 
 [[option]]
 key = "fix_magic_refund"
@@ -1007,6 +1037,8 @@ label = "Fix: refund"
 names = ["Off", "On"]
 default = "Off"
 desc = "Magic refund stops at the cap"
+label_es = "Arr.: magia"
+desc_es = "La magia devuelta no pasa del tope"
 
 [[option]]
 key = "fix_somaria_nomagic"
@@ -1014,6 +1046,8 @@ label = "Fix: Somaria"
 names = ["Off", "On"]
 default = "Off"
 desc = "Somaria, no magic: no stray powder"
+label_es = "Arr.: Somaria"
+desc_es = "Somaria sin magia: sin polvo suelto"
 
 [[option]]
 key = "fix_moldorm_sound"
@@ -1021,6 +1055,8 @@ label = "Fix: Moldorm"
 names = ["Off", "On"]
 default = "Off"
 desc = "Giant Moldorm's hit has sound"
+label_es = "Arr.: Moldorm"
+desc_es = "El golpe del Moldorm gigante suena"
 
 [[option]]
 key = "fix_swamola_bank"
@@ -1028,6 +1064,8 @@ label = "Fix: Lanmolas"
 names = ["Off", "On"]
 default = "Off"
 desc = "Misery Mire Lanmolas drawn right"
+label_es = "Arr.: Lanmolas"
+desc_es = "Lanmolas de Misery Mire bien"
 
 [[option]]
 key = "fix_kiki_bomb"
@@ -1035,6 +1073,8 @@ label = "Fix: Kiki"
 names = ["Off", "On"]
 default = "Off"
 desc = "Kiki does not leave a live bomb"
+label_es = "Arr.: Kiki"
+desc_es = "Kiki no deja una bomba activa"
 
 [[option]]
 key = "fix_bunny_palette"
@@ -1042,6 +1082,8 @@ label = "Fix: bunny dies"
 names = ["Off", "On"]
 default = "Off"
 desc = "Dying as bunny: right colors"
+label_es = "Arr.: conejo"
+desc_es = "Morir de conejo restaura la paleta"
 
 [[option]]
 key = "fix_spell_lock"
@@ -1049,6 +1091,8 @@ label = "Fix: spell lock"
 names = ["Off", "On"]
 default = "Off"
 desc = "Medallion, death: menu not stuck"
+label_es = "Arr.: hechizo"
+desc_es = "Medallón y muerte: menú libre"
 
 [[option]]
 key = "fix_ledge_platform"
@@ -1056,6 +1100,8 @@ label = "Fix: ledge clip"
 names = ["Off", "On"]
 default = "Off"
 desc = "No passing under walls from ledge"
+label_es = "Arr.: cornisa"
+desc_es = "No pasar bajo capas desde cornisa"
 
 [[option]]
 key = "fix_shield_palette"
@@ -1063,6 +1109,8 @@ label = "Fix: shield"
 names = ["Off", "On"]
 default = "Off"
 desc = "Pikit's shield drop: right colors"
+label_es = "Arr.: escudo"
+desc_es = "Escudo de un Pikit: colores bien"
 
 [[option]]
 key = "fix_door_submodule"
@@ -1070,6 +1118,8 @@ label = "Fix: potion"
 names = ["Off", "On"]
 default = "Off"
 desc = "Potion at a door: no glitch"
+label_es = "Arr.: poción"
+desc_es = "Poción en una puerta: sin fallo"
 
 [[option]]
 key = "fix_stair_tags"
@@ -1077,6 +1127,8 @@ label = "Fix: stair tags"
 names = ["Off", "On"]
 default = "Off"
 desc = "Stairs on a room tag: objects OK"
+label_es = "Arr.: escalera"
+desc_es = "Escaleras y etiquetas: sin fallo"
 
 [[option]]
 key = "fix_skullwoods_door"
@@ -1084,6 +1136,8 @@ label = "Fix: SW door"
 names = ["Off", "On"]
 default = "Off"
 desc = "Somaria on the exit door switch"
+label_es = "Arr.: Skull W."
+desc_es = "Somaria en el botón de salida"
 
 [[option]]
 key = "fix_mushroom_warp"
@@ -1091,6 +1145,8 @@ label = "Fix: mushroom"
 names = ["Off", "On"]
 default = "Off"
 desc = "No mushroom pickup during a warp"
+label_es = "Arr.: seta"
+desc_es = "Sin seta durante el espejo"
 
 [[option]]
 key = "fix_double_absorb"
@@ -1098,6 +1154,8 @@ label = "Fix: absorb"
 names = ["Off", "On"]
 default = "Off"
 desc = "Hearts and fairies count only once"
+label_es = "Arr.: absorber"
+desc_es = "Corazón y hada: una absorción"
 
 [[option]]
 key = "fix_hidden_hookshot"
@@ -1105,6 +1163,8 @@ label = "Fix: hookshot"
 names = ["Off", "On"]
 default = "Off"
 desc = "Hidden item under rock frees hook"
+label_es = "Arr.: gancho"
+desc_es = "Objeto bajo roca suelta el gancho"
 
 [[option]]
 key = "fix_camera_twice"
@@ -1112,6 +1172,8 @@ label = "Fix: camera"
 names = ["Off", "On"]
 default = "Off"
 desc = "Spin by bumpers: camera once"
+label_es = "Arr.: cámara"
+desc_es = "Giro con bumpers: cámara una vez"
 
 [[option]]
 key = "fix_bunny_walk"
@@ -1119,6 +1181,8 @@ label = "Fix: bunny walk"
 names = ["Off", "On"]
 default = "Off"
 desc = "Temporary bunny walks right"
+label_es = "Arr.: conejo 2"
+desc_es = "Conejo temporal anda como conejo"
 
 # Un solo jugador: el menu F1 no ofrece jugador 2 y el segundo teclado y el segundo mando no leen nada.
 [input]
