@@ -20,8 +20,8 @@ This is not an emulator: the cartridge's program is **translated to native code*
 
 ## Status
 
-- **Stable version: 0.13** (Windows, Linux and Android). Versions **0.14** and **0.15** are Windows-only pre-releases, for testing: 0.15 fixes a game halt (`01:CA17`, a room-tag routine used by three rooms) and the generator now leaves **0 untranslated functions out of 4,178**.
-- **A full playthrough is not proven yet.** The intro, file select, the first areas and all 133 dungeon entrances load and run, but nobody has finished the game with the recompilation. Pre-releases stay pre-releases until that changes. What has been found along the way is written down in [`docs/HALLAZGOS.md`](docs/HALLAZGOS.md) (in Spanish).
+- **Beta.** The latest release marked "stable" (**0.13**, Windows, Linux and Android) **stops the game** when you enter three dungeon rooms (`0x01B`, `0x043` and `0x097`): a routine of the game was not translated. The fix is in **0.15**, published for now as a **Windows-only pre-release**; the generator now leaves **0 untranslated functions out of 4,178**. Until a release with the fix for all three systems is out, on Windows use the latest pre-release, and on Linux and Android expect that halt (the [FAQ](docs/FAQ.md) explains the message). The [CHANGELOG](CHANGELOG.md) has the details.
+- **A full playthrough is not proven yet.** The intro, file select, the first areas and all 133 dungeon entrances load and run, but nobody has finished the game with the recompilation. Until that changes, treat every version as a beta. What has been found along the way is written down in [`docs/HALLAZGOS.md`](docs/HALLAZGOS.md) (in Spanish).
 - If something breaks, [open an issue](https://github.com/ArgoxDevs/alttp-recomp/issues/new/choose) with the version, where it happened and what you were doing (never attach the ROM, saves or screenshots with game graphics).
 
 ## Download and play
