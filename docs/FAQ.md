@@ -4,7 +4,7 @@
 
 ## Which ROM do I need?
 
-The **USA** release of *The Legend of Zelda: A Link to the Past*, CRC32 **`777AAC2F`**. A ROM with a 512-byte copier header (`.smc`) is accepted too: the header is ignored. The European, Japanese and German releases, translations and ROM hacks have a different CRC32 and are refused; support for other regions is on the [roadmap](ROADMAP.md).
+The **USA** release of *The Legend of Zelda: A Link to the Past*, CRC32 **`777AAC2F`**. A ROM with a 512-byte copier header (`.smc`) is accepted too: the header is ignored. The European, Japanese and German releases, translations and ROM hacks have a different CRC32 and are refused; support for other regions is on the [roadmap](ROADMAP.md). A `.zip`, `.7z` or `.rar` is not a ROM: extract the `.sfc`/`.smc` first (the launcher says so). When a ROM is refused, the launcher shows its CRC32, its size, whether a header was removed and the usual causes (other region or revision, patch, hack, a file cut short).
 
 To check yours (the checksum of the file without the header, if it has one):
 

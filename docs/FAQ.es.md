@@ -4,7 +4,7 @@
 
 ## ¿Qué ROM necesito?
 
-La versión **USA** de *The Legend of Zelda: A Link to the Past*, CRC32 **`777AAC2F`**. También vale una ROM con cabecera de copiadora de 512 bytes (`.smc`): la cabecera se ignora. Las versiones europea, japonesa y alemana, las traducciones y los hacks tienen otro CRC32 y se rechazan; otras regiones están en la [hoja de ruta](ROADMAP.md).
+La versión **USA** de *The Legend of Zelda: A Link to the Past*, CRC32 **`777AAC2F`**. También vale una ROM con cabecera de copiadora de 512 bytes (`.smc`): la cabecera se ignora. Las versiones europea, japonesa y alemana, las traducciones y los hacks tienen otro CRC32 y se rechazan; otras regiones están en la [hoja de ruta](ROADMAP.md). Un `.zip`, `.7z` o `.rar` no es una ROM: extrae antes el `.sfc`/`.smc` (el lanzador lo dice). Cuando se rechaza una ROM, el lanzador enseña su CRC32, su tamaño, si se le quitó una cabecera y las causas habituales (otra región o revisión, parche, hack, un archivo cortado).
 
 Para comprobar la tuya (el CRC32 del fichero sin cabecera, si la tiene):
 

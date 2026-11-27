@@ -5,7 +5,7 @@ Revisión del 2026-11-26 sobre `main` (`1603872`). Cada punto dice **qué** pasa
 
 Lo que es del motor (`snes-recomp`) va marcado **[motor]**: se arregla allí y aquí solo se actualiza el binario o la documentación.
 
-> **Progreso (2026-11-27):** ✅ hecho 20 · 🔶 parcial 10 · ⬜ pendiente 3 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+> **Progreso (2026-11-27):** ✅ hecho 20 · 🔶 parcial 11 · ⬜ pendiente 2 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ---
 
@@ -112,8 +112,8 @@ No se ha ejecutado `check.ps1` ni `check.sh`, ni se ha jugado: todo lo anterior 
 - El README principal está en inglés, pero las notas de la 0.15 (y la descripción del repositorio en GitHub) están solo en español. La respuesta al issue #1 (alemán) también va solo en español.
 - **Hacer:** notas de versión bilingües (EN primero), descripción del repositorio en inglés y un `CHANGELOG.md` (EN/ES) con lo que cambia en cada versión, enlazado desde las releases.
 
-### ⬜ 2.7 Mensajes de error para las ROM que no valen **[motor]**
-- **Estado (2026-11-26): Sin hacer. Dato: el motor ya acepta ROM con cabecera `.smc`; el FAQ lo explica.**
+### 🔶 2.7 Mensajes de error para las ROM que no valen **[motor]**
+- **Estado (2026-11-27): 🔶 hecho en el motor (`27f9396`), sin reconstruir aún `alttp-recomp.exe` ni el APK. Windows y la consola: el aviso de ROM no reconocida dice el CRC32, el tamaño, si se quitó la cabecera de 512 bytes, el título interno y la región (si se leen), si el tamaño es raro (archivo cortado) y las causas habituales, más un consejo en el idioma de la ventana; un `.zip`/`.7z`/`.rar` o un archivo diminuto se nombran como tales. Linux y Android: aviso de archivo comprimido y consejo en el mensaje de CRC distinto. **Arreglo de paso: Android rechazaba las `.smc` con cabecera (calculaba el CRC con ella); ahora la quita, como Windows y Linux.** Probado: tests del motor (324) y los mensajes por consola con un `.zip` y con un archivo de 33 280 bytes; el Java de Android compila. Sin probar: el aviso en la ventana de Windows, el de Linux (no hay compilador aquí) y el de Android en un móvil.**
 - Mucha gente tiene la ROM con cabecera de 512 bytes (`.smc`), la europea, la japonesa o una versión parcheada. El README solo dice «USA, CRC32 `777AAC2F`».
 - **Hacer:** comprobar (o añadir) en el lanzador un mensaje claro para cada caso común: «tiene cabecera de copiadora: se quita sola», o «es la versión europea o japonesa: hace falta la USA», o «CRC distinto: ¿está parcheada?». Y si el motor no quita la cabecera solo, que lo haga. Ponerlo también en una sección de preguntas frecuentes (2.8).
 
