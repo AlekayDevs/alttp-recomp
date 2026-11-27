@@ -1,6 +1,6 @@
 # Hoja de ruta
 
-Qué falta por hacer, al 2026-11-26. Lo que ya está hecho está en el [README](../README.md) y en [HALLAZGOS.md](HALLAZGOS.md). El diario de trabajo anterior (pruebas, releases 0.1 a 0.13, mediciones de rendimiento) era el `plan.md` de la raíz; sigue en el historial: `git show 79b641e:plan.md`.
+Qué falta por hacer, al 2026-11-26. Lo que ya está hecho está en el [README](../README.md) y en [HALLAZGOS.md](HALLAZGOS.md). El diario de trabajo anterior (pruebas, releases 0.1 a 0.13, mediciones de rendimiento) era el `plan.md` de la raíz; está ahora en [HALLAZGOS.md §7](HALLAZGOS.md#7-diario-de-trabajo-detallado-antes-planmd).
 
 Reparto (ver `CLAUDE.md`): lo general va al motor ([snes-recomp](https://github.com/ArgoxDevs/snes-recomp)); aquí solo lo específico de ALttP.
 
