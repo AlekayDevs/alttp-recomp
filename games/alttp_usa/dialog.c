@@ -1,4 +1,4 @@
-/* A Link to the Past (USA): hold R during a message box and the text appears three times faster.
+/* A Link to the Past (USA): hold R during a message box and the text appears one character per frame.
  *
  * 0E:CA6C runs once per frame while a message box is up. Its state byte $1CD5 counts the frames until the next
  * character (it is reloaded from $1CD6, which is 3, after each one): when it is 1 the next frame shows the character.

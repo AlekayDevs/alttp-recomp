@@ -218,6 +218,7 @@ static void parse_file(const char *name, const char *s, size_t n) {
     size_t i = 0;
     int line = 1, at_start = 1;
     cur.id = -1;
+    if (n >= 3 && (unsigned char)s[0] == 0xEF && (unsigned char)s[1] == 0xBB && (unsigned char)s[2] == 0xBF) i = 3; /* UTF-8 BOM (Notepad adds it) */
     while (i < n) {
         char ch = s[i];
         if (ch == '\r') { i++; continue; }
@@ -539,6 +540,8 @@ void alttp_text_translate(Cpu *c) {
         use_letters(id >= 0 && id < MSG_MAX && msg_data[id] != NULL);
         if (id >= 0 && id < MSG_MAX && msg_data[id])
             for (i = 0; i < msg_len[id]; i++) bus_write8(BUF + (uint32_t)i, msg_data[id][i]);
+    } else if (letters_state == 1) {
+        use_letters(0); /* back to English in mid-game: $47-$49 must be the game's own glyphs again */
     }
     if (!game_opt("dump_text", 0)) spell_buttons(); /* the dump keeps the codes of the buttons as the game has them */
 }

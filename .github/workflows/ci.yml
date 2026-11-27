@@ -21,16 +21,17 @@ jobs:
 
       - name: Nada derivado de la ROM en git
         run: |
-          prohibidos=$(git ls-files | grep -Ei '\.(sfc|smc|srm|sst)$|^(roms|out)/' || true)
+          prohibidos=$(git ls-files | grep -Ei '\.(sfc|smc|srm|sst|thumb|fig|swc)$|(^|/)alttp_(messages|menu)_[^/]*\.txt$|^(roms|out)/' || true)
           if [ -n "$prohibidos" ]; then echo "Ficheros que no deben estar en git:"; echo "$prohibidos"; exit 1; fi
 
       - name: El perfil es TOML válido
         run: python3 -c "import tomllib,sys; tomllib.load(open('games/alttp_usa.toml','rb'))"
 
-      - name: Cada fichero C propio está en la lista de check.ps1
+      - name: Cada fichero C propio está en las listas de check.ps1 y check.sh
         run: |
           for f in games/alttp_usa/*.c; do
             grep -q "\"$(basename "$f")\"" scripts/check.ps1 || { echo "falta $(basename "$f") en scripts/check.ps1"; exit 1; }
+            grep -qw "$(basename "$f")" scripts/check.sh || { echo "falta $(basename "$f") en scripts/check.sh"; exit 1; }
           done
 
       - name: El C propio compila contra snes_rt.h

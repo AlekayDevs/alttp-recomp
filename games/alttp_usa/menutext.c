@@ -420,6 +420,7 @@ static void parse_file(const char *path, char *text, size_t n) {
     int line = 0, s;
     restore_english();
     text[n] = 0;
+    if (n >= 3 && (unsigned char)text[0] == 0xEF && (unsigned char)text[1] == 0xBB && (unsigned char)text[2] == 0xBF) pos = 3; /* UTF-8 BOM */
     while (pos < n) {
         char *ln = text + pos, *eq, *val;
         size_t len = strcspn(ln, "\r\n");
