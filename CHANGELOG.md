@@ -7,7 +7,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 ## English
 
 ### Unreleased
-- (nothing yet)
+- Packaging: the Windows package is built by a CI workflow (`windows-package.yml`) from the committed engine, and the Linux workflow pins the engine to the commit in `ENGINE_VERSION`.
 
 ### 0.16 (2026-11-27)
 - Engine traceability: `alttp-recomp.exe --version` prints the engine version and commit, the launcher shows it next to the game version (Windows, Linux and Android), and the engine package carries an `ENGINE_VERSION` file (copied here by `update-engine.ps1`). The engine's `release.ps1` refuses to build from a tree with uncommitted changes.
@@ -57,7 +57,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 ## Español
 
 ### Sin publicar
-- (nada todavía)
+- Empaquetado: el paquete de Windows sale de un workflow de CI (`windows-package.yml`) con el motor commiteado, y el de Linux fija el motor al commit de `ENGINE_VERSION`.
 
 ### 0.16 (2026-11-27)
 - Trazabilidad del motor: `alttp-recomp.exe --version` dice la versión y el commit del motor, el lanzador los enseña junto a la versión del juego (Windows, Linux y Android) y el paquete del motor lleva un fichero `ENGINE_VERSION` (que copia `update-engine.ps1`). El `release.ps1` del motor se niega a construir con cambios sin commit.

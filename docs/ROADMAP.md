@@ -23,7 +23,7 @@ No hechos a propósito: la superbomba (los tres cambios de `zelda3` dependen uno
 ## 3. Lanzamiento y paquetes
 
 - ~~Una release con los tres paquetes y el arreglo de `01:CA17`~~: hecho, la 0.16 (2026-11-27) es la «Latest».
-- Paquetes desde CI: Windows con el motor de una etiqueta (`release.ps1` ya toma `games\` del commit; falta probarlo); fijar el motor en `linux-package.yml`; copia de la clave del APK fuera del equipo.
+- Paquetes desde CI: Windows y Linux ya salen de CI (2026-11-27; el motor de Windows es el commiteado, el de Linux está fijado a `ENGINE_VERSION`). Falta el APK desde CI y la copia de la clave del APK fuera del equipo.
 - Motor con versión y etiqueta en cada zip, sin construir con el árbol sucio (`snes-recomp`): hecho en código el 2026-11-27 (`--version`, `ENGINE_VERSION`, `release.ps1` estricto); falta fusionar la rama del motor, probar `release.ps1` y ponerle una etiqueta (antes, cerrar los cambios `hirom-mapping` de `..\snes-recomp`).
 - Firmar las releases (minisign o *attestations*) y el `.exe` (SignPath).
 - Notas de versión y descripción del repositorio bilingües; `CHANGELOG.md`; preguntas frecuentes.
