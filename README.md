@@ -73,7 +73,7 @@ An emulator is the best choice for playing *any* SNES game with maximum fidelity
 
 | | Emulator | ALttP Recomp |
 |---|---|---|
-| **Gameplay improvements** (item switching with L/R, a sword that picks up items and breaks pots, more bombs, 9999 rupees…) | Need a ROM hack or an IPS patch | Turned on from the menu over your untouched ROM, each with an automatic test |
+| **Gameplay improvements** (item switching with L/R, a sword that picks up items and breaks pots, more bombs, 9999 rupees…) | Need a ROM hack or an IPS patch | Turned on with `--game-opt` over your untouched ROM, each with an automatic test |
 | **Spanish** | A patch applied to the ROM | Substituted in real time, with accents and `ñ` drawn with the game's own font; the file is re-read while you play |
 | **Widescreen** | Usually not, or with per-game tricks | Real extra columns, covered in black where there is no map |
 | **Android** | Install an emulator and configure it | An APK with touch controls made for the game |
@@ -97,7 +97,7 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 
 ## Quality-of-life improvements
 
-These are game options: turn them on in the **Game** tab of the **F1** menu or with `--game-opt name=value`. Everything here is implemented and tested; only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
+These are game options: turn them on with `--game-opt name=value` (see Commands). The **Game** tab of the **F1** menu only offers `language` for now; the rest are not in the menu yet. Everything here is implemented and tested; only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
 
 Music and sound-effect volume are adjusted separately in the menu's **Audio** tab (`music_volume` and `sfx_volume`); the profile tells the engine which sound voices are effects.
 

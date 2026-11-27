@@ -73,7 +73,7 @@ Un emulador es la mejor opción para jugar *cualquier* juego de SNES con la máx
 
 | | Emulador | ALttP Recomp |
 |---|---|---|
-| **Mejoras de jugabilidad** (cambio de objeto con L/R, espada que recoge objetos y rompe vasijas, más bombas, 9999 rupias…) | Exigen un hack de la ROM o un parche IPS | Se activan desde el menú sobre tu ROM sin tocar, y cada una tiene prueba automática |
+| **Mejoras de jugabilidad** (cambio de objeto con L/R, espada que recoge objetos y rompe vasijas, más bombas, 9999 rupias…) | Exigen un hack de la ROM o un parche IPS | Se activan con `--game-opt` sobre tu ROM sin tocar, y cada una tiene prueba automática |
 | **Español** | Parche aplicado a la ROM | Se sustituye en tiempo real, con acentos y `ñ` dibujados con la propia fuente del juego; el fichero se relee mientras juegas |
 | **Pantalla ancha** | Casi siempre no, o con trucos por juego | Columnas extra reales, tapadas en negro donde no hay mapa |
 | **Android** | Instalar un emulador y configurarlo | Un APK con controles táctiles hechos para el juego |
@@ -97,7 +97,7 @@ Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni ti
 
 ## Mejoras de calidad de vida
 
-Son opciones del juego: se activan en la pestaña **Game** del menú **F1** o con `--game-opt nombre=valor`. Todo lo de esta tabla está hecho y probado; solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
+Son opciones del juego: se activan con `--game-opt nombre=valor`. La pestaña **Game** del menú **F1** solo ofrece `language` por ahora; el resto todavía no están en el menú. Todo lo de esta tabla está hecho y probado; solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
 
 El volumen de la música y el de los efectos se ajustan por separado en la pestaña **Audio** del menú (`music_volume` y `sfx_volume`); el perfil le dice al motor qué voces del sonido son efectos.
 

@@ -11,8 +11,8 @@ Cierra el §6 de [HALLAZGOS.md](HALLAZGOS.md): salas `0x01B`, `0x043` y `0x097`,
 
 ## Estado (2026-11-24)
 
-- Fases 1 y 2 hechas: `scripts/route.py`, `scripts/compare_samples.py`, `--sample` (headless), `--record` y `--log-wram` (frontal). El script de BizHawk no se ha ejecutado.
-- Fase 3: `scripts/probe_entradas.py` dio la mazmorra de cada entrada (HALLAZGOS §5.6); las salas 0x01B, 0x043 y 0x097 siguen sin alcanzarse. Hay que jugar la partida: se puede grabar con `--record`.
+- Fases 1 y 2 hechas: `scripts/route.py`, `scripts/compare_samples.py`, `--sample` (headless), `--record` y `--log-wram` (frontal). El script de BizHawk se ejecutó (HALLAZGOS §5.4).
+- Fase 3: `scripts/probe_entradas.py` dio la mazmorra de cada entrada (HALLAZGOS §5.6); las salas 0x01B, 0x043 y 0x097 se cargan al forzarlas (HALLAZGOS §5.7), pero falta alcanzarlas jugando. Hay que jugar la partida: se puede grabar con `--record`.
 - La grabación de entradas ya existe en el frontal: la partida completa se juega a mano y se graba.
 
 ## Fases
