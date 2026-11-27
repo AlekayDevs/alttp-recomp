@@ -1,0 +1,21 @@
+Third-party software / Software de terceros
+===========================================
+
+ALttP Recomp itself is MIT (LICENSE). The engine is MIT too (LICENSE-engine). The package also carries, or was built with:
+El propio proyecto es MIT (LICENSE), igual que el motor (LICENSE-engine). El paquete lleva además, o se construyó con:
+
+SDL2 (zlib license)
+  Window, input and audio. sdl2\COPYING.txt (Windows package). https://www.libsdl.org/
+
+TinyCC 0.9.27 (LGPL 2.1)
+  The C compiler used to build the game on your machine when you have none of your own. Licence and docs in toolchain\tcc;
+  notice and source links in toolchain\AVISO-TINYCC.txt. Source: https://repo.or.cz/tinycc.git
+  Se ejecuta como programa aparte; no está enlazado dentro de alttp-recomp.exe.
+
+Rust crates linked into the launcher / generator (snes-recomp), all MIT or Apache-2.0:
+  serde, serde_json, toml and their dependencies. The exact list with versions is the Cargo.lock of the engine repository:
+  https://github.com/ArgoxDevs/snes-recomp
+  Crates del lanzador y del generador (snes-recomp), todas MIT o Apache-2.0; la lista exacta está en el Cargo.lock del motor.
+
+The game's own data (the ROM) is NOT included and is not covered by any of these licences.
+Los datos del juego (la ROM) NO se incluyen y no los cubre ninguna de estas licencias.

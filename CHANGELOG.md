@@ -13,6 +13,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 - The version now comes from a single `VERSION` file read by `release.ps1`, `release.sh` and the Linux package workflow.
 - Release binaries no longer contain paths from the build machine (engine).
 - A button label longer than 16 letters is cut instead of leaving another button's icon; the translation file is checked once per second at most, not at every text box; the Spanish prompt «QUE DATOS QUIERES?» now ends in `?`.
+- Packaging: `release.ps1` takes `games\` from the commit (`git archive HEAD`), not the working tree; new `THIRD-PARTY.txt` (SDL2, TinyCC, engine crates) in both packages.
 - Documentation: FAQ, honest per-fix test levels in the README, roadmap, banner fixed.
 
 ### 0.15 (pre-release, Windows only)
@@ -56,6 +57,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 - La versión sale de un único fichero `VERSION` que leen `release.ps1`, `release.sh` y el workflow del paquete de Linux.
 - Los binarios de las releases ya no llevan rutas de la máquina que los construyó (motor).
 - Una etiqueta de botón de más de 16 letras se recorta en vez de dejar el icono de otro botón; el fichero de traducción se mira una vez por segundo como mucho, no en cada cuadro de texto; el aviso «QUE DATOS QUIERES?» ya acaba en `?`.
+- Empaquetado: `release.ps1` toma `games\` del commit (`git archive HEAD`) y no del árbol de trabajo; `THIRD-PARTY.txt` nuevo (SDL2, TinyCC, crates del motor) en los dos paquetes.
 - Documentación: preguntas frecuentes, nivel de prueba de cada arreglo en el README, hoja de ruta, banner corregido.
 
 ### 0.15 (pre-lanzamiento, solo Windows)

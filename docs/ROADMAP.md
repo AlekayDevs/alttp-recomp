@@ -23,7 +23,7 @@ No hechos a propósito: la superbomba (los tres cambios de `zelda3` dependen uno
 ## 3. Lanzamiento y paquetes
 
 - Una release con los **tres** paquetes (Windows, Linux, APK) y el arreglo de `01:CA17`; hoy la «Latest» es la 0.13, que se para en esas salas.
-- Paquetes desde CI: Windows desde una exportación del commit y el motor de una etiqueta; fijar el motor en `linux-package.yml`; copia de la clave del APK fuera del equipo.
+- Paquetes desde CI: Windows con el motor de una etiqueta (`release.ps1` ya toma `games\` del commit; falta probarlo); fijar el motor en `linux-package.yml`; copia de la clave del APK fuera del equipo.
 - Motor con versión y etiqueta en cada zip, sin construir con el árbol sucio (`snes-recomp`).
 - Firmar las releases (minisign o *attestations*) y el `.exe` (SignPath).
 - Notas de versión y descripción del repositorio bilingües; `CHANGELOG.md`; preguntas frecuentes.
