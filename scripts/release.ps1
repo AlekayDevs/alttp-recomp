@@ -102,7 +102,10 @@ foreach ($f in "SDL2.pdb", "SDL2main.lib", "SDL2test.lib") { Remove-Item (Join-P
 if (@(& git status --porcelain -- games).Count -gt 0) { Write-Warning "games\ tiene cambios sin commitear: el paquete lleva lo que hay en HEAD, no el arbol de trabajo" }
 & git archive --format=tar -o "$stage\games.tar" HEAD games
 if ($LASTEXITCODE -ne 0) { Remove-Item -Recurse -Force $stage; throw "git archive fallo" }
-& tar -xf "$stage\games.tar" -C $stage
+# el tar de Git Bash toma "C:" por un equipo remoto: se usa el de Windows (bsdtar) si esta
+$tarExe = Join-Path $env:SystemRoot "System32\tar.exe"
+if (-not (Test-Path $tarExe)) { $tarExe = "tar" }
+& $tarExe -xf "$stage\games.tar" -C $stage
 if ($LASTEXITCODE -ne 0) { Remove-Item -Recurse -Force $stage; throw "no se pudo extraer games.tar" }
 Remove-Item "$stage\games.tar"
 # lo lee el aviso de version nueva del lanzador (src/update.rs del motor): repo y version instalada
