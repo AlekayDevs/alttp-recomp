@@ -15,6 +15,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 - A button label longer than 16 letters is cut instead of leaving another button's icon; the translation file is checked once per second at most, not at every text box; the Spanish prompt «QUE DATOS QUIERES?» now ends in `?`.
 - Packaging: `release.ps1` takes `games\` from the commit (`git archive HEAD`), not the working tree; new `THIRD-PARTY.txt` (SDL2, TinyCC, engine crates) in both packages.
 - Documentation: FAQ, honest per-fix test levels in the README, roadmap, banner fixed.
+- **All 32 improvements and fixes are now in the Game tab of the F1 menu** (and in Game options on Android), each with a one-line explanation on the desktop, saved in `config.ini`. Needs the engine with room for 64 options and a scrolling menu.
 
 ### 0.15 (pre-release, Windows only)
 - **Fix for a game halt:** `01:CA17`, the routine of certain room tags (used in rooms `0x01B`, `0x043` and `0x097`), was not translated and the game stopped when it reached it. It is translated now; the generator leaves 0 untranslated functions out of 4,178. Checked against BizHawk in the five cases tested.
@@ -59,6 +60,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 - Una etiqueta de botón de más de 16 letras se recorta en vez de dejar el icono de otro botón; el fichero de traducción se mira una vez por segundo como mucho, no en cada cuadro de texto; el aviso «QUE DATOS QUIERES?» ya acaba en `?`.
 - Empaquetado: `release.ps1` toma `games\` del commit (`git archive HEAD`) y no del árbol de trabajo; `THIRD-PARTY.txt` nuevo (SDL2, TinyCC, crates del motor) en los dos paquetes.
 - Documentación: preguntas frecuentes, nivel de prueba de cada arreglo en el README, hoja de ruta, banner corregido.
+- **Las 32 mejoras y arreglos están ya en la pestaña Juego del menú F1** (y en Opciones del juego en Android), cada una con una línea que la explica en el escritorio, guardadas en `config.ini`. Necesita el motor con sitio para 64 opciones y el menú con desplazamiento.
 
 ### 0.15 (pre-lanzamiento, solo Windows)
 - **Arreglo de una parada del juego:** `01:CA17`, la rutina de ciertas etiquetas de sala (salas `0x01B`, `0x043` y `0x097`), no se traducía y el juego se detenía al llegar a ella. Ya se traduce; el generador deja 0 funciones sin traducir de 4 178. Comprobado contra BizHawk en los cinco casos probados.

@@ -44,7 +44,7 @@ body:
     id: options
     attributes:
       label: Options in use / Opciones activas
-      description: Language, widescreen, quality-of-life options, any `--game-opt` you passed.
+      description: Language, widescreen, the options switched on in the Game tab of the F1 menu (or paste the `game.` lines of `config.ini`, next to the ROM), any `--game-opt` you passed.
   - type: textarea
     id: log
     attributes:

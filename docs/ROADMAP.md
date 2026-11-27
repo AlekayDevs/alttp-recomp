@@ -31,7 +31,7 @@ No hechos a propósito: la superbomba (los tres cambios de `zelda3` dependen uno
 ## 4. Paridad del lanzador y opciones
 
 - Probar de verdad el aviso de actualización en Windows y en Linux (instalar la N-1, publicar la N, «Buscar ahora», comprobar que `saves\` sigue intacta).
-- Mejoras de calidad de vida en el menú F1: el perfil solo declara `language`; el motor admite como mucho 16 opciones y ALttP tiene 32 más. Hace falta subir el límite en el motor y declarar un `[[option]]` por mejora.
+- Mejoras de calidad de vida en el menú F1: hecho en código (2026-11-27; motor con 64 opciones, desplazamiento y `desc`; 32 `[[option]]` aquí). Falta el commit del motor y `update-engine.ps1`; después, la línea de ayuda en el menú táctil y las etiquetas en español.
 - Probar en un Windows limpio (sin Visual Studio ni gcc, con y sin red), en un Android de gama media y con mando Bluetooth.
 
 ## 5. Traducción
