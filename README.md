@@ -97,7 +97,7 @@ Things emulators offer and this project doesn't yet. They are not promised and h
 
 ## Quality-of-life improvements
 
-These are game options: turn them on with `--game-opt name=value` (see Commands). The **Game** tab of the **F1** menu only offers `language` for now; the rest are not in the menu yet. Everything here is implemented and tested; only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
+These are game options: turn them on with `--game-opt name=value` (see Commands). The **Game** tab of the **F1** menu only offers `language` for now; the rest are not in the menu yet. Everything here is implemented and has an automatic test (see [how well each one is tested](#how-well-the-fixes-are-tested)); only `dialog_skip` is **on** by default, so the original game is unchanged until you opt in (`low_hp_beep` is a sound that is on by default and the option removes it).
 
 Music and sound-effect volume are adjusted separately in the menu's **Audio** tab (`music_volume` and `sfx_volume`); the profile tells the engine which sound voices are effects.
 
@@ -137,6 +137,17 @@ Music and sound-effect volume are adjusted separately in the menu's **Audio** ta
 | off | `fix_camera_twice=1` | Fix for an original bug: the spin attack between bumpers no longer positions the camera twice in one frame. |
 | off | `fix_bunny_walk=1` | Fix for an original bug: the temporary bunny uses the permanent one's walk animation. |
 | — | `low_hp_beep=0` | Removes the low-health beep. |
+
+### How well the fixes are tested
+
+An automatic test is not the same as having seen the original bug happen and disappear, and the ALttP community knows these bugs well, so here is what each kind of test covers:
+
+- **Scripted playthroughs** (`scripts/check.ps1`): the options that change what you see or hear (item switching, rupees, bombs, the intro, the dialogue speed, the translation...) are checked by playing a scripted game with the option off and on and comparing the game's memory.
+- **Prepared state or injected condition**: `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice` and `fix_bunny_walk`. The fix's branch runs and the game carries on, and with the option off nothing else changes, but the bug itself has **not** been reproduced by playing.
+- **Logic only** (`scripts/test_refund.c`, `scripts/test_hooks.c`): `fix_magic_refund` and `fix_bunny_palette`.
+- **Not yet checked in the situation it fixes**: `fix_portal_chime` (on the Ice Palace screen) and `fix_death_count` (with "save and quit").
+
+If you hit a case that goes wrong, please [open an issue](../../issues).
 
 The improvements that touch the game (`skip_intro`, `fix_portal_chime`, `fix_death_count`, `fix_medallion_abort`, `fix_magic_refund`, `fix_somaria_nomagic`, `fix_moldorm_sound`, `fix_swamola_bank`, `fix_kiki_bomb`, `fix_bunny_palette`, `fix_spell_lock`, `fix_ledge_platform`, `fix_shield_palette`, `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`, `item_switch_lr`, `dash_turn`, `bird_cancel`, `sword_pickup`, `sword_pots`, `more_bombs`, `rupees_9999`, `rupee_fast`) are tested automatically with games played by a script (`scripts/check.ps1` / `check.sh`).
 

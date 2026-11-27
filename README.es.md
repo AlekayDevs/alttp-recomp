@@ -97,7 +97,7 @@ Cosas que los emuladores dan y este proyecto aún no. No están prometidas ni ti
 
 ## Mejoras de calidad de vida
 
-Son opciones del juego: se activan con `--game-opt nombre=valor`. La pestaña **Game** del menú **F1** solo ofrece `language` por ahora; el resto todavía no están en el menú. Todo lo de esta tabla está hecho y probado; solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
+Son opciones del juego: se activan con `--game-opt nombre=valor`. La pestaña **Game** del menú **F1** solo ofrece `language` por ahora; el resto todavía no están en el menú. Todo lo de esta tabla está hecho y tiene prueba automática ([cuánto está probado cada arreglo](#cuánto-está-probado-cada-arreglo)); solo `dialog_skip` viene **activa** por defecto, así que el juego original no cambia hasta que tú lo decidas (`low_hp_beep` es un sonido que viene activo y la opción lo quita).
 
 El volumen de la música y el de los efectos se ajustan por separado en la pestaña **Audio** del menú (`music_volume` y `sfx_volume`); el perfil le dice al motor qué voces del sonido son efectos.
 
@@ -137,6 +137,17 @@ El volumen de la música y el de los efectos se ajustan por separado en la pesta
 | off | `fix_camera_twice=1` | Arreglo de un bug del original: el espadazo giratorio entre topes ya no coloca la cámara dos veces en un fotograma. |
 | off | `fix_bunny_walk=1` | Arreglo de un bug del original: el conejo temporal usa la animación de andar del permanente. |
 | — | `low_hp_beep=0` | Quita el pitido de poca vida. |
+
+### Cuánto está probado cada arreglo
+
+Una prueba automática no es lo mismo que haber visto el fallo del original y comprobar que desaparece, y la comunidad de ALttP conoce bien estos fallos, así que esto es lo que cubre cada tipo de prueba:
+
+- **Partidas con guion** (`scripts/check.ps1`): las opciones que cambian lo que se ve o se oye (cambio de objeto, rupias, bombas, la intro, la velocidad del diálogo, la traducción...) se comprueban jugando una partida con guion con la opción apagada y encendida y comparando la memoria del juego.
+- **Estado preparado o condición inyectada**: `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice` y `fix_bunny_walk`. La rama del arreglo se ejecuta y el juego sigue, y con la opción apagada no cambia nada más, pero el fallo en sí **no** se ha reproducido jugando.
+- **Solo la lógica** (`scripts/test_refund.c`, `scripts/test_hooks.c`): `fix_magic_refund` y `fix_bunny_palette`.
+- **Aún sin comprobar en la situación que arreglan**: `fix_portal_chime` (en la pantalla del Palacio de Hielo) y `fix_death_count` (con «guardar y salir»).
+
+Si encuentras un caso que sale mal, por favor [abre un issue](../../issues).
 
 Las mejoras que tocan el juego (`skip_intro`, `fix_portal_chime`, `fix_death_count`, `fix_medallion_abort`, `fix_magic_refund`, `fix_somaria_nomagic`, `fix_moldorm_sound`, `fix_swamola_bank`, `fix_kiki_bomb`, `fix_bunny_palette`, `fix_spell_lock`, `fix_ledge_platform`, `fix_shield_palette`, `fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`, `item_switch_lr`, `dash_turn`, `bird_cancel`, `sword_pickup`, `sword_pots`, `more_bombs`, `rupees_9999`, `rupee_fast`) se prueban automáticamente con partidas jugadas por un script (`scripts/check.ps1` / `check.sh`).
 
