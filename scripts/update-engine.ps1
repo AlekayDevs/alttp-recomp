@@ -31,6 +31,7 @@ foreach ($old in "snes-port.exe", "snes-recomp.exe") { if (Test-Path $old) { Rem
 Copy-Item "$src\snes-port.exe" "$root\alttp-recomp.exe" -Force
 Copy-Item "$src\sdl2", "$src\toolchain" $root -Recurse -Force
 if (Test-Path "$src\README.md") { Copy-Item "$src\README.md" "$root\README-engine.md" -Force }
+if (Test-Path "$src\ENGINE_VERSION") { Copy-Item "$src\ENGINE_VERSION" "$root\ENGINE_VERSION" -Force } else { Write-Warning "el zip no trae ENGINE_VERSION (motor anterior a 2.9): no se sabe qué commit lleva" }
 if (Test-Path "$src\LICENSE") { Copy-Item "$src\LICENSE" "$root\LICENSE-engine" -Force }
 Remove-Item -Recurse -Force $tmp
 Write-Host "motor actualizado desde $Zip"
