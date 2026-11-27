@@ -171,4 +171,4 @@ Most of the documentation is in Spanish.
 
 ## License
 
-[MIT](LICENSE), only for the code in this repository; it grants no rights over the game. The engine carries its own license ([`LICENSE-engine`](LICENSE-engine)).
+[MIT](LICENSE), only for the code in this repository; it grants no rights over the game. The engine carries its own license ([`LICENSE-engine`](LICENSE-engine)). Third-party components (SDL2, TinyCC, Rust crates) are listed in [`THIRD-PARTY.txt`](THIRD-PARTY.txt).

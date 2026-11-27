@@ -14,7 +14,7 @@ Volver al [README](../README.md). Aquí está lo que necesita quien quiere compi
 - `games/alttp_usa/hud.c`: el rótulo «LIFE» del marcador y los rótulos del marco del menú de pausa, que con `language=es` salen en español.
 - `games/alttp_usa/icon.c`: el icono de la ventana del juego (lo escribe `scripts/make_icon.py`).
 - `scripts/check_text.py` (la traducción; `--sin-rom` para CI), `scripts/check_guards.py`, `guards_win_build.py` y `guards_win_fuzz.py` (los ganchos `guard`), `probe_entradas.py` y `probe_salas.py` (sala y mazmorra de cada entrada; carga forzada de las 296 salas), `route.py` y `compare_samples.py` (rutas de pulsaciones y comparación con BizHawk).
-- `scripts/release.ps1` y `scripts/release.sh`: arman el paquete para repartir; la versión sale del fichero `VERSION`.
+- `scripts/release.ps1` y `scripts/release.sh`: arman el paquete para repartir; la versión sale del fichero `VERSION`; `release.ps1` toma `games\` de `git archive HEAD` (no del árbol de trabajo) y los dos añaden `THIRD-PARTY.txt`.
 
 ## Construir y ejecutar desde el código
 

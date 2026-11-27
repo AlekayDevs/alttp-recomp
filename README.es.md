@@ -169,4 +169,4 @@ En Windows y Linux el lanzador puede avisar de una versión nueva e instalarla. 
 
 ## Licencia
 
-[MIT](LICENSE), solo para el código de este repositorio; no da derechos sobre el juego. El motor lleva su propia licencia ([`LICENSE-engine`](LICENSE-engine)).
+[MIT](LICENSE), solo para el código de este repositorio; no da derechos sobre el juego. El motor lleva su propia licencia ([`LICENSE-engine`](LICENSE-engine)). Los componentes de terceros (SDL2, TinyCC, crates de Rust) están en [`THIRD-PARTY.txt`](THIRD-PARTY.txt).
