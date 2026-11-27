@@ -5,7 +5,7 @@ Revisión del 2026-11-26 sobre `main` (`1603872`). Cada punto dice **qué** pasa
 
 Lo que es del motor (`snes-recomp`) va marcado **[motor]**: se arregla allí y aquí solo se actualiza el binario o la documentación.
 
-> **Progreso (2026-11-27):** ✅ hecho 23 · 🔶 parcial 8 · ⬜ pendiente 2 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+> **Progreso (2026-11-27):** ✅ hecho 24 · 🔶 parcial 8 · ⬜ pendiente 1 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ---
 
@@ -107,8 +107,8 @@ No se ha ejecutado `check.ps1` ni `check.sh`, ni se ha jugado: todo lo anterior 
 - «Everything here is implemented and tested» (sección de mejoras). Según `plan.md`, los ocho arreglos `guard` (`fix_door_submodule`, `fix_stair_tags`, `fix_skullwoods_door`, `fix_mushroom_warp`, `fix_double_absorb`, `fix_hidden_hookshot`, `fix_camera_twice`, `fix_bunny_walk`) solo se han probado con estados preparados o con la condición inyectada, nunca con el fallo provocado jugando. `fix_magic_refund` y `fix_bunny_palette` solo se han probado con `test_refund.c`/`test_hooks.c`. `fix_portal_chime` no se ha probado en la pantalla del Palacio de Hielo, y `fix_death_count` no con «guardar y salir».
 - **Hacer:** una columna «Prueba» en la tabla (partida con guion / lógica sola / estado preparado), o una nota bajo la tabla. La comunidad de ALttP conoce bien estos fallos y lo va a comprobar.
 
-### 🔶 2.6 Notas de versión solo en español
-- **Estado (2026-11-26): Hecho: `CHANGELOG.md` bilingüe, descripción del repositorio en inglés, notas EN/ES preparadas. Faltan las notas de la 0.15 en GitHub (siguen solo en español) y publicarlas con la release.**
+### ✅ 2.6 Notas de versión solo en español
+- **Estado (2026-11-27): ✅ `CHANGELOG.md` bilingüe, descripción del repositorio en inglés, notas de la 0.16 en EN/ES y las notas de la 0.14 y la 0.15 en GitHub reescritas en EN/ES (inglés primero; el español se conserva).**
 - El README principal está en inglés, pero las notas de la 0.15 (y la descripción del repositorio en GitHub) están solo en español. La respuesta al issue #1 (alemán) también va solo en español.
 - **Hacer:** notas de versión bilingües (EN primero), descripción del repositorio en inglés y un `CHANGELOG.md` (EN/ES) con lo que cambia en cada versión, enlazado desde las releases.
 
@@ -226,8 +226,8 @@ Para el día del anuncio, en el README (o en `docs/FAQ.md`):
 - `sdl2\` entero va al paquete: `SDL2.pdb` (6,6 MB), `SDL2test.lib`, `SDL2main.lib` y todas las cabeceras. Comprobar qué necesita de verdad TinyCC para construir (probablemente `SDL2.dll`, `SDL2.lib` y algunas cabeceras) y quitar el resto: el `.pdb` solo pesa.
 - El zip lleva `README.md` en Markdown. Para quien descomprime en Windows, un `LEEME.txt`/`README.txt` corto (qué abrir, qué ROM, dónde van las partidas) ayuda más.
 
-### ⬜ 5.4 Firma de los paquetes
-- **Estado (2026-11-26): Sin hacer (firma del `.exe` y de `SHA256SUMS`).**
+### 🔶 5.4 Firma de los paquetes
+- **Estado (2026-11-27): 🔶 hecho: los workflows `windows-package.yml` y `linux-package.yml` generan una *attestation* de procedencia (Sigstore, `actions/attest-build-provenance`) del paquete y de `SHA256SUMS`; probado: `gh attestation verify` pasa con el zip y el `.tar.gz` de CI y falla con un byte añadido. FAQ nueva «¿Cómo compruebo que mi descarga es auténtica?». **Limitaciones:** la v0.16 se armó a mano y no tiene attestation (la próxima release debe subir los ficheros de CI, no los locales); el APK no sale de CI; el lanzador no verifica la attestation (solo el SHA-256 del `SHA256SUMS` de la misma release); el `.exe` sigue sin firma de código (SignPath) y `SHA256SUMS` sin minisign.**
 - Ni el `.exe` está firmado (SmartScreen y antivirus) ni `SHA256SUMS` lleva firma: el actualizador se fía de lo que haya en la cuenta de GitHub. Ya está en `plan.md` §7c («firmar las releases (minisign)»). Opciones gratuitas para código abierto: SignPath Foundation para el `.exe`; minisign o las *artifact attestations* de GitHub para `SHA256SUMS`, con la clave pública dentro del lanzador. **[motor]** para la verificación.
 
 ### ✅ 5.5 Avisos de las acciones

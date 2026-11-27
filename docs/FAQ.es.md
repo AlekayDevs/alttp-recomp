@@ -36,6 +36,10 @@ Desde la versión 0.12 la app de Android tiene otro identificador: se instala **
 
 `.srm` es la partida del juego, `.sst` un estado guardado y `.thumb` la miniatura de un estado.
 
+## ¿Cómo compruebo que mi descarga es auténtica?
+
+Dos comprobaciones. Primero, el SHA-256 del `SHA256SUMS` de la release debe coincidir con tu archivo (`sha256sum -c SHA256SUMS`, o `Get-FileHash` en Windows). Segundo, desde los paquetes construidos por los workflows de CI del proyecto, el `.zip` de Windows y el `.tar.gz` de Linux llevan una *attestation* firmada de procedencia que dice qué workflow y qué commit los produjo: `gh attestation verify <archivo> -R ArgoxDevs/alttp-recomp` (hace falta la [CLI de GitHub](https://cli.github.com/); falla si el archivo cambió en un solo byte). Las releases hasta la 0.16 se armaron a mano y no la tienen; el APK va firmado con la clave Android del proyecto. El `.exe` en sí no está firmado como código, por eso SmartScreen avisa (ver arriba).
+
 ## ¿Puedo usar una partida de otro emulador?
 
 No está probado. Haz copia de tus ficheros, copia el `.srm` del emulador sobre el `.srm` del juego (mismo nombre que la ROM) y pruébalo. Si lo haces, cuéntanos en un issue si funcionó.

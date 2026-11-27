@@ -36,6 +36,10 @@ From version 0.12 the Android app has a different identifier, so it installs **n
 
 `.srm` is the game's save, `.sst` a save state and `.thumb` the miniature of a state.
 
+## How do I check that my download is genuine?
+
+Two checks. First, the SHA-256 in `SHA256SUMS` of the release must match your file (`sha256sum -c SHA256SUMS`, or `Get-FileHash` on Windows). Second, from the packages built by the project's CI workflows onwards, the Windows `.zip` and the Linux `.tar.gz` carry a signed *build provenance attestation* that says which workflow and commit produced them: `gh attestation verify <file> -R ArgoxDevs/alttp-recomp` (needs the [GitHub CLI](https://cli.github.com/); it fails if the file was changed by a single byte). Releases up to 0.16 were assembled by hand and have no attestation; the APK is signed with the project's Android key instead. The `.exe` itself is not code-signed, which is why SmartScreen warns (see above).
+
 ## Can I use a save from another emulator?
 
 Not tested. Back up your files, copy the emulator's `.srm` over the game's `.srm` (same name as the ROM) and try it. If you do, please tell us in an issue whether it worked.
