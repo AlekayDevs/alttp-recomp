@@ -36,7 +36,7 @@ New-Item -ItemType Directory -Force $stage | Out-Null
 
 # el motor: un zip (se descomprime) o la carpeta ya armada
 if ($Engine -eq "") {
-    foreach ($f in "alttp-recomp.exe", "sdl2", "toolchain", "README-engine.md", "LICENSE-engine") {
+    foreach ($f in "alttp-recomp.exe", "sdl2", "toolchain", "README-engine.md", "LICENSE-engine", "ENGINE_VERSION") {
         if (Test-Path $f) { Copy-Item $f $stage -Recurse }
     }
 } elseif ((Get-Item $Engine).PSIsContainer) {
