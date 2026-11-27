@@ -31,7 +31,7 @@ Desde la versión 0.12 la app de Android tiene otro identificador: se instala **
 ## ¿Dónde están mis partidas?
 
 - **Windows:** la carpeta `saves\` junto a `alttp-recomp.exe` (o `%APPDATA%\snes-port\saves` si en esa no se puede escribir).
-- **Linux:** `saves/` junto al programa, o `~/.local/share/snes-port/saves` (`$XDG_DATA_HOME/snes-port/saves`) si ahí no se puede escribir. El lanzador guarda sus ajustes (idioma, última ROM) en `~/.local/share/alttp-recomp`.
+- **Linux, el paquete `.tar.gz`:** `~/.local/share/alttp-recomp/saves` (`$XDG_DATA_HOME/alttp-recomp/saves`); el lanzador le pasa esa carpeta al juego, junto a sus propios ajustes (idioma, última ROM). (Construido desde el código con `snes-port`: `saves/` junto a `snes-port`, o `~/.local/share/snes-port/saves` si ahí no se puede escribir.)
 - **Android:** dentro de la carpeta propia de la app.
 
 `.srm` es la partida del juego, `.sst` un estado guardado y `.thumb` la miniatura de un estado.

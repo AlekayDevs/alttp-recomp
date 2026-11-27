@@ -153,7 +153,7 @@ Las mejoras que tocan el juego (`skip_intro`, `fix_portal_chime`, `fix_death_cou
 
 ## Estados guardados y partidas
 
-Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (si en esa no se puede escribir: `%APPDATA%\snes-port\saves` en Windows, `~/.local/share/snes-port/saves` en Linux; mira las [preguntas frecuentes](docs/FAQ.es.md)). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Cada estado lleva al lado una miniatura (`.sN.thumb`) que el selector de ranuras enseña con la fecha; los estados guardados con una versión anterior salen sin miniatura hasta que se vuelven a guardar. Ni los estados ni las miniaturas se publican nunca.
+Las partidas (`.srm`) y los estados (`.sst`) van a la carpeta `saves/` junto al programa (si en esa no se puede escribir: `%APPDATA%\snes-port\saves` en Windows. En el paquete de Linux (`.tar.gz`) van siempre a `~/.local/share/alttp-recomp/saves`, o `$XDG_DATA_HOME/alttp-recomp/saves`; mira las [preguntas frecuentes](docs/FAQ.es.md)). Los estados solo se pueden guardar dentro de la partida, no en la intro ni en la pantalla de título. Cada estado lleva al lado una miniatura (`.sN.thumb`) que el selector de ranuras enseña con la fecha; los estados guardados con una versión anterior salen sin miniatura hasta que se vuelven a guardar. Ni los estados ni las miniaturas se publican nunca.
 
 ## Actualizaciones
 

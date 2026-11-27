@@ -5,7 +5,7 @@ Revisión del 2026-11-26 sobre `main` (`1603872`). Cada punto dice **qué** pasa
 
 Lo que es del motor (`snes-recomp`) va marcado **[motor]**: se arregla allí y aquí solo se actualiza el binario o la documentación.
 
-> **Progreso (2026-11-27):** ✅ hecho 20 · 🔶 parcial 11 · ⬜ pendiente 2 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+> **Progreso (2026-11-27):** ✅ hecho 23 · 🔶 parcial 8 · ⬜ pendiente 2 · ➖ sin cambios 1 (de 34 puntos numerados). Cada punto lleva su estado justo debajo del título. Lo que sigue por hacer, en orden de trabajo, está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ---
 
@@ -138,8 +138,8 @@ Para el día del anuncio, en el README (o en `docs/FAQ.md`):
 
 ## 3. Documentación desactualizada o contradictoria 🟡
 
-### 🔶 3.1 Carpeta de partidas en Linux
-- **Estado (2026-11-26): README y FAQ corregidos según el código del motor; falta comprobarlo con el `.tar.gz` real.**
+### ✅ 3.1 Carpeta de partidas en Linux
+- **Estado (2026-11-27): ✅ comprobado en el código del lanzador de Linux (`linux/launcher.c`, línea del `--saves-dir`): el paquete `.tar.gz` guarda en `~/.local/share/alttp-recomp/saves` (`$XDG_DATA_HOME/alttp-recomp/saves`); la ruta `snes-port/saves` solo vale para el motor compilado a mano. La corrección del 2026-11-26 era errónea para el paquete y está rehecha en README, FAQ y aquí. No se ejecutó en un Linux real.**
 - README/README.es: `~/.local/share/alttp-recomp/saves`. `CLAUDE.md` y `DESARROLLO.md`: `saves/` junto a `snes-port`, o `~/.local/share/snes-port/saves`. Puede que las dos sean ciertas (paquete frente a motor compilado), pero el README no lo distingue. **Hacer:** comprobarlo con el paquete `.tar.gz` y decir las dos rutas.
 
 ### ✅ 3.2 `docs/TRADUCCION.md`
@@ -156,14 +156,14 @@ Para el día del anuncio, en el README (o en `docs/FAQ.md`):
 - **Estado (2026-11-26): Comentario corregido.**
 - La cabecera dice «the text appears three times faster»; el código (y el README) hacen un carácter por fotograma. ⚪
 
-### 🔶 3.5 README: estado y versión
-- **Texto preparado para cuando salga la release (2026-11-27):**
+### ✅ 3.5 README: estado y versión
+- **Hecho (2026-11-27, con la 0.16): el «Status» de los dos README dice lo que es cierto hoy.** Texto usado:
   - EN: «**Beta.** Releases 0.16 and later include the fix for the halt in rooms `0x01B`, `0x043` and `0x097` on Windows, Linux and Android (the generator leaves 0 untranslated functions out of 4,178). If you are on 0.13 or earlier, update.» (quitar lo de «Windows-only pre-releases»).
   - ES: «**Beta.** Las releases 0.16 y posteriores llevan el arreglo de la parada en las salas `0x01B`, `0x043` y `0x097` en Windows, Linux y Android (el generador deja 0 funciones sin traducir de 4 178). Si tienes la 0.13 o anterior, actualiza.»
 - **Estado (2026-11-26): «Status» reescrito para decir lo que es cierto hoy (beta; la 0.13 se para en tres salas). Hay que volver a reescribirlo cuando salga la release.**
 - La sección «Status» explica la 0.13 estable y las 0.14/0.15 pre-releases. En cuanto salga la release del punto 1.1 hay que reescribirla (en los dos README) y quitar lo de «Windows-only pre-releases».
 
-### 🔶 3.6 Etiquetas locales
+### ✅ 3.6 Etiquetas locales
 - **Estado (2026-11-26): Etiquetas `v0.12`–`v0.15` traídas y recolocadas en `main` (con la reescritura de historia). `git fetch --tags` antes de cada release.**
 - El clon local solo tiene las etiquetas `v0.1`–`v0.11`; en GitHub existen `v0.12`–`v0.15`. `git fetch --tags` antes de la próxima release (si no, `git describe` y cualquier script que mire las etiquetas se equivocan).
 

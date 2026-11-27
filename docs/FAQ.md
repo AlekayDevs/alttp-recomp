@@ -31,7 +31,7 @@ From version 0.12 the Android app has a different identifier, so it installs **n
 ## Where are my saves?
 
 - **Windows:** the `saves\` folder next to `alttp-recomp.exe` (or `%APPDATA%\snes-port\saves` if that folder cannot be written).
-- **Linux:** `saves/` next to the program, or `~/.local/share/snes-port/saves` (`$XDG_DATA_HOME/snes-port/saves`) if that cannot be written. The launcher keeps its own settings (language, last ROM) in `~/.local/share/alttp-recomp`.
+- **Linux, the `.tar.gz` package:** `~/.local/share/alttp-recomp/saves` (`$XDG_DATA_HOME/alttp-recomp/saves`); the launcher passes that folder to the game, next to its own settings (language, last ROM). (Built from source with `snes-port`: `saves/` next to `snes-port`, or `~/.local/share/snes-port/saves` if that cannot be written.)
 - **Android:** inside the app's own folder.
 
 `.srm` is the game's save, `.sst` a save state and `.thumb` the miniature of a state.

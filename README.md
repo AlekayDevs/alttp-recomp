@@ -153,7 +153,7 @@ The improvements that touch the game (`skip_intro`, `fix_portal_chime`, `fix_dea
 
 ## Save states and saves
 
-Saves (`.srm`) and states (`.sst`) go to the `saves/` folder next to the program (if that folder cannot be written: `%APPDATA%\snes-port\saves` on Windows, `~/.local/share/snes-port/saves` on Linux; see the [FAQ](docs/FAQ.md)). States can only be saved during gameplay, not in the intro or on the title screen. Each state has a thumbnail next to it (`.sN.thumb`) that the slot picker shows with the date; states saved with an earlier version appear without a thumbnail until they are saved again. Neither states nor thumbnails are ever published.
+Saves (`.srm`) and states (`.sst`) go to the `saves/` folder next to the program (if that folder cannot be written: `%APPDATA%\snes-port\saves` on Windows. In the Linux package (`.tar.gz`) they always go to `~/.local/share/alttp-recomp/saves`, or `$XDG_DATA_HOME/alttp-recomp/saves`; see the [FAQ](docs/FAQ.md)). States can only be saved during gameplay, not in the intro or on the title screen. Each state has a thumbnail next to it (`.sN.thumb`) that the slot picker shows with the date; states saved with an earlier version appear without a thumbnail until they are saved again. Neither states nor thumbnails are ever published.
 
 ## Updates
 

@@ -8,6 +8,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 
 ### Unreleased
 - Packaging: the Windows package is built by a CI workflow (`windows-package.yml`) from the committed engine, and the Linux workflow pins the engine to the commit in `ENGINE_VERSION`.
+- Docs: the Linux package keeps saves in `~/.local/share/alttp-recomp/saves` (the FAQ and README said otherwise).
 - ROM errors: a refused ROM now says what the file is (size, removed header, internal title, odd size) and the usual causes; a `.zip`/`.7z`/`.rar` is named as an archive. Android accepts `.smc` ROMs with a copier header (it refused them before). Takes effect with the next engine update.
 - Updater (Windows): unpacks with the system `tar`, so a Git Bash `tar` first in PATH no longer breaks it (engine; takes effect with the next engine update).
 
@@ -60,6 +61,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 
 ### Sin publicar
 - Empaquetado: el paquete de Windows sale de un workflow de CI (`windows-package.yml`) con el motor commiteado, y el de Linux fija el motor al commit de `ENGINE_VERSION`.
+- Documentación: el paquete de Linux guarda las partidas en `~/.local/share/alttp-recomp/saves` (la FAQ y el README decían otra ruta).
 - Errores de ROM: una ROM rechazada dice qué es el archivo (tamaño, cabecera quitada, título interno, tamaño raro) y las causas habituales; un `.zip`/`.7z`/`.rar` se nombra como comprimido. Android acepta las `.smc` con cabecera (antes las rechazaba). Se nota con la próxima actualización del motor.
 - Actualizador (Windows): descomprime con el `tar` del sistema; un `tar` de Git Bash primero en el PATH ya no lo rompe (motor; se nota con la próxima actualización del motor).
 
