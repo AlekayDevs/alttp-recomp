@@ -2,11 +2,15 @@
 """Revisa la traduccion (games/alttp_usa/lang/es.txt y es_menu.txt) sin ejecutar el juego.
 
   python3 scripts/check_text.py [roms/alttp_usa.sfc]        # sale con 1 si hay algun fallo
+  python3 scripts/check_text.py --sin-rom                   # lo que no necesita la ROM (es lo que ejecuta CI)
 
 es.txt: mide cada linea de pantalla con la tabla de anchos de la ROM (0E:CADF) y avisa de las que pasan de 168 pixeles
 (el motor del juego corta lo que pasa de ahi); avisa de caracteres que text.c no sabe escribir, de comandos mal cerrados y de
 signos de apertura (¿ ¡) que no casan con los de cierre dentro de un mensaje.
 es_menu.txt: comprueba que cada texto solo lleva A-Z, espacio y ? y que no pasa del maximo de letras que dice su comentario.
+
+Con --sin-rom no se miden anchuras (hace falta la ROM): se comprueba UTF-8 valido y sin BOM, el formato @NNN (sin repetidos), las llaves,
+los caracteres permitidos, los signos de apertura y cierre, y el alfabeto y los limites de es_menu.txt.
 
 La ROM solo se lee en memoria para sacar las anchuras: no se escribe nada de ella.
 """
@@ -111,16 +115,34 @@ def measure(text, w, cmd_len):
     return lines, errors
 
 
-def parse_messages(path):
+def read_utf8(path, bad):
+    """Lee un fichero de traduccion; avisa si no es UTF-8 y quita el BOM (el juego tambien lo salta)."""
+    raw = path.read_bytes()
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError as e:
+        bad.append(f"{path.name}: no es UTF-8 valido ({e})")
+        text = raw.decode("utf-8", "replace")
+    if text.startswith("﻿"):
+        bad.append(f"{path.name}: empieza con BOM de UTF-8 (el juego lo salta, pero mejor guardarlo sin BOM)")
+        text = text[1:]
+    return text
+
+
+def parse_messages(path, bad):
     """{numero: (linea donde empieza, texto)}"""
     msgs, num, start, buf = {}, None, 0, []
-    for ln, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for ln, raw in enumerate(read_utf8(path, bad).splitlines(), 1):
         if raw.startswith("#"):
             continue
         m = re.fullmatch(r"@(\d+)", raw.strip())
+        if raw.startswith("@") and not m:
+            bad.append(f"{path.name}:{ln}: linea que empieza por @ y no es @NNN: {raw[:30]!r}")
         if m:
             if num is not None:
                 msgs[num] = (start, "".join(buf))
+            if int(m.group(1)) in msgs or int(m.group(1)) == num:
+                bad.append(f"{path.name}:{ln}: el mensaje @{int(m.group(1)):03d} esta repetido")
             num, start, buf = int(m.group(1)), ln, []
         elif num is not None:
             buf.append(raw)
@@ -130,11 +152,14 @@ def parse_messages(path):
 
 
 def check_es(rom):
-    w = list(rom[lorom(0x0E, 0xCADF & 0xFFFF):][:0x63])
-    cmd_len = list(rom[lorom(0x0E, 0xD36B):][:0x80])   # se indexa por el propio byte del comando, como en text.c
+    if rom is None:                    # sin ROM: anchuras a 0 (no se mide), solo el resto de comprobaciones
+        w, cmd_len = [0] * 0x63, [0] * 0x80
+    else:
+        w = list(rom[lorom(0x0E, 0xCADF & 0xFFFF):][:0x63])
+        cmd_len = list(rom[lorom(0x0E, 0xD36B):][:0x80])   # se indexa por el propio byte del comando, como en text.c
     path = LANG / "es.txt"
-    msgs = parse_messages(path)
     bad, worst = [], []
+    msgs = parse_messages(path, bad)
     for num, (ln, text) in sorted(msgs.items()):
         lines, errors = measure(text, w, cmd_len)
         for e in errors:
@@ -148,14 +173,17 @@ def check_es(rom):
             if plain.count(open_c) != plain.count(close_c):
                 bad.append(f"es.txt:{ln} @{num:03d}: {plain.count(open_c)} '{open_c}' y {plain.count(close_c)} '{close_c}'")
     worst.sort(reverse=True)
-    print(f"es.txt: {len(msgs)} mensajes, {sum(1 for _ in worst)} lineas; la mas ancha {worst[0][0]} px (@{worst[0][1]:03d}, linea {worst[0][2]})")
+    if rom is None:
+        print(f"es.txt: {len(msgs)} mensajes (sin ROM: anchuras sin medir)")
+    else:
+        print(f"es.txt: {len(msgs)} mensajes, {sum(1 for _ in worst)} lineas; la mas ancha {worst[0][0]} px (@{worst[0][1]:03d}, linea {worst[0][2]})")
     return bad
 
 
 def check_menu():
     bad, n = [], 0
     limit, path = None, LANG / "es_menu.txt"
-    for ln, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for ln, raw in enumerate(read_utf8(path, bad).splitlines(), 1):
         m = re.match(r"#.*hasta (\d+) letras", raw)
         if m:
             limit = int(m.group(1))
@@ -177,11 +205,16 @@ def check_menu():
 
 
 def main():
-    rom_path = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "roms" / "alttp_usa.sfc"
-    if not rom_path.exists():
-        print(f"check_text: no hay ROM en {rom_path}; se omite")
-        return 0
-    bad = check_es(read_rom(rom_path)) + check_menu()
+    if "--sin-rom" in sys.argv[1:]:
+        rom = None
+    else:
+        args = [a for a in sys.argv[1:] if not a.startswith("--")]
+        rom_path = Path(args[0]) if args else ROOT / "roms" / "alttp_usa.sfc"
+        if not rom_path.exists():
+            print(f"check_text: no hay ROM en {rom_path}; se omite (con --sin-rom se comprueba lo que no la necesita)")
+            return 0
+        rom = read_rom(rom_path)
+    bad = check_es(rom) + check_menu()
     for b in bad:
         print("  FALLO", b)
     print("OK" if not bad else f"{len(bad)} fallos")

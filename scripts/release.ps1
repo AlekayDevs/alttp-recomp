@@ -3,7 +3,7 @@
 # elige su ROM y juega. snes-recomp.exe es el mismo programa con otro nombre (la línea de comandos del generador): no va.
 # No lleva ROMs, partidas guardadas ni C generado: si algo así acaba en la carpeta, el script falla y no crea el zip.
 #
-#   powershell -File scripts\release.ps1 [-Engine <zip o carpeta de snes-port del motor>] [-Version 0.1.0] [-NoTcc]
+#   powershell -File scripts\release.ps1 [-Engine <zip o carpeta de snes-port del motor>] [-Version <la de VERSION>] [-NoTcc]
 #
 # Sin -Engine usa el motor de la raíz de este repositorio (alttp-recomp.exe, sdl2\, toolchain\; ver scripts\update-engine.ps1).
 #
@@ -12,12 +12,22 @@
 # El zip del motor sale de `powershell -File scripts\release.ps1` en el repositorio snes-recomp.
 param(
     [string]$Engine = "",
-    [string]$Version = "0.1.0",
+    [string]$Version = "",
     [switch]$NoTcc
 )
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
+
+# La versión sale del fichero VERSION de la raíz (la misma que leen release.sh y el workflow del paquete de Linux).
+$fileVersion = (Get-Content (Join-Path $root "VERSION") -TotalCount 1).Trim()
+if ($fileVersion -notmatch '^\d+\.\d+(\.\d+)?$') { throw "VERSION no tiene una versión válida: '$fileVersion'" }
+if ($Version -eq "") { $Version = $fileVersion }
+if ($Version -ne $fileVersion) { throw "-Version $Version no coincide con VERSION ($fileVersion): cambia el fichero VERSION y vuelve a lanzar" }
+# Si HEAD lleva una etiqueta v*, tiene que ser la de esta versión; sin etiqueta solo se avisa (la pones al publicar).
+$tags = @(& git tag --points-at HEAD 2>$null | Where-Object { $_ -match '^v\d' })
+if ($tags.Count -gt 0 -and $tags -notcontains "v$Version") { throw "HEAD está etiquetado $($tags -join ', ') pero VERSION es $Version" }
+if ($tags.Count -eq 0) { Write-Warning "HEAD no tiene la etiqueta v$Version todavía" }
 
 $name = "alttp-recomp-$Version-win64"
 $stage = Join-Path $root "out\release\$name"

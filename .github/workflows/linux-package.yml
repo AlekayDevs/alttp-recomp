@@ -1,23 +1,25 @@
 # Construye el paquete de Linux (scripts/release.sh) en Ubuntu 22.04, con glibc 2.35, para que el ejecutable abra en más
 # distribuciones que si se compila en una máquina reciente (el de Ubuntu 24.04 pide glibc 2.39). Se lanza a mano:
-#   gh workflow run linux-package.yml -f version=0.2
+#   gh workflow run linux-package.yml   (la versión sale del fichero VERSION)
 # Deja el .tar.gz y SHA256SUMS como artefacto de la ejecución. NO publica ninguna release: eso lo decide una persona.
 # No lleva la ROM ni nada derivado de ella (release.sh comprueba el contenido del paquete).
 name: Paquete de Linux
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: "Versión del paquete (sin la v)"
-        required: true
-        default: "0.2"
 
 jobs:
   paquete:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Versión (fichero VERSION)
+        id: v
+        run: echo "version=$(head -n1 VERSION | tr -d '[:space:]')" >> "$GITHUB_OUTPUT"
 
       # release.sh busca el motor en ../snes-recomp y TinyCC (rama mob, sin configurar) en ../tinycc
       - name: Motor y TinyCC
@@ -30,7 +32,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libsdl2-dev pkg-config
 
       - name: Construir el paquete
-        run: scripts/release.sh "${{ inputs.version }}"
+        run: scripts/release.sh "${{ steps.v.outputs.version }}"
 
       - name: SHA256SUMS y versión de glibc que pide
         run: |
@@ -41,7 +43,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: alttp-recomp-${{ inputs.version }}-linux-x86_64
+          name: alttp-recomp-${{ steps.v.outputs.version }}-linux-x86_64
           path: |
             out/release/*.tar.gz
             out/release/SHA256SUMS

@@ -6,7 +6,13 @@
 #   scripts/release.sh [version] [carpeta con snes-port y snes-recomp]
 set -euo pipefail
 cd "$(dirname "$0")/.."
-ver="${1:-0.1}"
+# La versión sale del fichero VERSION de la raíz (la misma que lee release.ps1); si se pasa otra, falla.
+ver="$(head -n1 VERSION | tr -d '[:space:]')"
+[[ "$ver" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]] || { echo "VERSION no tiene una versión válida: '$ver'"; exit 1; }
+[ -z "${1:-}" ] || [ "$1" = "$ver" ] || { echo "la versión $1 no coincide con VERSION ($ver): cambia el fichero VERSION"; exit 1; }
+tags=$(git tag --points-at HEAD 2>/dev/null | grep -E '^v[0-9]' || true)
+if [ -n "$tags" ] && ! grep -qx "v$ver" <<<"$tags"; then echo "HEAD está etiquetado $(echo $tags) pero VERSION es $ver"; exit 1; fi
+[ -n "$tags" ] || echo "aviso: HEAD no tiene la etiqueta v$ver todavía" >&2
 motor="${SNES_ENGINE_REPO:-../snes-recomp}"
 [ -x "$motor/linux/build.sh" ] || { echo "falta $motor/linux/build.sh (el motor, rama con el lanzador de Linux)"; exit 1; }
 name="alttp-recomp-$ver-linux-x86_64"

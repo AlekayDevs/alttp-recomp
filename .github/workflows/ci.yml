@@ -27,6 +27,9 @@ jobs:
       - name: El perfil es TOML válido
         run: python3 -c "import tomllib,sys; tomllib.load(open('games/alttp_usa.toml','rb'))"
 
+      - name: La traducción es válida (sin ROM)
+        run: python3 -I scripts/check_text.py --sin-rom
+
       - name: Cada fichero C propio está en las listas de check.ps1 y check.sh
         run: |
           for f in games/alttp_usa/*.c; do
