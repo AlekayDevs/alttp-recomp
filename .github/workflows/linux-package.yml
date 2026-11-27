@@ -24,7 +24,9 @@ jobs:
       # release.sh busca el motor en ../snes-recomp y TinyCC (rama mob, sin configurar) en ../tinycc
       - name: Motor y TinyCC
         run: |
-          git clone --depth 1 https://github.com/ArgoxDevs/snes-recomp ../snes-recomp
+          # el motor es el commit de ENGINE_VERSION (el mismo del alttp-recomp.exe de Windows), no el HEAD de hoy
+          git clone https://github.com/ArgoxDevs/snes-recomp ../snes-recomp
+          git -C ../snes-recomp checkout "$(sed -n 's/^commit=//p' ENGINE_VERSION | tr -d '[:space:]')"
           git clone https://github.com/TinyCC/tinycc ../tinycc
           git -C ../tinycc checkout e23dabed
 

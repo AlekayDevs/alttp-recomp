@@ -1,0 +1,39 @@
+# Construye el paquete de Windows (scripts/release.ps1) en un equipo limpio, no en el PC de quien publica. Se lanza a mano:
+#   gh workflow run windows-package.yml   (la versión sale del fichero VERSION)
+# El motor es el que está commiteado en la raíz (alttp-recomp.exe, sdl2\, toolchain\; ENGINE_VERSION dice de qué commit sale),
+# así que el zip solo depende de este commit. Deja el .zip y su hash como artefacto. NO publica ninguna release.
+# No lleva la ROM ni nada derivado de ella (release.ps1 comprueba el contenido del paquete).
+name: Paquete de Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  paquete:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Construir el paquete
+        shell: powershell
+        run: powershell -NoProfile -File scripts\release.ps1
+
+      - name: Hash y contenido
+        shell: powershell
+        run: |
+          $zip = Get-ChildItem out\release\*.zip | Select-Object -First 1
+          "$((Get-FileHash $zip.FullName -Algorithm SHA256).Hash.ToLower()) *$($zip.Name)" | Tee-Object out\release\SHA256SUMS
+          Get-Content ENGINE_VERSION
+          Expand-Archive $zip.FullName -DestinationPath out\check
+          Get-ChildItem out\check -Recurse -File | Where-Object { $_.Extension -in ".sfc",".smc",".srm",".sst" } | ForEach-Object { throw "prohibido: $($_.FullName)" }
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: alttp-recomp-win64
+          path: |
+            out/release/*.zip
+            out/release/SHA256SUMS
+          if-no-files-found: error
