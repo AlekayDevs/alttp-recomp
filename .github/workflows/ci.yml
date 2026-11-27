@@ -27,6 +27,20 @@ jobs:
       - name: El perfil es TOML válido
         run: python3 -c "import tomllib,sys; tomllib.load(open('games/alttp_usa.toml','rb'))"
 
+      - name: Cada opción que lee el C está en el menú (un [[option]] del perfil)
+        run: |
+          # dump_text, dump_menu y hud_text son de desarrollo y pruebas: solo con --game-opt.
+          python3 - <<'EOF'
+          import glob, re, sys, tomllib
+          declared = {o["key"]: o for o in tomllib.load(open("games/alttp_usa.toml", "rb")).get("option", [])}
+          used = {k for f in glob.glob("games/alttp_usa/*.c") for k in re.findall(r'game_opt\("([a-z0-9_]+)"', open(f, encoding="utf-8").read())}
+          missing = sorted(used - declared.keys() - {"dump_text", "dump_menu", "hud_text"})
+          bad = sorted(k for k, o in declared.items() if k != "language" and o["names"] != ["Off", "On"])
+          if missing: print("opciones sin [[option]]:", missing)
+          if bad: print("opciones que no son names = [\"Off\", \"On\"] (el C espera 0/1):", bad)
+          sys.exit(1 if missing or bad else 0)
+          EOF
+
       - name: La traducción es válida (sin ROM)
         run: python3 -I scripts/check_text.py --sin-rom
 
