@@ -39,4 +39,4 @@ They generate the C with the engine, compile it and play scripted games. If you 
 - **Commit messages in English**, imperative, with the what and the why on the first line.
 - Documentation is in Spanish, and also in English where an English version already exists (README, FAQ, changelog, this file).
 - In the PR, say which ROM address you touch, how you checked it and with which ROM (without attaching anything from it).
-- Questions that are not bugs ("which ROM do I need?", "it does not start") fit better in Discussions, once they are enabled, or in the [FAQ](docs/FAQ.md).
+- Questions that are not bugs ("which ROM do I need?", "it does not start") fit better in [Discussions](https://github.com/ArgoxDevs/alttp-recomp/discussions) or in the [FAQ](docs/FAQ.md).

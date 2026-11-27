@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Question or help / Pregunta o ayuda
+    url: https://github.com/ArgoxDevs/alttp-recomp/discussions
+    about: Which ROM do I need? It does not start? Ask here; issues are for bugs. / Preguntas aquí; los issues son para fallos.
   - name: Security problem / Problema de seguridad
     url: https://github.com/ArgoxDevs/alttp-recomp/security/advisories/new
     about: Report it privately, not as a public issue.
