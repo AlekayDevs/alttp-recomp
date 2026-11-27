@@ -350,3 +350,10 @@ Hecho: los 28 nombres de objeto que son texto (`item.*` en `lang/es_menu.txt`, `
   - `dump_text`, `dump_menu` y `hud_text` no se declaran: son de desarrollo y de las pruebas.
   - El `HEAD` del motor (`3307d72`) no enlazaba: `play.c` (commit `631b3fc`) llama a `rom_header_off()`, que solo estaba en el trabajo sin commit de `hirom-mapping`. La rama del cambio lleva una versión LoROM de esa función.
 - **Español (2026-11-27):** `label_es` y `desc_es` en el `[[option]]` (ASCII más `á é í ó ú ü ñ ¿ ¡`, lo que dibuja la fuente del menú); el menú los usa cuando `language=es`. Los mismos límites: 90 px de etiqueta y 212 px de ayuda (medidos con la fuente real, que es proporcional: hubo que acortar varias). Los arreglos llevan el prefijo «Arr.:». En el menú táctil la ayuda va en la franja bajo la lista (y 210), con `text_fit` a 212 px.
+
+### 8.1 Android: el C del juego solo ve las cabeceras mínimas (2026-11-27)
+
+- Qué pasó: en la tablet, tras JUGAR, «el C del juego no compila». `adb logcat | grep tcc:` dio `text.c:26: include file 'time.h' not found` y avisos de `fputc`/`strcspn` sin declarar.
+- Causa: en el dispositivo libtcc compila con `-nostdinc` y solo las cabeceras de `snes-recomp/spikes/tcc_include` (más `snes_rt.h`), y los símbolos de la libc se enlazan uno a uno (`libc_names` en `android/app/src/main/cpp/launcher.c`). Todo lo nuevo que use el C del juego de la libc hay que declararlo ahí.
+- Arreglo: `time.h` (solo `time()`), `fputc` y `strcspn`, y `time` en `libc_names`. Trampa: `check.ps1` y CI compilan con la libc completa, así que no lo ven; solo se descubre ejecutando en Android.
+- Además, `play_gl.h` tenía `gl_layer` duplicada en la rama no Windows, lo que rompía Android y Linux.
