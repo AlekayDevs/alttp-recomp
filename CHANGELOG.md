@@ -7,6 +7,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 ## English
 
 ### Unreleased
+- Android: the game's C compiles on the device again (the on-device TinyCC lacked `time.h`, `fputc` and `strcspn`), and the Android/Linux builds no longer break on a duplicated `gl_layer` (engine). The touch menu's Controller page now shows the pad picture with the selected button lit; tapping a button of the picture waits for the controller button, and the change confirmation names the buttons that answer it (A yes, B no). Tested on a tablet with an Xbox Series X controller over Bluetooth.
 - Fix: switching `language` from `es` back to `en` in the middle of a game now restores the game's own `$47`–`$49` glyphs (they kept showing `ñ ¿ ¡` until the next menu).
 - Translation files may start with a UTF-8 BOM (Windows Notepad adds one); it is skipped when loading.
 - `scripts/check_text.py --sin-rom` checks what does not need the ROM (encoding, format, allowed characters, menu limits) and runs in CI.
@@ -52,6 +53,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 ## Español
 
 ### Sin publicar
+- Android: el C del juego vuelve a compilar en el dispositivo (al TinyCC del dispositivo le faltaban `time.h`, `fputc` y `strcspn`) y las compilaciones de Android y Linux ya no se rompen por una `gl_layer` duplicada (motor). La página «Mando» del menú táctil muestra el dibujo del mando con el botón elegido iluminado; tocar un botón del dibujo espera el botón del mando, y la confirmación del cambio dice qué botones responden (A sí, B no). Probado en una tablet con un mando Xbox Series X por Bluetooth.
 - Arreglo: al volver de `language=es` a `en` en plena partida se restauran los glifos `$47`–`$49` del juego (seguían mostrando `ñ ¿ ¡` hasta el siguiente menú).
 - Los ficheros de traducción pueden empezar con BOM de UTF-8 (el Bloc de notas de Windows lo añade); se salta al cargar.
 - `scripts/check_text.py --sin-rom` comprueba lo que no necesita la ROM (codificación, formato, caracteres permitidos, límites del menú) y se ejecuta en CI.
