@@ -9,7 +9,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 ### Unreleased
 - (nothing yet)
 
-### 0.17
+### 0.17 (2026-11-27)
 - Packaging: the Windows package is built by a CI workflow (`windows-package.yml`) from the committed engine, and the Linux workflow pins the engine to the commit in `ENGINE_VERSION`.
 - Supply chain: the Windows and Linux packages built by CI carry a signed build-provenance attestation (`gh attestation verify <file> -R ArgoxDevs/alttp-recomp`); see the FAQ. The 0.14 and 0.15 release notes are now bilingual.
 - Docs: the Linux package keeps saves in `~/.local/share/alttp-recomp/saves` (the FAQ and README said otherwise).
@@ -66,7 +66,7 @@ English first, then Spanish. Versions are published on the [releases page](https
 ### Sin publicar
 - (nada todavía)
 
-### 0.17
+### 0.17 (2026-11-27)
 - Empaquetado: el paquete de Windows sale de un workflow de CI (`windows-package.yml`) con el motor commiteado, y el de Linux fija el motor al commit de `ENGINE_VERSION`.
 - Cadena de suministro: los paquetes de Windows y Linux construidos por CI llevan una *attestation* firmada de procedencia (`gh attestation verify <archivo> -R ArgoxDevs/alttp-recomp`); mira la FAQ. Las notas de la 0.14 y la 0.15 son ya bilingües.
 - Documentación: el paquete de Linux guarda las partidas en `~/.local/share/alttp-recomp/saves` (la FAQ y el README decían otra ruta).
