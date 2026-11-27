@@ -11,6 +11,10 @@ on:
 jobs:
   paquete:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      id-token: write      # la attestation se firma con la identidad del workflow (Sigstore)
+      attestations: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -29,6 +33,13 @@ jobs:
           Get-Content ENGINE_VERSION
           Expand-Archive $zip.FullName -DestinationPath out\check
           Get-ChildItem out\check -Recurse -File | Where-Object { $_.Extension -in ".sfc",".smc",".srm",".sst" } | ForEach-Object { throw "prohibido: $($_.FullName)" }
+
+      # firma de procedencia (GitHub artifact attestations): se comprueba con `gh attestation verify <zip> -R ArgoxDevs/alttp-recomp`
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            out/release/*.zip
+            out/release/SHA256SUMS
 
       - uses: actions/upload-artifact@v7
         with:

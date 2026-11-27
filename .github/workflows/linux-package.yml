@@ -11,6 +11,10 @@ on:
 jobs:
   paquete:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write      # la attestation se firma con la identidad del workflow (Sigstore)
+      attestations: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -42,6 +46,14 @@ jobs:
           for f in out/release/*/alttp-recomp out/release/*/lib/*.so*; do
             echo "$f: $(objdump -T "$f" | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -1)"
           done
+
+      # firma de procedencia (GitHub artifact attestations): quien baje el paquete puede comprobar que salió de este workflow y de
+      # este commit con `gh attestation verify <fichero> -R ArgoxDevs/alttp-recomp`. Atestiguamos el paquete y SHA256SUMS.
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            out/release/*.tar.gz
+            out/release/SHA256SUMS
 
       - uses: actions/upload-artifact@v7
         with:
