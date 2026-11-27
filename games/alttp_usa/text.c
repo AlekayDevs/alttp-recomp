@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <sys/stat.h>
 #include "snes_rt.h"
 #include "snes_funcs.h"
@@ -305,6 +306,10 @@ static void reload_if_changed(void) {
     FILE *f;
     char *text;
     size_t n;
+    static time_t last_check;
+    time_t now = time(NULL);
+    if (file_stamp && now == last_check) return; /* the file is looked at once per second at most (not at every text box) */
+    last_check = now;
     if (stat(path, &st) != 0) {
         if (!warned_missing) fprintf(stderr, "language=es: cannot find %s: the messages stay in English\n", path);
         warned_missing = 1;
@@ -475,7 +480,8 @@ static int label_codes(const char *text, uint8_t *out, int max) {
         long cp = utf8_at(text + i, strlen(text + i), &len);
         if (cp < 0) return 0;
         code = cp < 0x80 ? code_of((char)cp) : letters_state == 1 ? accent_code((unsigned)cp) : -1;
-        if (code < 0 || n == max) return 0;
+        if (code < 0) return 0;
+        if (n == max) break; /* too long: cut it, better a short label than the icon of another button */
         out[n++] = (uint8_t)code;
         i += len;
     }

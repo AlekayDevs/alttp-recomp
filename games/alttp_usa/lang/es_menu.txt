@@ -13,7 +13,7 @@ select.erase_this = BORRAR LOS DATOS
 # erase.title: hasta 12 letras
 erase.title = BORRAR DATOS
 # erase.which: hasta 24 letras
-erase.which = QUE DATOS QUIERES
+erase.which = QUE DATOS QUIERES?
 # erase.to_erase: hasta 10 letras
 erase.to_erase = BORRAR ?
 # erase.quit: hasta 4 letras
