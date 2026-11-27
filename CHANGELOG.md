@@ -7,11 +7,14 @@ English first, then Spanish. Versions are published on the [releases page](https
 ## English
 
 ### Unreleased
+- (nothing yet)
+
+### 0.17
 - Packaging: the Windows package is built by a CI workflow (`windows-package.yml`) from the committed engine, and the Linux workflow pins the engine to the commit in `ENGINE_VERSION`.
 - Supply chain: the Windows and Linux packages built by CI carry a signed build-provenance attestation (`gh attestation verify <file> -R ArgoxDevs/alttp-recomp`); see the FAQ. The 0.14 and 0.15 release notes are now bilingual.
 - Docs: the Linux package keeps saves in `~/.local/share/alttp-recomp/saves` (the FAQ and README said otherwise).
-- ROM errors: a refused ROM now says what the file is (size, removed header, internal title, odd size) and the usual causes; a `.zip`/`.7z`/`.rar` is named as an archive. Android accepts `.smc` ROMs with a copier header (it refused them before). Takes effect with the next engine update.
-- Updater (Windows): unpacks with the system `tar`, so a Git Bash `tar` first in PATH no longer breaks it (engine; takes effect with the next engine update).
+- ROM errors: a refused ROM now says what the file is (size, removed header, internal title, odd size) and the usual causes; a `.zip`/`.7z`/`.rar` is named as an archive. Android accepts `.smc` ROMs with a copier header (it refused them before).
+- Updater (Windows): unpacks with the system `tar`, so a Git Bash `tar` first in PATH no longer breaks it.
 
 ### 0.16 (2026-11-27)
 - Engine traceability: `alttp-recomp.exe --version` prints the engine version and commit, the launcher shows it next to the game version (Windows, Linux and Android), and the engine package carries an `ENGINE_VERSION` file (copied here by `update-engine.ps1`). The engine's `release.ps1` refuses to build from a tree with uncommitted changes.
@@ -61,11 +64,14 @@ English first, then Spanish. Versions are published on the [releases page](https
 ## Español
 
 ### Sin publicar
+- (nada todavía)
+
+### 0.17
 - Empaquetado: el paquete de Windows sale de un workflow de CI (`windows-package.yml`) con el motor commiteado, y el de Linux fija el motor al commit de `ENGINE_VERSION`.
 - Cadena de suministro: los paquetes de Windows y Linux construidos por CI llevan una *attestation* firmada de procedencia (`gh attestation verify <archivo> -R ArgoxDevs/alttp-recomp`); mira la FAQ. Las notas de la 0.14 y la 0.15 son ya bilingües.
 - Documentación: el paquete de Linux guarda las partidas en `~/.local/share/alttp-recomp/saves` (la FAQ y el README decían otra ruta).
-- Errores de ROM: una ROM rechazada dice qué es el archivo (tamaño, cabecera quitada, título interno, tamaño raro) y las causas habituales; un `.zip`/`.7z`/`.rar` se nombra como comprimido. Android acepta las `.smc` con cabecera (antes las rechazaba). Se nota con la próxima actualización del motor.
-- Actualizador (Windows): descomprime con el `tar` del sistema; un `tar` de Git Bash primero en el PATH ya no lo rompe (motor; se nota con la próxima actualización del motor).
+- Errores de ROM: una ROM rechazada dice qué es el archivo (tamaño, cabecera quitada, título interno, tamaño raro) y las causas habituales; un `.zip`/`.7z`/`.rar` se nombra como comprimido. Android acepta las `.smc` con cabecera (antes las rechazaba).
+- Actualizador (Windows): descomprime con el `tar` del sistema; un `tar` de Git Bash primero en el PATH ya no lo rompe.
 
 ### 0.16 (2026-11-27)
 - Trazabilidad del motor: `alttp-recomp.exe --version` dice la versión y el commit del motor, el lanzador los enseña junto a la versión del juego (Windows, Linux y Android) y el paquete del motor lleva un fichero `ENGINE_VERSION` (que copia `update-engine.ps1`). El `release.ps1` del motor se niega a construir con cambios sin commit.
